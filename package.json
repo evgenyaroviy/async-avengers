@@ -5,7 +5,7 @@
   "homepage": "https://evgenyaroviy.github.io/async-avengers",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /async-avengers/"
+    "build": "parcel build src/*.html --public-url /async-avenger/"
   },
   "repository": {
     "type": "git",
