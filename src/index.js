@@ -1,0 +1,9 @@
+import './js/header';
+import './js/hero';
+import './js/home/monthly_trends';
+import './js/home/weekly_trends';
+import './js/galleryMarkup';
+import './js/request';
+import './js/modal';
+import './js/button';
+import './js/footer';

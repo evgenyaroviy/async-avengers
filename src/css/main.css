@@ -1,0 +1,26 @@
+/* BASE */
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@import url('./base/reset.css');
+@import url('./base/fonts.css');
+@import url('./base/common.css');
+
+/* COMPONENTS */
+@import url('./components/button.css');
+@import url('./components/container.css');
+@import url('./components/modal.css');
+
+/* PAGES */
+@import url('./pages/footer.css');
+@import url('./pages/header.css');
+@import url('./pages/hero.css');
+
+/* PAGE-CATALOG */
+@import url('./pages/catalog/gallery.css');
+@import url('./pages/catalog/search.css');
+
+/* PAGE-HOME */
+@import url('./pages/home/monthly_trends.css');
+@import url('./pages/home/weekly_trends.css');
+
+/* PAGE-LIBRARY */
+@import url('./pages/library/library.css');
