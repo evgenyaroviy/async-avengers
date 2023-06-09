@@ -10,6 +10,8 @@
 //         console.error(error);
 //     });
 
+const ACCESS_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOTZiN2ExNTYwNGYwMmExYWNkMTVhNWJlY2JmMjQ4MCIsInN1YiI6IjY0ODNhYTBhOTkyNTljMDBlMmY0NWE4ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Sdbi-2PalUFAI7K7hzIv-hc4p92EU6q_yg6_IJJHjA'
+
 // MOVIES OF THE WEEK
 export const optionsWeek = {
     method: 'GET',
@@ -17,7 +19,7 @@ export const optionsWeek = {
     params: { language: 'en-US' },
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer 4a05dfa390021b92e77d33c4a862f4f6'
+        Authorization: `Bearer ${ACCESS_KEY}`
     }
 };
 
@@ -28,7 +30,7 @@ export const optionsUpcoming = {
     params: { language: 'en-US', page: '1' },
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer 4a05dfa390021b92e77d33c4a862f4f6'
+        Authorization: `Bearer ${ACCESS_KEY}`
     }
 };
 
@@ -39,7 +41,7 @@ export const optionsSearch = {
     params: { include_adult: 'false', language: 'en-US', page: '1' },
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer 4a05dfa390021b92e77d33c4a862f4f6'
+        Authorization: `Bearer ${ACCESS_KEY}`
     }
 };
 
@@ -50,7 +52,7 @@ export const optionsDetails = {
     params: { language: 'en-US' },
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer 4a05dfa390021b92e77d33c4a862f4f6'
+        Authorization: `Bearer ${ACCESS_KEY}`
     }
 };
 
@@ -61,7 +63,7 @@ export const optionsVideos = {
     params: { language: 'en-US' },
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer 4a05dfa390021b92e77d33c4a862f4f6'
+        Authorization: `Bearer ${ACCESS_KEY}`
     }
 };
 
@@ -73,6 +75,6 @@ export const optionsGenre = {
     params: { language: 'en' },
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer 4a05dfa390021b92e77d33c4a862f4f6'
+        Authorization: `Bearer ${ACCESS_KEY}`
     }
 };
