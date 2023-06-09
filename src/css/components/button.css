@@ -1,6 +1,6 @@
 .btn {
     display: inline-block;
-    border-radius: 74px;
+    
     padding: 12px 24px;
     font-weight: 500; 
     font-size: 12px;
@@ -9,15 +9,22 @@
 }
 
 .transparent-btn {
+    border-radius: 74px;
     border: 1px solid;
     border-color: var(--linear-ligh-to-dark);
     background-color: transparent;
 }
 .orange-btn {
+    border-radius: 75px;
     background: var(--linear-ligh-to-dark);
     border: 1px solid;
-        border-image-source: var(--linear-ligh-to-dark);
-        border-image-slice: 1;
+    }
+    
+    .orange-btn:hover,
+    .orange-btn:focus {
+        background: var(--lightest-color);
+        color: var(--accent-color);
+        border-color: inherit;
 }
 
 /* MOBILE */
