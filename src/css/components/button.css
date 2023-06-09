@@ -11,12 +11,12 @@
 .transparent-btn {
     border-radius: 74px;
     border: 1px solid;
-    border-color: var(--linear-ligh-to-dark);
+    border-color: var(--linear-light-to-dark);
     background-color: transparent;
 }
 .orange-btn {
     border-radius: 75px;
-    background: var(--linear-ligh-to-dark);
+    background: var(--linear-light-to-dark);
     border: 1px solid;
     }
     
