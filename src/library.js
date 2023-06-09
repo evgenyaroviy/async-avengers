@@ -1,8 +1,7 @@
-import './js/header';
-import './js/hero';
-import './js/library/library';
+import './js/pages/header';
+import './js/pages/hero';
+import './js/pages/library/library';
 import './js/galleryMarkup';
 import './js/request';
-import './js/modal';
-import './js/button';
-import './js/footer';
+import './js/components/modal';
+import './js/pages/footer';

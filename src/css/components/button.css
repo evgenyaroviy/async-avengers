@@ -15,7 +15,9 @@
 }
 .orange-btn {
     background: var(--linear-ligh-to-dark);
-    border: 1px solid transparent;
+    border: 1px solid;
+        border-image-source: var(--linear-ligh-to-dark);
+        border-image-slice: 1;
 }
 
 /* MOBILE */
