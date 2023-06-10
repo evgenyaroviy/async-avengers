@@ -1,0 +1,37 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mob-menu-btn {
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  border-style: none;
+  font-family: 'Roboto';
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--light-grey-color);
+}
+.theme.btn {
+  position: relative;
+  padding: 4px 3px;
+  min-width: 44px;
+  max-height: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.theme__icon {
+  stroke: var(--lightest-color);
+  fill: none;
+}
+
+.theme__switch {
+  top: 50%;
+  right: 0;
+  position: absolute;
+
+  transform: translate(-20%, -50%) rotate(0);
+}
