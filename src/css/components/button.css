@@ -1,30 +1,74 @@
+a.btn {
+    text-align: center !important;
+    text-decoration: none;
+}
+
 .btn {
-    display: inline-block;
-    
+    background: var(--linear-light-to-dark) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    border-radius: 74px;
+    box-shadow: 0 4px 5px -6px var(--dark-color);
+
+    display: inline-flex;
+    align-items: center;
+    padding: 1px;
+    overflow: hidden;
+}
+
+.btn-in{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 74px;
     padding: 12px 24px;
+    
     font-weight: 500; 
     font-size: 12px;
-    line-height: 14px;
-
+    line-height: 1.17;
+    color: var(--dark-color);
+    background-color: inherit; 
+    transition: color var(--transition-dur-and-fun), background-color var(--transition-dur-and-fun);   
 }
 
-.transparent-btn {
-    border-radius: 74px;
-    border: 1px solid;
-    border-color: var(--linear-light-to-dark);
-    background-color: transparent;
+.btn-accent:hover .btn-in,
+.btn-accent:focus .btn-in {
+    color: var(--accent-color);
+    background-color: var(--lightest-color);
 }
-.orange-btn {
-    border-radius: 75px;
-    background: var(--linear-light-to-dark);
-    border: 1px solid;
-    }
+
+/*btn-dark - button's class for dark theme*/
+.btn-dark .btn-in{
+    color: var(--lightest-color);
+    background-color: var(--dark-color); 
     
-    .orange-btn:hover,
-    .orange-btn:focus {
-        background: var(--lightest-color);
-        color: var(--accent-color);
-        border-color: inherit;
+}
+.btn-dark:hover .btn-in,
+.btn-dark:focus .btn-in {
+    color: var(--accent-color);
+    background-color: var(--lightest-color);
+}
+
+/*btn-light - button's class for light theme*/
+.btn-light .btn-in{
+    color: var(--dark-color);
+    background-color: var(--lightest-color);
+}
+.btn-light:hover .btn-in,
+.btn-light:focus .btn-in {
+    color: var(--accent-color);
+    background-color: var(--dark-color); 
+}
+
+/*btn-round - button's class for pagination*/
+.btn-round {
+    width: 24px;
+    height: 24px;
+}
+.btn-round .btn-in{
+    padding: 6px;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1;
 }
 
 /* MOBILE */
@@ -34,16 +78,25 @@
 
 /* TABLET */
 @media screen and (min-width: 768px) {
-    .btn {
+    .btn-in {
         font-size: 14px;
-        line-height: 16px;
+        line-height: 1.14;
+    }
+    
+    .btn-round {
+        width: 40px;
+        height: 40px;
+    }
+    .btn-round .btn-in{
+        padding: 12px;
+        font-size: 14px;
     }
 }
 
 /* DESKTOP */
 @media screen and (min-width: 1280px) {
-    .btn {
+    .btn-in {
         font-size: 16px;
-        line-height: 24px;
+        line-height: 1.5;
     }
 }
