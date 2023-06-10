@@ -24,17 +24,15 @@ a.btn {
     
     font-weight: 500; 
     font-size: 12px;
-    line-height: 1.17;    
-}
-
-.btn-accent:hover .btn-in{
+    line-height: 1.17;
     color: var(--dark-color);
-    background-color: inherit;
-    transition: background-color var(--transition-dur-and-fun);
+    background-color: inherit; 
+    transition: color var(--transition-dur-and-fun), background-color var(--transition-dur-and-fun);   
 }
 
 .btn-accent:hover .btn-in,
 .btn-accent:focus .btn-in {
+    color: var(--accent-color);
     background-color: var(--lightest-color);
 }
 
@@ -42,7 +40,7 @@ a.btn {
 .btn-dark .btn-in{
     color: var(--lightest-color);
     background-color: var(--dark-color); 
-    transition: color var(--transition-dur-and-fun), background-color var(--transition-dur-and-fun);
+    
 }
 .btn-dark:hover .btn-in,
 .btn-dark:focus .btn-in {
@@ -52,14 +50,12 @@ a.btn {
 
 /*btn-light - button's class for light theme*/
 .btn-light .btn-in{
-    color: var(--accent-color);
+    color: var(--dark-color);
     background-color: var(--lightest-color);
-    
-    transition: color var(--transition-dur-and-fun), background-color var(--transition-dur-and-fun);
 }
 .btn-light:hover .btn-in,
 .btn-light:focus .btn-in {
-    color: var(--lightest-color);
+    color: var(--accent-color);
     background-color: var(--dark-color); 
 }
 
