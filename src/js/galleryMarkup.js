@@ -1,14 +1,7 @@
 export function galleryMarkup(movies) {
-    return movies
-        .map(
-            ({
-                title,
-                poster_path,
-                genre_ids,
-                vote_average,
-                release_date,
-            }) => {
-                return `<div class="movie-card">
+  return movies
+    .map(({ title, poster_path, genre_ids, vote_average, release_date }) => {
+      return `<div class="movie-card">
         <img src="${poster_path}" alt="${title}" loading="lazy" class="movie-card__img"/>
       <div class="movie-card__info">
         <div>
@@ -32,7 +25,6 @@ export function galleryMarkup(movies) {
         </div>
       </div>
     </div>`;
-            }
-        )
-        .join('');
+    })
+    .join('');
 }

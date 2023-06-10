@@ -1,4 +1,4 @@
-import { fullStar, emptyStar, halfStar } from './starsAPI';
+import { fullStar, emptyStar, halfStar } from './starsPattern';
 
 export function ratingToStars(value) {
   let starsRating = [emptyStar, emptyStar, emptyStar, emptyStar, emptyStar];
