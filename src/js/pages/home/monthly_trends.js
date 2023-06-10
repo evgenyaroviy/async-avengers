@@ -22,6 +22,7 @@ async function fetchGenresMovie() {
 }
 
 async function fetchMovieImages(id) {
+  console.log(id);
   const options = {
     method: 'GET',
     url: `https://api.themoviedb.org/3/movie/${id}/images`,
@@ -43,8 +44,16 @@ async function fetchMovieImages(id) {
 async function responseUpcoming() {
   const data = await fetchUpcomingMovie();
   const movieInfo = data.results;
-  const genres = await fetchGenresMovie();
-  const posters = await fetchMovieImages(976573);
+  const randomIndex = Math.floor(Math.random() * movieInfo.length);
+  /*Math.random() генерує випадкове число в діапазоні від 0 до 1 (не включно).
+    movieInfo.length повертає кількість елементів у списку movieInfo.
+    Math.random() * movieInfo.length повертає випадкове число від 0 до максимальної кількості елементів у списку.
+    Math.floor() округлює це число до меншого цілого числа.
+    Отримане число є індексом для вибору випадкового фільму зі списку, який зберігається у змінній randomMovie. */
+  const randomMovie = movieInfo[randomIndex];
+  const id = randomMovie.id;  // Отримуємо id фільму
+  const genres = await fetchGenresMovie(id);  // Передаємо id у функцію
+  const posters = await fetchMovieImages(id);
   generateGenres(movieInfo, genres);
   containerMovie.innerHTML = createMarkupUpcoming(movieInfo, genres, posters);
 }
