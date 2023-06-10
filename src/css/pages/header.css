@@ -3,6 +3,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.logo__img {
+  width: 32px;
+  height: 32px;
+}
 .mob-menu-btn {
   padding-top: 16px;
   padding-bottom: 16px;
@@ -24,6 +28,9 @@
   align-items: center;
 }
 .theme__icon {
+  width: 10px;
+  height: 10px;
+
   stroke: var(--lightest-color);
   fill: none;
 }
