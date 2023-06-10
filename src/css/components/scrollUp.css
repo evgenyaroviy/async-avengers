@@ -15,5 +15,5 @@
 }
 
 .scroll-up-btn:hover {
-    background-color: black;
+    background-color: var(--dark-color);
 }
