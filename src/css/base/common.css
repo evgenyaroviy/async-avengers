@@ -21,6 +21,8 @@ body {
     font-style: normal;
     font-size: 14px;
     color: var(--dark-color);
+    color: var(--light-color);
+    background-color: var(--dark-color);
 }
 
 .no-scroll {
