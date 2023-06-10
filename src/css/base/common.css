@@ -21,7 +21,6 @@ body {
     font-style: normal;
     font-size: 14px;
     color: var(--dark-color);
-    height: 1000px;
 }
 
 .no-scroll {
