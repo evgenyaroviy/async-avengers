@@ -96,6 +96,55 @@
 
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.mobile-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  background: rgba(255, 255, 255, 0.2);
+
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  transition: background-color var(--transition-dur-and-fun);
+}
+
+.mobile-backdrop.is-open {
+  opacity: 1;
+  overflow: auto;
+  pointer-events: all;
+}
+.mobile-nav {
+  width: 65%;
+  height: 100vh;
+  padding-top: 8px;
+  padding-left: 20px;
+  background-color: var(--dark-color);
+
+  opacity: 0;
+  transform: translateY(-100%);
+
+  transition: transform var(--transition-dur-and-fun),
+    opacity var(--transition-dur-and-fun);
+}
+.mobile-backdrop.is-open .mobile-nav {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mobile__logo {
+  margin-bottom: 40px;
+}
+
+.mobile-menu__item:not(:last-child) {
+  margin-bottom: 24px;
+}
+.mobile-menu__link {
+  color: var(--lightest-color);
+}
 
 @media screen and (max-width: 767px) {
   .site-nav {
@@ -130,6 +179,25 @@
     width: 18px;
     height: 18px;
   }
+  .mobile-backdrop {
+    display: none;
+  }
+  @keyframes animSwitchLight {
+    0% {
+      transform: translate(-15%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-215%, -50%) rotate(-180deg);
+    }
+  }
+  @keyframes animSwitchDark {
+    0% {
+      transform: translate(-215%, -50%) rotate(-180deg);
+    }
+    100% {
+      transform: translate(-15%, -50%) rotate(0deg);
+    }
+  }
 }
 @media screen and (min-width: 1280px) {
   .site-nav__item:not(:last-child) {
@@ -160,23 +228,5 @@
   }
   100% {
     transform: translate(-15%, -50%) rotate(0deg);
-  }
-}
-@media screen and (min-width: 768px) {
-  @keyframes animSwitchLight {
-    0% {
-      transform: translate(-15%, -50%) rotate(0deg);
-    }
-    100% {
-      transform: translate(-215%, -50%) rotate(-180deg);
-    }
-  }
-  @keyframes animSwitchDark {
-    0% {
-      transform: translate(-215%, -50%) rotate(-180deg);
-    }
-    100% {
-      transform: translate(-15%, -50%) rotate(0deg);
-    }
   }
 }
