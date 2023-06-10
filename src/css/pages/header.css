@@ -1,3 +1,6 @@
+.header {
+  background-color: var(--dark-color);
+}
 .nav {
   display: flex;
   justify-content: space-between;
@@ -34,11 +37,104 @@
   stroke: var(--lightest-color);
   fill: none;
 }
-
 .theme__switch {
+  width: 14px;
+  height: 14px;
   top: 50%;
   right: 0;
   position: absolute;
 
   transform: translate(-20%, -50%) rotate(0);
+}
+.site-nav {
+  display: flex;
+}
+.site-nav__item:not(:last-child) {
+  margin-right: 32px;
+}
+.site-nav__link {
+  text-transform: uppercase;
+  color: var(--light-grey-color);
+
+  transition: color var(--transition-dur-and-fun);
+}
+.site-nav__link:hover,
+.site-nav__link:focus {
+  color: var(--accent-color);
+}
+.js-nav-link.active-page {
+  color: var(--accent-color);
+}
+.logo__wrapper {
+  display: flex;
+  align-items: center;
+  color: var(--lightest-color);
+}
+.logo__name {
+  display: none;
+  position: relative;
+  margin-left: 8px;
+
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.2;
+  overflow: hidden;
+}
+.logo__name::after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  transform-origin: right;
+  transform: scaleX(0);
+
+  background-color: var(--accent-color);
+
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media screen and (max-width: 767px) {
+  .site-nav {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .nav {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .logo__img {
+    width: 48px;
+    height: 48px;
+  }
+  .logo__name {
+    display: block;
+  }
+  .mob-menu-btn {
+    display: none;
+  }
+  .theme.btn {
+    min-width: 60px;
+    min-height: 24px;
+    padding: 5px 4px;
+  }
+  .theme__icon {
+    width: 13px;
+    height: 13px;
+  }
+  .theme__switch {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .site-nav__item:not(:last-child) {
+    margin-right: 40px;
+  }
+  .logo__wrapper:hover .logo__name::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
