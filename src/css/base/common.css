@@ -1,17 +1,17 @@
 :root {
     --accent-color: #F87719;
     --dark-color: #111111;
-    
+
     --dark-grey-color: #282828;
     --middle-grey-color: #595959;
     --light-grey-color: #B7B7B7;
-    
+
     --light-color: #F8F8F8;
     --lightest-color: #FFFFFF;
-    
+
     --linear-light-to-dark: linear-gradient(141.22deg, #FFC226 9.4%, #F84119 91.91%);
     --linear-dark-to-light: linear-gradient(141.22deg, #F84119 9.4%, rgba(248, 159, 25, 0.68) 91.91%);
-    
+
     --primary-font: 'Roboto', sans-serif;
     --transition-dur-and-fun: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -21,31 +21,32 @@ body {
     font-style: normal;
     font-size: 14px;
     color: var(--dark-color);
+    height: 1000px;
 }
 
 .no-scroll {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
 
 .list {
-  list-style: none;
+    list-style: none;
 }
 
 .link {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 h1 {
@@ -63,9 +64,7 @@ h2 {
 
 
 /* MOBILE */
-@media screen and (min-width: 320px) {
-
-}
+@media screen and (min-width: 320px) {}
 
 /* TABLET */
 @media screen and (min-width: 768px) {
@@ -73,6 +72,7 @@ h2 {
         font-size: 44px;
         line-height: 52px;
     }
+
     h2 {
         font-size: 24px;
         line-height: 28px;
@@ -85,6 +85,7 @@ h2 {
         font-size: 64px;
         line-height: 75px;
     }
+
     h2 {
         font-size: 28px;
         line-height: 33px;
