@@ -9,6 +9,7 @@
 @import url('./components/container.css');
 @import url('./components/modal.css');
 @import url('./components/rating.css');
+@import url('./components/scrollUp.css');
 
 /* PAGES */
 @import url('./pages/footer.css');
