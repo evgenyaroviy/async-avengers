@@ -1,5 +1,18 @@
-<section>
-    <div class="container">
-        <input type="text" placeholder="Search">
-    </div>
+<section class="catalog-search-section">
+  <div class="container">
+    <form class="search-form" id="search-form">
+      <input
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Search"
+        class="search-field"
+      />
+      <button type="submit" class="submit-btn">
+        <svg class="search-icon">
+          <use href="./images/sprite.svg#icon-search"></use>
+        </svg>
+      </button>
+    </form>
+  </div>
 </section>
