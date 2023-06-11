@@ -10,6 +10,7 @@
 @import url('./components/modal.css');
 @import url('./components/rating.css');
 @import url('./components/scrollUp.css');
+@import url('./components/movie_card.css');
 
 /* PAGES */
 @import url('./pages/footer.css');
@@ -19,6 +20,7 @@
 /* PAGE-CATALOG */
 @import url('./pages/catalog/gallery.css');
 @import url('./pages/catalog/search.css');
+@import url('./pages/catalog/pagination.css');
 
 /* PAGE-HOME */
 @import url('./pages/home/monthly_trends.css');
