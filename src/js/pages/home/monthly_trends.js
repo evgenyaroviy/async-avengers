@@ -10,34 +10,16 @@ async function fetchUpcomingMovie() {
     return response.data;
   } catch (error) {
     console.error(error);
+    containerMovie.innerHTML = markupError();
   }
 }
-async function fetchGenresMovie() {
+async function fetchGenresMovie(id) {
   try {
     const genres = await axios.request(optionsGenre);
     return genres.data.genres;
   } catch (error) {
     console.log(error);
-  }
-}
-
-async function fetchMovieImages(id) {
-  console.log(id);
-  const options = {
-    method: 'GET',
-    url: `https://api.themoviedb.org/3/movie/${id}/images`,
-    headers: {
-      accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOTZiN2ExNTYwNGYwMmExYWNkMTVhNWJlY2JmMjQ4MCIsInN1YiI6IjY0ODNhYTBhOTkyNTljMDBlMmY0NWE4ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Sdbi-2PalUFAI7K7hzIv-hc4p92EU6q_yg6_IJJHjA',
-    },
-  };
-
-  try {
-    const response = await axios.request(options);
-    return response.data;
-  } catch (error) {
-    console.error(error);
+    return [];
   }
 }
 
@@ -46,17 +28,15 @@ async function responseUpcoming() {
   const movieInfo = data.results;
   const randomIndex = Math.floor(Math.random() * movieInfo.length);
   const randomMovie = movieInfo[randomIndex];
-  /*Math.random() генерує випадкове число в діапазоні від 0 до 1 (не включно).
-  movieInfo.length повертає кількість елементів у списку movieInfo.
-  Math.random() * movieInfo.length повертає випадкове число від 0 до максимальної кількості елементів у списку.
-  Math.floor() округлює це число до меншого цілого числа.
-  Отримане число є індексом для вибору випадкового фільму зі списку, який зберігається у змінній randomMovie. */
+  const id = randomMovie.id;
+  const genres = await fetchGenresMovie(id);
 
-  const id = randomMovie.id;  // Отримуємо id фільму
-  const genres = await fetchGenresMovie(id);  // Передаємо id у функцію
-  const posters = await fetchMovieImages(id);
-  generateGenres(movieInfo, genres);
-  containerMovie.innerHTML = createMarkupUpcoming(movieInfo, genres, posters);
+  if (genres.length === 0) {
+    containerMovie.innerHTML = createMarkupUpcoming(movieInfo, []);
+  } else {
+    generateGenres(movieInfo, genres);
+    containerMovie.innerHTML = createMarkupUpcoming(movieInfo, genres);
+  }
 }
 
 function generateGenres(movieInfo, genres) {
@@ -73,7 +53,7 @@ function generateGenres(movieInfo, genres) {
   });
 }
 
-function createMarkupUpcoming(movieInfo, genres, imageInfo) {
+function createMarkupUpcoming(movieInfo, genres) {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
@@ -87,6 +67,7 @@ function createMarkupUpcoming(movieInfo, genres, imageInfo) {
   const {
     id: idMovie,
     backdrop_path,
+    poster_path,
     original_title,
     release_date,
     vote_average,
@@ -96,29 +77,18 @@ function createMarkupUpcoming(movieInfo, genres, imageInfo) {
     overview,
   } = randomMovie;
 
-  const {
-    id: idPoster,
-    posters: [{ file_path }],
-  } = imageInfo;
-
   const releaseDay = addLeadingZero(new Date(release_date).getDate());
   const releaseMonth = addLeadingZero(new Date(release_date).getMonth() + 1);
   const releaseYear = new Date(release_date).getFullYear();
 
   let poster = null;
-  if (idPoster === idMovie || backdrop_path !== null) {
-    if (idPoster === idMovie && imageInfo.posters.length > 1) {
-      const otherImage = imageInfo.posters.find(
-        image => image.file_path !== backdrop_path
-      );
-      if (otherImage) {
-        poster = `https://image.tmdb.org/t/p/original/${otherImage.file_path}`;
-      }
-    } else {
-      poster = backdrop_path
-        ? `https://image.tmdb.org/t/p/original/${backdrop_path}`
-        : `https://image.tmdb.org/t/p/original/${file_path}`;
-    }
+
+  if (backdrop_path) {
+    poster = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
+  } else if (poster_path) {
+    poster = `https://image.tmdb.org/t/p/original/${poster_path}`;
+  } else {
+    poster = `https://astoriamuseums.org/wp-content/uploads/2020/10/OFM-poster-not-available.png`;
   }
 
   const roundedPopularity = popularity.toFixed(1);
@@ -130,7 +100,7 @@ function createMarkupUpcoming(movieInfo, genres, imageInfo) {
 
   return `
     <img class="upcoming-image" src="${poster}" alt="${original_title}">
-    <div class="info-container">
+    <div class="info-container" >
     <h3 class="upcoming-movie-title">${original_title}</h3>
     <ul class="upcoming-list-details list">
       <li class="upcoming-list-details-item">
@@ -152,44 +122,52 @@ function createMarkupUpcoming(movieInfo, genres, imageInfo) {
     </ul>
     <h4 class="upcoming-about">ABOUT</h4>
     <p class="upcoming-about-text">${overview}</p>
-    <button class="btn upcoming-btn-add btn-accent" type="button">
-    <span class="btn-in">Add to my library</span></button>
-    <button class="btn upcoming-btn-remove btn-dark" hidden type="button">
-    <span class="btn-in">Remove from my library</span></button>
+    <button class="btn upcoming-btn-add btn-accent"  type="button">
+    <span class="btn-in upcoming-btn-add-span" data-id="${idMovie}">Add to my library</span></button>
+    <button class="btn upcoming-btn-remove btn-dark" hidden  type="button">
+    <span class="btn-in upcoming-btn-remove-span" data-id="${idMovie}" >Remove from my library</span></button>
     </div>
   `;
 }
 
-responseUpcoming();
+// ERROR//
+
+function markupError() {
+  console.log('hello');
+  return `      
+<h2 class="upcoming-error">
+OOPS...<br>
+We are very sorry!<br>
+Something went wrong.</h2>`;
+}
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 // BUTTON//
 
-containerMovie.addEventListener('click', function (event) {
+containerMovie.addEventListener('click', onClickAddToLocalStorage);
+
+function onClickAddToLocalStorage(event) {
   event.preventDefault();
   const target = event.target;
-  if (target.classList.contains('upcoming-btn-add')) {
+  if (target.classList.contains('upcoming-btn-add-span')) {
     addToLocalStorage(event);
-  } else if (target.classList.contains('upcoming-btn-remove')) {
+  } else if (target.classList.contains('upcoming-btn-remove-span')) {
     removeFromLocalStorage(event);
   }
-});
+}
 
 function addToLocalStorage(e) {
-  const addToLibraryBtn = e.target;
+  const addToLibraryBtn = e.target.parentNode;
   addToLibraryBtn.style.display = 'none';
-  const removeFromLibraryBtn = addToLibraryBtn.parentNode.querySelector(
-    '.upcoming-btn-remove'
-  );
+  const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
   removeFromLibraryBtn.style.display = 'block';
 }
-
 function removeFromLocalStorage(e) {
-  removeFromLibraryBtn = e.target;
+  const removeFromLibraryBtn = e.target.parentNode;
   removeFromLibraryBtn.style.display = 'none';
-  const addToLibraryBtn =
-    removeFromLibraryBtn.parentNode.querySelector('.upcoming-btn-add');
+  const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
   addToLibraryBtn.style.display = 'block';
 }
+responseUpcoming();
