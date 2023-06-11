@@ -27,7 +27,7 @@ export const optionsWeek = {
 export const optionsUpcoming = {
     method: 'GET',
     url: 'https://api.themoviedb.org/3/movie/upcoming',
-    params: { language: 'en-US', page: '1' },
+    params: { language: 'en-US' },
     headers: {
         accept: 'application/json',
         Authorization: `Bearer ${ACCESS_KEY}`
