@@ -146,6 +146,22 @@
   color: var(--lightest-color);
 }
 
+@keyframes animSwitchLight {
+  0% {
+    transform: translate(-15%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-200%, -50%) rotate(-180deg);
+  }
+}
+@keyframes animSwitchDark {
+  0% {
+    transform: translate(-190%, -50%) rotate(-180deg);
+  }
+  100% {
+    transform: translate(-15%, -50%) rotate(0deg);
+  }
+}
 @media screen and (max-width: 767px) {
   .site-nav {
     display: none;
@@ -184,7 +200,7 @@
   }
   @keyframes animSwitchLight {
     0% {
-      transform: translate(-15%, -50%) rotate(0deg);
+      transform: translate(-20%, -50%) rotate(0deg);
     }
     100% {
       transform: translate(-215%, -50%) rotate(-180deg);
@@ -192,10 +208,10 @@
   }
   @keyframes animSwitchDark {
     0% {
-      transform: translate(-215%, -50%) rotate(-180deg);
+      transform: translate(-200%, -50%) rotate(-180deg);
     }
     100% {
-      transform: translate(-15%, -50%) rotate(0deg);
+      transform: translate(-20%, -50%) rotate(0deg);
     }
   }
 }
@@ -213,20 +229,4 @@
 }
 .switchDark {
   animation: animSwitchDark 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) 1 forwards;
-}
-@keyframes animSwitchLight {
-  0% {
-    transform: translate(-15%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-200%, -50%) rotate(-180deg);
-  }
-}
-@keyframes animSwitchDark {
-  0% {
-    transform: translate(-190%, -50%) rotate(-180deg);
-  }
-  100% {
-    transform: translate(-15%, -50%) rotate(0deg);
-  }
 }
