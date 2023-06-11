@@ -3,10 +3,14 @@ const mobileMenuBtnEl = document.querySelector('.mob-menu-btn');
 const mobileBackdropEl = document.querySelector('.mobile-backdrop');
 
 mobileMenuBtnEl.addEventListener('click', () => {
-  mobileBackdropEl.classList.toggle('is-open');
+  mobileBackdropEl.classList.add('is-open');
+  document.body.classList.add('no-scroll');
 });
 
 mobileBackdropEl.addEventListener('click', e => {
+  if (e.target.classList.contains('mobile-backdrop')) {
+    document.body.classList.remove('no-scroll');
+  }
   e.target.classList.remove('is-open');
 });
 
@@ -14,6 +18,7 @@ mobileBackdropEl.addEventListener('click', e => {
 // в случае изменения ориентации устройства.
 window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
   if (!e.matches) return;
+  document.body.classList.remove('no-scroll');
   mobileBackdropEl.classList.remove('is-open');
 });
 
