@@ -83,10 +83,12 @@ function createMarkupUpcoming(movieInfo, genres) {
 
   let poster = null;
 
-  if (backdrop_path) {
-    poster = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
-  } else if (poster_path) {
+  const screenWidth = window.innerWidth;
+
+  if (screenWidth <= 767 && poster_path) {
     poster = `https://image.tmdb.org/t/p/original/${poster_path}`;
+  } else if (backdrop_path) {
+    poster = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
   } else {
     poster = `https://astoriamuseums.org/wp-content/uploads/2020/10/OFM-poster-not-available.png`;
   }
@@ -99,7 +101,7 @@ function createMarkupUpcoming(movieInfo, genres) {
   });
 
   return `
-    <img class="upcoming-image" src="${poster}" alt="${original_title}">
+    <img width="280" height="402" class="upcoming-image"  src="${poster}" alt="${original_title}">
     <div class="info-container" >
     <h3 class="upcoming-movie-title">${original_title}</h3>
     <ul class="upcoming-list-details list">
@@ -122,10 +124,10 @@ function createMarkupUpcoming(movieInfo, genres) {
     </ul>
     <h4 class="upcoming-about">ABOUT</h4>
     <p class="upcoming-about-text">${overview}</p>
-    <button class="btn upcoming-btn-add btn-accent"  type="button">
-    <span class="btn-in upcoming-btn-add-span" data-id="${idMovie}">Add to my library</span></button>
-    <button class="btn upcoming-btn-remove btn-dark" hidden  type="button">
-    <span class="btn-in upcoming-btn-remove-span" data-id="${idMovie}" >Remove from my library</span></button>
+    <button class="btn upcoming-btn-add btn-accent" data-id="${idMovie}" type="button">
+    <span class="btn-in upcoming-btn-add-span" >Add to my library</span></button>
+    <button class="btn upcoming-btn-remove btn-dark" data-id="${idMovie}" hidden  type="button">
+    <span class="btn-in upcoming-btn-remove-span"  >Remove from my library</span></button>
     </div>
   `;
 }

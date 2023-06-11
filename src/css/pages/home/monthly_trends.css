@@ -11,7 +11,6 @@
 
   .upcoming-image {
     display: block;
-    max-width: 100%;
     width: 280px;
     height: 402px;
     object-fit: cover;
