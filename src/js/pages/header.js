@@ -2,17 +2,18 @@
 const mobileMenuBtnEl = document.querySelector('.mob-menu-btn');
 const mobileBackdropEl = document.querySelector('.mobile-backdrop');
 
-mobileMenuBtnEl.addEventListener('click', () => {
-  mobileBackdropEl.classList.add('is-open');
-  document.body.classList.add('no-scroll');
-});
+mobileMenuBtnEl.addEventListener('click', toogleMobMenu);
+mobileBackdropEl.addEventListener('click', closeMobMenu);
 
-mobileBackdropEl.addEventListener('click', e => {
-  if (e.target.classList.contains('mobile-backdrop')) {
-    document.body.classList.remove('no-scroll');
+function closeMobMenu(e) {
+  if (e.target === mobileBackdropEl) {
+    toogleMobMenu();
   }
-  e.target.classList.remove('is-open');
-});
+}
+function toogleMobMenu() {
+  mobileBackdropEl.classList.toggle('is-open');
+  document.body.classList.toggle('no-scroll');
+}
 
 // Закрываем мобильное меню на более широких экранах
 // в случае изменения ориентации устройства.
@@ -44,7 +45,9 @@ themeBtnEl.addEventListener('click', () => {
 });
 
 //pageActive
-
+if (window.location.pathname === '/') {
+  window.location.pathname = 'index.html';
+}
 const siteNavLinks = document.querySelectorAll('.js-nav-link');
 
 window.addEventListener('load', () => {
