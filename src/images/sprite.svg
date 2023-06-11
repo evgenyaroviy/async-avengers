@@ -19,11 +19,16 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.3273" d="M16.684 24.329c4.736 0 8.576-3.732 8.576-8.332 0-4.602-3.84-8.332-8.576-8.332-4.733 0-8.573 3.729-8.573 8.332 0 4.599 3.84 8.332 8.573 8.332z"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.9091" d="M26.135 6.825l0.175-0.169M7.069 25.35l0.175-0.172M16.689 3.017v-0.105M16.689 29.094v-0.105M3.322 16.003h-0.108M30.161 16.003h-0.108M7.247 6.825l-0.177-0.169M26.31 25.35l-0.175-0.172"></path>
 </symbol>
-</defs>
 <symbol id="icon-chevron-forward-outline" viewBox="0 0 20 20">
 <path d="M7.1875 4.375L12.8125 10L7.1875 15.625" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 <symbol id="icon-chevron-back-outline" viewBox="0 0 20 20">
 <path d="M12.8125 4.375L7.1875 10L12.8125 15.625" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="icon-left" width="28" height="28" viewBox="0 0 28 28" fill="none">
+<path d="M17.9375 6.125L10.0625 14L17.9375 21.875" stroke="#F8F8F8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="icon-right" width="28" height="28" viewBox="0 0 28 28" fill="none">
+<path d="M10.0625 6.125L17.9375 14L10.0625 21.875" stroke="#F8F8F8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 </svg>
