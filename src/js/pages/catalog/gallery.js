@@ -1,19 +1,13 @@
 import axios from 'axios';
-import {
-  optionsWeek,
-  optionsUpcoming,
-  optionsSearch,
-  optionsDetails,
-  optionsVideos,
-  optionsGenre,
-} from '../../request';
+import { optionsWeek, optionsDetails, optionsGenre } from '../../request';
 
 import { galleryMarkup } from '../../galleryMarkup';
 import { ratingToStars } from '../../components/ratingAPI';
 
-const galleryContainer = document.querySelector('.gallery-container');
+export const galleryContainer = document.querySelector('.gallery-container');
+export const catalogFailure = document.querySelector('.catalog-failure');
 
-const options = {
+const optionsGenre = {
   method: 'GET',
   url: 'https://api.themoviedb.org/3/genre/movie/list',
   params: { language: 'en' },
@@ -25,12 +19,10 @@ const options = {
 };
 
 axios
-  .request(options)
+  .request(optionsGenre)
   .then(function (response) {
-    // console.log(response.data);
-
-    const { genres: genresNew } = response.data;
-    console.log(genresNew);
+    const { genres: genresFetched } = response.data;
+    console.log(genresFetched);
   })
   .catch(function (error) {
     console.error(error);
@@ -39,19 +31,17 @@ axios
 axios
   .request(optionsWeek)
   .then(function (response) {
-    const { results: resultsNew } = response.data;
-
-    const resultsYears = resultsNew.map(r => {
-      r.release_date = r.release_date.slice(0, 4);
-      r.vote_average = ratingToStars(r.vote_average);
-      //   r.genre_ids = ratingToStars(r.vote_average);
-      return r;
+    const { results: resultsFetched } = response.data;
+    const resultsAll = resultsFetched.map(element => {
+      element.release_date = element.release_date.slice(0, 4);
+      element.vote_average = ratingToStars(element.vote_average);
+      //   element.genre_ids
+      return element;
     });
 
-    // console.log(resultsYears);
-
-    galleryContainer.innerHTML = galleryMarkup(response.data.results);
+    galleryContainer.innerHTML = galleryMarkup(resultsAll);
   })
   .catch(function (error) {
     console.error(error);
+    catalogFailure.style.display = 'block';
   });

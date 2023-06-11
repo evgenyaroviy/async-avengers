@@ -1,17 +1,27 @@
 <section class="catalog-search-section">
   <div class="container">
     <form class="search-form" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Search"
-        class="search-field"
-      />
-      <button type="submit" class="submit-btn">
-        <svg class="search-icon">
-          <use href="./images/sprite.svg#icon-search"></use>
-        </svg>
+      <div class="search-container">
+        <input
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search"
+          class="search-field"
+        />
+        <div class="reset-container">
+          <svg class="reset-icon">
+            <use href="./images/sprite.svg#icon-close-outline"></use>
+          </svg>
+          <input type="reset" value="" class="reset-search" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-accent btn-round">
+        <div class="submit-btn btn-in">
+          <svg class="search-icon">
+            <use href="./images/sprite.svg#icon-search"></use>
+          </svg>
+        </div>
       </button>
     </form>
   </div>
