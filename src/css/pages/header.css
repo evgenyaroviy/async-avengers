@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--dark-color);
+  background-color: inherit;
 }
 .nav {
   display: flex;
@@ -110,13 +110,14 @@
   overflow: hidden;
   pointer-events: none;
 
-  transition: background-color var(--transition-dur-and-fun);
+  transition: background-color var(--transition-dur-and-fun) 0.1s,
+    opacity 150ms cubic-bezier(0, 0, 0.58, 1) 0.3s;
 }
 
 .mobile-backdrop.is-open {
   opacity: 1;
   overflow: auto;
-  pointer-events: all;
+  pointer-events: visible;
 }
 .mobile-nav {
   width: 65%;
@@ -124,18 +125,17 @@
   padding-top: 8px;
   padding-left: 20px;
   background-color: var(--dark-color);
+  border-radius: 0px 8px 8px 0px;
 
-  opacity: 0;
   transform: translateY(-100%);
 
-  transition: transform var(--transition-dur-and-fun),
-    opacity var(--transition-dur-and-fun);
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
 }
 .mobile-backdrop.is-open .mobile-nav {
-  opacity: 1;
   transform: translateY(0);
 }
 .mobile__logo {
+  display: inline-flex;
   margin-bottom: 40px;
 }
 
