@@ -1,57 +1,53 @@
-import axios from 'axios';
-import {
-  optionsWeek,
-  optionsUpcoming,
-  optionsSearch,
-  optionsDetails,
-  optionsVideos,
-  optionsGenre,
-} from '../../request';
-
+import axios from 'axios'; 
 import { galleryMarkup } from '../../galleryMarkup';
-import { ratingToStars } from '../../components/ratingAPI';
+import { optionsGenre } from '../../request';
 
-const galleryContainer = document.querySelector('.gallery-container');
-
-const options = {
-  method: 'GET',
-  url: 'https://api.themoviedb.org/3/genre/movie/list',
-  params: { language: 'en' },
-  headers: {
-    accept: 'application/json',
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YTA1ZGZhMzkwMDIxYjkyZTc3ZDMzYzRhODYyZjRmNiIsInN1YiI6IjY0ODFmZWJmNjQ3NjU0MDBhZDgxYTBlMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.grPFkj7_KdeogJCliXg4MDIgfDdRvjZd4DM3BdVB2Kw',
-  },
-};
-
-axios
-  .request(options)
-  .then(function (response) {
-    // console.log(response.data);
-
-    const { genres: genresNew } = response.data;
-    console.log(genresNew);
-  })
-  .catch(function (error) {
-    console.error(error);
+let currentPage = 1; 
+ 
+const galleryContainer = document.querySelector('.movies-container'); 
+ 
+responseWeeklytrends(); 
+ 
+async function responseWeeklytrends() { 
+  const data = await fetchWeeklytrends(currentPage); 
+  const moviesArr = data.results;
+  
+  const genres = await fetchGenresMovie(); 
+  
+  moviesArr.forEach(e => { 
+    const genre = genres.find(genre => genre.id == e.genre_ids[0]); 
+    e.genre_name = genre ? genre.name : ''; 
   });
+  
+  galleryContainer.innerHTML = galleryMarkup(moviesArr); 
+} 
+ 
+async function fetchWeeklytrends(currentPage) {
+  const ACCESS_KEY =
+    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOTZiN2ExNTYwNGYwMmExYWNkMTVhNWJlY2JmMjQ4MCIsInN1YiI6IjY0ODNhYTBhOTkyNTljMDBlMmY0NWE4ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Sdbi-2PalUFAI7K7hzIv-hc4p92EU6q_yg6_IJJHjA';
+  const optionsWeek = {
+    method: 'GET',
+    url: 'https://api.themoviedb.org/3/trending/movie/week',
+    params: { language: 'en-US', page: currentPage },
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${ACCESS_KEY}`,
+    },
+  };
 
-axios
-  .request(optionsWeek)
-  .then(function (response) {
-    const { results: resultsNew } = response.data;
-
-    const resultsYears = resultsNew.map(r => {
-      r.release_date = r.release_date.slice(0, 4);
-      r.vote_average = ratingToStars(r.vote_average);
-      //   r.genre_ids = ratingToStars(r.vote_average);
-      return r;
-    });
-
-    // console.log(resultsYears);
-
-    galleryContainer.innerHTML = galleryMarkup(response.data.results);
-  })
-  .catch(function (error) {
+  try {
+    const response = await axios.request(optionsWeek);
+    return response.data;
+  } catch (error) {
     console.error(error);
-  });
+  }
+} 
+ 
+async function fetchGenresMovie() { 
+  try { 
+    const response = await axios.request(optionsGenre); 
+    return response.data.genres; 
+  } catch (error) { 
+    console.log(error); 
+  } 
+} 
