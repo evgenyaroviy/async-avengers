@@ -1,0 +1,28 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 28px;
+
+  text-align: center;
+  color: var(--light-grey-color);
+}
+/* .footer__description {
+  margin: 0;
+} */
+.footer__icon {
+  fill: aqua;
+  /* margin-left: 10px;
+  margin-right: 10px; */
+}
+@media screen and (min-width: 768px) {
+  .footer {
+    padding-bottom: 40px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .footer {
+    padding-bottom: 80px;
+  }
+}
