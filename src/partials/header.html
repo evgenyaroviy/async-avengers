@@ -1,45 +1,67 @@
 <header class="header">
-  <div class="container header__container">
+  <div class="container">
     <nav class="nav">
       <div class="logo">
-        <a href="" class="logo link">
-          <img src="./images/logo.svg" alt="logo image" width="30" height="24" />
-          <span class="logo__name">Cinemania</span></a>
+        <a href="/" class="logo__wrapper">
+          <img
+            src="./images/logo.svg"
+            alt="logo"
+            width="32"
+            class="logo__img"
+          />
+          <span class="logo__name">Cinemania</span>
+        </a>
       </div>
-      <ul class="site-nav list">
+      <ul class="site-nav">
         <li class="site-nav__item">
-          <a href="./index.html" class="site-nav__link js-nav-link link"
-            >HOME</a>
+          <a href="./index.html" class="site-nav__link js-nav-link">HOME</a>
         </li>
         <li class="site-nav__item">
-          <a href="./catalog.html" class="site-nav__link js-nav-link link"
-            >CATALOG</a>
+          <a href="./catalog.html" class="site-nav__link js-nav-link"
+            >CATALOG</a
+          >
         </li>
         <li class="site-nav__item">
-          <a href="./library.html" class="site-nav__link js-nav-link link">MY LIBRARY</a>
+          <a href="./library.html" class="site-nav__link js-nav-link"
+            >MY LIBRARY</a
+          >
         </li>
       </ul>
-      
+      <button class="mob-menu-btn">MENU</button>
+      <button class="theme btn">
+        <svg class="theme__icon" width="10" height="10">
+          <use href="./images/sprite.svg#icon-moon"></use>
+        </svg>
+        <svg class="theme__icon" width="10" height="10">
+          <use href="./images/sprite.svg#icon-sun"></use>
+        </svg>
+        <img
+          src="./images/switch.svg"
+          alt="switcher"
+          width="14"
+          class="theme__switch"
+        />
+      </button>
     </nav>
+    <div class="mobile-backdrop">
+      <nav class="mobile-nav">
+        <div class="logo mobile__logo">
+          <img src="./images/logo.svg" alt="" width="30" height="24" />
+        </div>
+        <ul class="mobile-menu list">
+          <li class="mobile-menu__item">
+            <a href="./index.html" class="mobile-menu__link js-nav-link"
+              >HOME</a
+            >
+          </li>
+          <li class="mobile-menu__item">
+            <a href="" class="mobile-menu__link js-nav-link">CATALOG</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="" class="mobile-menu__link js-nav-link">MY LIBRARY</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
-<div class="mobile-backdrop">
-  <nav class="mobile-nav">
-    <div class="logo mobile__logo">
-      <img src="./images/logo.svg" alt="" width="30" height="24" />
-    </div>
-    <ul class="mobile-menu list">
-      <li class="mobile-menu__item">
-        <a href="./index.html" class="mobile-menu__link js-nav-link link"
-          >HOME</a
-        >
-      </li>
-      <li class="mobile-menu__item">
-        <a href="" class="mobile-menu__link js-nav-link link">CATALOG</a>
-      </li>
-      <li class="mobile-menu__item">
-        <a href="" class="mobile-menu__link js-nav-link link">MY LIBRARY</a>
-      </li>
-    </ul>
-  </nav>
-</div>
