@@ -9,7 +9,7 @@ export function galleryMarkup(movies) {
                 release_date,
             }) => {
                 return `<div class="movie-card">
-        <img src="${poster_path}" alt="${title}" loading="lazy" class="movie-card__img"/>
+        <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" loading="lazy" class="movie-card__img"/>
       <div class="movie-card__info">
         <div>
         <p class="info-item">

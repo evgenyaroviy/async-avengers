@@ -25,10 +25,14 @@
   background-color: #171717;
   padding-bottom: 32px;
 }
-.test_img {
+.movie-card__img {
   height: 100%;
 }
-.card {
+.weekly_content {
+  display: flex;
+  gap: 16px;
+}
+.movie-card {
   position: relative;
   box-sizing: border-box;
   width: 280px;
@@ -45,7 +49,7 @@
   border-radius: 5px;
 }
 
-.card_titles {
+.movie-card__info {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -53,7 +57,7 @@
   bottom: 12px;
   left: 12px;
 }
-.card_sup_title {
+.info-item {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 12px;
@@ -61,7 +65,7 @@
   text-transform: uppercase;
   color: #ffffff;
 }
-.card_sub_title {
+.info-item__name {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 12px;
