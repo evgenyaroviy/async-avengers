@@ -1,16 +1,20 @@
 import axios from 'axios';
 import { optionsUpcoming } from '../../request';
 import { optionsGenre } from '../../request';
+import { showLoader, hideLoader } from '../../components/loader';
 
 const containerMovie = document.querySelector('.container-upcoming-movie');
 
 async function fetchUpcomingMovie() {
   try {
+    showLoader();
     const response = await axios.request(optionsUpcoming);
     return response.data;
   } catch (error) {
     console.error(error);
     containerMovie.innerHTML = markupError();
+  } finally {
+    hideLoader(); 
   }
 }
 async function fetchGenresMovie(id) {
@@ -24,19 +28,25 @@ async function fetchGenresMovie(id) {
 }
 
 async function responseUpcoming() {
-  const data = await fetchUpcomingMovie();
-  const movieInfo = data.results;
-  const randomIndex = Math.floor(Math.random() * movieInfo.length);
-  const randomMovie = movieInfo[randomIndex];
-  const id = randomMovie.id;
-  const genres = await fetchGenresMovie(id);
+  try {
+    showLoader();
+    const data = await fetchUpcomingMovie();
+    const movieInfo = data.results;
+    const randomIndex = Math.floor(Math.random() * movieInfo.length);
+    const randomMovie = movieInfo[randomIndex];
+    const id = randomMovie.id;
+    const genres = await fetchGenresMovie(id);
 
-  if (genres.length === 0) {
-    containerMovie.innerHTML = createMarkupUpcoming(movieInfo, []);
-  } else {
-    generateGenres(movieInfo, genres);
-    containerMovie.innerHTML = createMarkupUpcoming(movieInfo, genres);
+    if (genres.length === 0) {
+      containerMovie.innerHTML = createMarkupUpcoming(movieInfo, []);
+    } else {
+      generateGenres(movieInfo, genres);
+      containerMovie.innerHTML = createMarkupUpcoming(movieInfo, genres);
+    }
+  } finally {
+    hideLoader();
   }
+  
 }
 
 function generateGenres(movieInfo, genres) {

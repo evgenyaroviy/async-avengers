@@ -11,6 +11,7 @@
 @import url('./components/rating.css');
 @import url('./components/scrollUp.css');
 @import url('./components/movie_card.css');
+@import url('./components/loader.css');
 
 /* PAGES */
 @import url('./pages/footer.css');
