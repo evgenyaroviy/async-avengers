@@ -20,9 +20,6 @@ body {
     font-family: var(--primary-font);
     font-style: normal;
     font-size: 14px;
-    color: var(--dark-color);
-    color: var(--light-color);
-    background-color: var(--dark-color);
 }
 
 .no-scroll {
@@ -50,6 +47,16 @@ body {
     text-decoration: none;
 }
 
+.dark {
+    background-color: var(--dark-color);
+    color: var(--lightest-color);
+}
+
+.light {
+    background-color: var(--lightest-color);
+    color: var(--middle-grey-color);
+}
+
 h1 {
     font-weight: 700;
     font-size: 32px;
@@ -62,6 +69,7 @@ h2 {
     line-height: 19px;
     text-transform: uppercase;
 }
+
 
 
 /* MOBILE */

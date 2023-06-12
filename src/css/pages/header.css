@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--dark-color);
+  background-color: inherit;
 }
 .nav {
   display: flex;
@@ -97,11 +97,12 @@
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .mobile-backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
+  right: 0;
+  min-height: 100vh;
   z-index: 1000;
 
   background: rgba(255, 255, 255, 0.2);
@@ -110,13 +111,14 @@
   overflow: hidden;
   pointer-events: none;
 
-  transition: background-color var(--transition-dur-and-fun);
+  transition: background-color var(--transition-dur-and-fun) 0.1s,
+    opacity 150ms cubic-bezier(0, 0, 0.58, 1) 0.3s;
 }
 
 .mobile-backdrop.is-open {
   opacity: 1;
   overflow: auto;
-  pointer-events: all;
+  pointer-events: visible;
 }
 .mobile-nav {
   width: 65%;
@@ -124,18 +126,20 @@
   padding-top: 8px;
   padding-left: 20px;
   background-color: var(--dark-color);
-
+  border-radius: 0px 8px 8px 0px;
   opacity: 0;
+
   transform: translateY(-100%);
 
-  transition: transform var(--transition-dur-and-fun),
-    opacity var(--transition-dur-and-fun);
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+    opacity var(--transition-dur-and-fun) 0.1s;
 }
 .mobile-backdrop.is-open .mobile-nav {
   opacity: 1;
   transform: translateY(0);
 }
 .mobile__logo {
+  display: inline-flex;
   margin-bottom: 40px;
 }
 
@@ -146,6 +150,22 @@
   color: var(--lightest-color);
 }
 
+@keyframes animSwitchLight {
+  0% {
+    transform: translate(-15%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-200%, -50%) rotate(-180deg);
+  }
+}
+@keyframes animSwitchDark {
+  0% {
+    transform: translate(-190%, -50%) rotate(-180deg);
+  }
+  100% {
+    transform: translate(-15%, -50%) rotate(0deg);
+  }
+}
 @media screen and (max-width: 767px) {
   .site-nav {
     display: none;
@@ -184,7 +204,7 @@
   }
   @keyframes animSwitchLight {
     0% {
-      transform: translate(-15%, -50%) rotate(0deg);
+      transform: translate(-20%, -50%) rotate(0deg);
     }
     100% {
       transform: translate(-215%, -50%) rotate(-180deg);
@@ -192,10 +212,10 @@
   }
   @keyframes animSwitchDark {
     0% {
-      transform: translate(-215%, -50%) rotate(-180deg);
+      transform: translate(-200%, -50%) rotate(-180deg);
     }
     100% {
-      transform: translate(-15%, -50%) rotate(0deg);
+      transform: translate(-20%, -50%) rotate(0deg);
     }
   }
 }
@@ -213,20 +233,4 @@
 }
 .switchDark {
   animation: animSwitchDark 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) 1 forwards;
-}
-@keyframes animSwitchLight {
-  0% {
-    transform: translate(-15%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-200%, -50%) rotate(-180deg);
-  }
-}
-@keyframes animSwitchDark {
-  0% {
-    transform: translate(-190%, -50%) rotate(-180deg);
-  }
-  100% {
-    transform: translate(-15%, -50%) rotate(0deg);
-  }
 }

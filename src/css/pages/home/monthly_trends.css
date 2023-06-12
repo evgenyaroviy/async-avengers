@@ -1,3 +1,4 @@
+    
 @media screen and (min-width: 320px) {
   .upcoming-movie {
     padding-top: 32px;
@@ -11,7 +12,6 @@
 
   .upcoming-image {
     display: block;
-    max-width: 100%;
     width: 280px;
     height: 402px;
     object-fit: cover;
