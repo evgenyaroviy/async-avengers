@@ -4,9 +4,6 @@
 
 /* Герой */
 
-/* background-color: var(--dark-color);
-  z-index: -1; */
-
 body.light .film-of-day {
   background-color: var(--dark-color);
   width: 100%;
