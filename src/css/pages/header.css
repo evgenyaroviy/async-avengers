@@ -68,14 +68,18 @@
   margin-right: 32px;
 }
 .site-nav__link {
+  display: flex;
   text-transform: uppercase;
   color: var(--light-grey-color);
 
-  transition: color var(--transition-dur-and-fun);
+  transition: color var(--transition-dur-and-fun),
+    transform var(--transition-dur-and-fun);
 }
 .site-nav__link:hover,
 .site-nav__link:focus {
   color: var(--accent-color);
+
+  transform: scaleX(1.5);
 }
 .js-nav-link.active-page {
   color: var(--accent-color);
