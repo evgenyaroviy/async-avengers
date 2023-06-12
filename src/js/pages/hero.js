@@ -26,7 +26,7 @@ const getResponse = async () => {
 function createObject(data) {
   return data.map(item => ({
     backdropPath: item.backdrop_path,
-    title: item.title,
+    title: item.title || item.name,
     voteAverage: item.vote_average,
     overview: item.overview,
     id: item.id,
@@ -36,6 +36,8 @@ function createObject(data) {
 function createMarkup(data) {
   let card = data
     .map(item => {
+      const title = item.title !== undefined ? item.title : item.name;
+      // console.log('Current Card:', item);
       return `<div class="hero__img-gradient"></div>
   <img class="hero__img" loading="lazy" width="1280" height="720"
     srcset="https://image.tmdb.org/t/p/w1280${item.backdropPath} 1280w,
@@ -57,17 +59,16 @@ function createMarkup(data) {
     <p class="hero__text">${item.overview}</p>
 </div>
 <div class="buttons">
-<button class="more-details btn" type="button" data-movie-id="${item.id}">
-      <span class="btn-in">More details</span>
-      </button>
-<button class="watch-trailer btn" type="button" data-movie-id="${
-        item.id
-      }">
+<button class="watch-trailer btn btn-accent" type="button" data-id="${item.id}">
       <span class="btn-in">Watch trailer</span></button>
-      </div>`;
+<button class="more-details btn btn-light" type="button" data-id="${item.id}">
+      <span class="btn-in">More details</span>
+</button>
+</div>`;
     })
-    .join("");
+    .join('');
   CARD_HERO.insertAdjacentHTML('beforeend', card);
 }
 
 getResponse();
+
