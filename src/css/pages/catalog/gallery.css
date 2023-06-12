@@ -1,18 +1,51 @@
 .gallery-section {
   padding-top: 16px;
 }
+
 .catalog-failure {
   display: none;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 2;
+  text-align: center;
+}
+
+.failure-event {
+  padding-top: 48px;
+}
+
+.movie-card {
+  cursor: pointer;
+  transition: scale var(--transition-dur-and-fun);
+}
+
+.movie-card:is(:hover, :focus) {
+  transform: scale(1.005);
+  box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
 }
 
 @media screen and (min-width: 768px) {
   .gallery-section {
     padding-top: 36px;
   }
+  .catalog-failure {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+  .failure-event {
+    padding-top: 80px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .gallery-section {
     padding-top: 48px;
+  }
+  .catalog-failure {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+  .failure-event {
+    padding-top: 120px;
   }
 }

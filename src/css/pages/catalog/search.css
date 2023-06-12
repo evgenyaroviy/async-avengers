@@ -1,19 +1,32 @@
 .catalog-search-section {
   padding-top: 40px;
 }
+
+/* 
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+} */
+
 .search-form {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
 }
-.search-field {
+
+.search-container {
+  position: relative;
+}
+
+.search {
   display: block;
-  min-width: 224px;
-  height: 40px;
   padding: 10px 20px;
   background-color: transparent;
-  border: 1px solid black;
+  border: 1px solid var(--lightest-color);
   border-radius: 8px;
   font-family: inherit;
   font-weight: 500;
@@ -21,28 +34,99 @@
   line-height: 1.1;
   color: var(--light-grey-color);
 }
-.submit-btn {
-  display: block;
-  flex-shrink: 0;
+
+.search-field {
+  width: 224px;
+  height: 40px;
+}
+
+/* 
+.reset-container-film {
+  display: none;
+} */
+
+.reset-container {
+  display: none;
+}
+
+.reset-search {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.reset-search,
+.reset-icon {
+  position: absolute;
+  top: 50%;
+  right: 10;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+}
+
+.reset-icon {
+  fill: transparent;
+  stroke: var(--lightest-color);
+}
+
+.btn-round {
   width: 40px;
   height: 40px;
-  border-style: none;
-  border-radius: 50px;
-  background-image: var(--linear-light-to-dark);
 }
+
+.submit-btn.btn-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.submit-btn.btn-in::before {
+  content: '';
+  display: block;
+}
+
 .search-icon {
   width: 18px;
   height: 18px;
   fill: transparent;
   stroke: var(--lightest-color);
+  transition: stroke var(--transition-dur-and-fun);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+.btn-accent:is(:hover, :focus) .search-icon {
+  stroke: var(--accent-color);
+}
+
+/* .search-film {
+  width: 173px;
+}
+.select-drop-down {
+  width: 95px;
+}
+
+.select-drop-down option {
+  background-color: var(--dark-color);
+} */
+
 @media screen and (min-width: 768px) {
+  /* .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
   .catalog-search-section {
     padding-top: 60px;
   }
   .search-field {
-    min-width: 264px;
+    width: 140px;
     height: 44px;
     padding: 14px 20px;
   }
@@ -50,25 +134,57 @@
     width: 44px;
     height: 44px;
   }
+  .search-icon {
+    width: 20px;
+    height: 20px;
+  }
+  /* .search-field {
+    display: none;
+  }
+  .search-film {
+    width: 140px;
+    height: 44px;
+  }
+  .select-drop-down {
+    height: 44px;
+  } */
 }
 
 @media screen and (min-width: 1280px) {
+  /* .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
   .catalog-search-section {
     padding-top: 80px;
   }
-  .search-field {
-    min-width: 334px;
-    height: 48px;
-    padding: 14.5px 24px;
-    font-size: 16px;
-    line-height: 1.2;
-  }
+  /* .search-field {
+    display: none;
+  } */
   .submit-btn {
     width: 48px;
     height: 48px;
   }
   .search-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
+  .search-field {
+    width: 260px;
+    height: 48px;
+    padding: 14.5px 24px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  /* .search-film {
+    width: 260px;
+    height: 48px;
+    padding: 14.5px 24px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .select-drop-down {
+    height: 48px;
+  } */
 }
