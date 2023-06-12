@@ -20,8 +20,6 @@ body {
     font-family: var(--primary-font);
     font-style: normal;
     font-size: 14px;
-    color: var(--light-color);
-    background-color: var(--dark-color);
 }
 
 .no-scroll {
