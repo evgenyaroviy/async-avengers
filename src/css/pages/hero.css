@@ -1,1 +1,289 @@
 @import url('../components/container.css');
+@import url('../base/fonts.css');
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+/* Герой */
+
+@media screen and (min-width: 320px) {
+  .hero {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 100%;
+    width: 320px;
+    height: 380px;
+    object-fit: cover;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero {
+    width: 768px;
+    height: 432px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero {
+    width: 1280px;
+    height: 720px;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .film-of-day {
+    width: 320px;
+    height: 380px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .film-of-day {
+    width: 768px;
+    height: 432px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .film-of-day {
+    width: 1280px;
+    height: 720px;
+  }
+}
+
+/* Градиент */
+
+@media screen and (min-width: 320px) {
+  .hero__img-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(
+      87.41deg,
+      #111111 33.93%,
+      rgba(17, 17, 17, 0) 78.91%
+    );
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero__img-gradient {
+    left: 200px;
+    height: 432px;
+    background: linear-gradient(
+      81.57deg,
+      #111111 12.76%,
+      rgba(17, 17, 17, 0) 72.65%
+    );
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero__img-gradient {
+    left: 340px;
+    height: 720px;
+    background: linear-gradient(
+      83.06deg,
+      #111111 11.91%,
+      rgba(17, 17, 17, 0) 73.11%
+    );
+  }
+}
+
+/* Картинка */
+
+@media screen and (min-width: 320px) {
+  .hero__img {
+    width: 320px;
+    height: 380px;
+    object-fit: cover;
+    z-index: -2;
+    position: absolute;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero__img {
+    width: 768px;
+    height: 432px;
+    left: 200px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero__img {
+    width: 1280px;
+    height: 720px;
+    left: 340px;
+  }
+}
+
+/* Заголовок контейнер */
+
+@media screen and (min-width: 320px) {
+  .hero__title-box {
+    width: 280px;
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero__title-box {
+    width: 400px;
+    margin-top: 36px;
+    margin-left: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero__title-box {
+    width: 500px;
+    margin-top: 118px;
+    margin-left: 135px;
+  }
+}
+
+/* Заголовок текст */
+
+@media screen and (min-width: 320px) {
+  .hero__title {
+    color: var(--lightest-color);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.19;
+    text-transform: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero__title {
+    font-size: 44px;
+    line-height: 1.18;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero__title {
+    font-size: 64px;
+    line-height: 1.17;
+  }
+}
+
+/* Рейтинг */
+
+@media screen and (min-width: 320px) {
+  .rating-box {
+    margin-left: 20px;
+    margin-top: 12px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .rating-box {
+    margin-left: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .rating-box {
+    margin-left: 135px;
+    margin-top: 16px;
+  }
+}
+
+/* Описание контейнер */
+
+@media screen and (min-width: 320px) {
+  .hero__text-box {
+    width: 177px;
+    height: 69px;
+    margin-top: 16px;
+    margin-left: 20px;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 768px) {
+    .hero__text-box {
+      width: 295px;
+      height: 64px;
+      margin-top: 20px;
+      margin-left: 32px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .hero__text-box {
+      width: 367px;
+      margin-top: 28px;
+      margin-left: 135px;
+    }
+  }
+
+  .hero__text-box:hover {
+    overflow: auto;
+  }
+}
+
+/* Описание текст */
+
+@media screen and (min-width: 320px) {
+  .hero__text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.1875;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero__text {
+    font-size: 14px;
+    line-height: 1.14;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero__text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.1875;
+  }
+}
+
+/* Кнопки */
+
+@media screen and (min-width: 320px) {
+  .buttons {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 762px) {
+  .buttons {
+    margin-top: 28px;
+    margin-left: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+    .buttons{
+    margin-top: 36px;
+    margin-left: 135px;    }
+}
+
+.more-details {
+  margin-right: 14px;
+}
