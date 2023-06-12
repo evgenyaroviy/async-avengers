@@ -47,16 +47,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color: var(--light-color);
+
+    transition: color var(--transition-dur-and-fun);
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: var(--accent-color);
 }
 
 .modal-close-btn .modal-close-icon {
-    stroke: var(--light-color);
+    stroke: currentColor;
 }
 
-.modal-close-btn:hover .modal-close-icon,
-.modal-close-btn:focus .modal-close-icon {
-    stroke: var(--accent-color);
-}
+
 
 .modal-container {
     padding: 0;

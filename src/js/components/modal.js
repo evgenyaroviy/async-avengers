@@ -9,14 +9,13 @@ const backdrop = document.querySelector('.backdrop');
 // беремо списки з розмітки
 //const weeklyTrends = document.getElementById('weekly_content'); // список фільмів з головної сторінки
 const catalog = document.querySelector('.movies-container'); // список фільмів з каталогу
-//const gallery = document.querySelector(''); // список фільмів з бібліотеки
+//const library = document.querySelector(''); // список фільмів з бібліотеки
 
 // додаємо слухачів на списки
 //addModalListener(weeklyTrends);
 addModalListener(catalog);
-//addModalListener(gallery);
+//addModalListener(library);
 
-// функція додавання слухачів
 function addModalListener(movieList) {
   if (!movieList) {
     return;
@@ -37,8 +36,6 @@ async function onMovieClick(e) {
     axios
       .request(optionsDetails)
       .then(function (response) {
-        console.log(response.data);
-
         const movieData = response.data;
         const markup = createModalMarkup(movieData);
         openModal(markup);
@@ -46,8 +43,12 @@ async function onMovieClick(e) {
         const modalCloseBtn = document.querySelector('.modal-close-btn');
         modalCloseBtn.addEventListener('click', closeModal);
 
-        const toLibraryBtn = document.querySelector('.modal-btn-add');
-        toLibraryBtn.addEventListener('click', onClickAddToLocalStorage);
+        const addToLibraryBtn = document.querySelector('.modal-btn-add');
+        addToLibraryBtn.addEventListener('click', addToLocalStorage);
+
+        const removeFromLibraryBtn =
+          document.querySelector('.modal-btn-remove');
+        removeFromLibraryBtn.addEventListener('click', removeFromLocalStorage);
       })
       .catch(function (error) {
         console.error(error);
@@ -105,9 +106,11 @@ function createModalMarkup({
               <h4 class="modal-about">ABOUT</h4>
               <p class="modal-about-text">${overview}</p>
               <button class="btn modal-btn-add btn-dark"  type="button">
-              <span class="btn-in modal-btn-add-span" data-id="${id}">Add to my library</span></button>
-              <button class="btn modal-btn-remove btn-dark" hidden  type="button">
-              <span class="btn-in modal-btn-remove-span" data-id="${id}" >Remove from my library</span></button>
+                <span class="btn-in modal-btn-add-span" data-id="${id}">Add to my library</span>
+              </button>
+              <button class="btn modal-btn-remove btn-dark" type="button">
+                <span class="btn-in modal-btn-remove-span" data-id="${id}">Remove from my library</span>
+              </button>
             </div>
           </div>`;
 }
@@ -134,24 +137,15 @@ window.addEventListener('keyDown', e => {
   }
 });
 
-function onClickAddToLocalStorage(event) {
-  event.preventDefault();
-  console.log('add to local storage');
-  const target = event.target;
-  if (target.classList.contains('modal-btn-add-span')) {
-    addToLocalStorage(event);
-  } else if (target.classList.contains('modal-btn-remove-span')) {
-    removeFromLocalStorage(event);
-  }
-}
-
 function addToLocalStorage(e) {
+  e.preventDefault();
   const addToLibraryBtn = e.target.parentNode;
   addToLibraryBtn.style.display = 'none';
   const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
   removeFromLibraryBtn.style.display = 'block';
 }
 function removeFromLocalStorage(e) {
+  e.preventDefault();
   const removeFromLibraryBtn = e.target.parentNode;
   removeFromLibraryBtn.style.display = 'none';
   const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
