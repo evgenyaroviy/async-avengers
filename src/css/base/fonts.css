@@ -1,6 +1,8 @@
 @font-face {
     font-family: 'Roboto', sans-serif;
-    src: local('Roboto'), url('../../fonts/Roboto-Regular.ttf');
+    src: local('Roboto'), local('Roboto-Regular'),
+    url('../../fonts/roboto-regular.woff2') format('woff2'),
+    url('../../fonts/roboto-regular.woff') format('woff');
     
     font-style: normal;
     font-weight: 400;
@@ -9,7 +11,9 @@
 
 @font-face {
     font-family: 'Roboto', sans-serif;
-    src: local('Roboto'), url('../../fonts/Roboto-Medium.ttf');
+    src: local('Roboto'), local('Roboto-Medium'),
+    url('../../fonts/roboto-medium.woff2') format('woff2'),
+    url('../../fonts/roboto-medium.woff') format('woff');
     
     font-style: normal;
     font-weight: 500;
@@ -18,7 +22,9 @@
 
 @font-face {
     font-family: 'Roboto', sans-serif;
-    src: local('Roboto'), url('../../fonts/Roboto-Bold.ttf');
+    src: local('Roboto'), local('Roboto-Bold'),
+    url('../../fonts/roboto-bold.woff2') format('woff2'),
+    url('../../fonts/roboto-bold.woff') format('woff');
     
     font-style: normal;
     font-weight: 700;
