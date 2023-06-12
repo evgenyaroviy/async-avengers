@@ -5,7 +5,11 @@ import { optionsDetails } from '../request';
 
 const modalEl = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
+//localadd
+const MOVIES_LIST_KEY = 'MOVIE-ID-LIST';
+const moviesIdList = JSON.parse(localStorage.getItem(MOVIES_LIST_KEY)) || [];
 
+//localadd
 // беремо списки з розмітки
 //const weeklyTrends = document.getElementById('weekly_content'); // список фільмів з головної сторінки
 const catalog = document.querySelector('.movies-container'); // список фільмів з каталогу
@@ -49,6 +53,17 @@ async function onMovieClick(e) {
         const removeFromLibraryBtn =
           document.querySelector('.modal-btn-remove');
         removeFromLibraryBtn.addEventListener('click', removeFromLocalStorage);
+        //local
+        const idFind = moviesIdList.includes(`${movieData.id}`);
+        if (idFind) {
+          addToLibraryBtn.style.display = 'none';
+          removeFromLibraryBtn.style.display = 'block';
+        } else {
+          removeFromLibraryBtn.style.display = 'none';
+          addToLibraryBtn.style.display = 'block';
+        }
+
+        //local
       })
       .catch(function (error) {
         console.error(error);
@@ -137,12 +152,22 @@ window.addEventListener('keyDown', e => {
   }
 });
 
+//localadd
+//localadd
 function addToLocalStorage(e) {
   e.preventDefault();
   const addToLibraryBtn = e.target.parentNode;
   addToLibraryBtn.style.display = 'none';
   const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
   removeFromLibraryBtn.style.display = 'block';
+  //localAdd
+  const dataId = document.querySelector('.modal-container').attributes[1].value;
+  if (!moviesIdList.includes(dataId)) {
+    moviesIdList.push(dataId);
+    localStorage.setItem(MOVIES_LIST_KEY, JSON.stringify(moviesIdList));
+
+    //localAdd
+  }
 }
 function removeFromLocalStorage(e) {
   e.preventDefault();
@@ -150,4 +175,13 @@ function removeFromLocalStorage(e) {
   removeFromLibraryBtn.style.display = 'none';
   const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
   addToLibraryBtn.style.display = 'block';
+  //localAdd
+  const dataId = document.querySelector('.modal-container').attributes[1].value;
+  const indexId = moviesIdList.indexOf(dataId);
+  if (indexId !== -1) {
+    moviesIdList.splice(indexId, 1);
+    localStorage.setItem(MOVIES_LIST_KEY, JSON.stringify(moviesIdList));
+  }
+
+  //localAdd
 }

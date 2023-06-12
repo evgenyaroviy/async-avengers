@@ -8,3 +8,4 @@ import './js/request';
 import './js/components/modal';
 import './js/pages/footer';
 import './js/components/scrollUp';
+import './js/pages/library/library'
