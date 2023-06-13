@@ -7,65 +7,23 @@
   justify-content: space-between;
 }
 .weekly_trends_title {
-  color: white;
-  height: 19px;
-  font-weight: 500;
   font-size: 16px;
+  color: white;
+  font-weight: 500;
+  height: 19px;
   line-height: 19px;
   text-transform: uppercase;
 }
 .weekly_trends_btn {
-  height: 19px;
-  font-weight: 500;
   font-size: 16px;
+  font-weight: 500;
+  height: 19px;
   line-height: 19px;
   color: #f87719;
 }
 .weekly_section {
-  background-color: #171717;
   padding-bottom: 32px;
 }
-.test_img {
-  height: 100%;
-}
-.card {
-  position: relative;
-  box-sizing: border-box;
-  width: 280px;
-  height: 406px;
-  margin-top: 24px;
-  gap: 32px;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 63.48%,
-    rgba(0, 0, 0, 0.9) 92.16%
-  );
-  border-radius: 5px;
-  box-shadow: 1px 1px 24px 2px rgba(1, 1, 1, 0.45);
-  border-radius: 5px;
-}
-
-.card_titles {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-}
-.card_sup_title {
-  font-family: 'Roboto';
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 20px;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-.card_sub_title {
-  font-family: 'Roboto';
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 20px;
-  text-transform: uppercase;
-  color: #ffffff;
+.weekly-content {
+  margin-top: 28px;
 }
