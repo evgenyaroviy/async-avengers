@@ -14,7 +14,7 @@ async function fetchUpcomingMovie() {
     console.error(error);
     containerMovie.innerHTML = markupError();
   } finally {
-    hideLoader(); 
+    hideLoader();
   }
 }
 async function fetchGenresMovie(id) {
@@ -46,7 +46,6 @@ async function responseUpcoming() {
   } finally {
     hideLoader();
   }
-  
 }
 
 function generateGenres(movieInfo, genres) {
