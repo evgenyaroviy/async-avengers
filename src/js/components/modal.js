@@ -63,13 +63,13 @@ async function onMovieClick(e) {
 
 // хендлер при кліку на кнопку
 async function onMoreDetailsClick(e) {
-  if (!e.target.closest('.more-details')) {
+  if (!e.target.closest('.more-details-js')) {
     return;
   }
   try {
     const movieId = e.target
-      .closest('.more-details')
-      .getAttribute('data-movie-id');
+      .closest('.more-details-js')
+      .getAttribute('data-id');
 
     optionsDetails.url = `https://api.themoviedb.org/3/movie/${movieId}`;
 
