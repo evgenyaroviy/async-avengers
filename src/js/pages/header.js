@@ -61,11 +61,14 @@ function changeTheme(refs, currentTheme) {
   localStorage.setItem(LOCALE_THEME, newTheme);
 }
 
-//pageActive
+const siteNavLinks = document.querySelectorAll('.site-nav__link');
+const mobMenuLinks = document.querySelectorAll('.mobile-menu__link');
+const allNavLinks = document.querySelectorAll('.js-nav-link');
+
 if (window.location.pathname === '/') {
-  window.location.pathname = 'index.html';
+  siteNavLinks[0].classList.add('active-page');
+  mobMenuLinks[0].classList.add('active-page');
 }
-const siteNavLinks = document.querySelectorAll('.js-nav-link');
 
 window.addEventListener('load', () => {
   const titleEl = window.location.pathname;
