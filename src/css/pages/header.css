@@ -75,7 +75,7 @@
 .site-nav__link:focus {
   color: var(--accent-color);
 
-  transform: scaleX(1.5);
+  transform: scale(1.02);
 }
 .js-nav-link.active-page {
   color: var(--accent-color);
