@@ -30,12 +30,14 @@ function createObject(data) {
     voteAverage: item.vote_average,
     overview: item.overview,
     id: item.id,
+    name: item.name,
   }));
 }
 
 function createMarkup(data) {
   let card = data
     .map(item => {
+      const titleName = (item.title || item.name);
       return `<div class="hero__img-gradient"></div>
   <img class="hero__img" loading="lazy" width="1280" height="720"
     srcset="https://image.tmdb.org/t/p/w1280${item.backdropPath} 1280w,
@@ -43,10 +45,10 @@ function createMarkup(data) {
     https://image.tmdb.org/t/p/w300${item.backdropPath} 320w"
     src="https://image.tmdb.org/t/p/w300${item.backdropPath}"
     sizes="(min-width: 1280px) 1280px, (min-width: 768px) 768px, (min-width: 320px) 320px"
-    alt="${item.title}"
+    alt="${titleName}"
   >
   <div class="hero__title-box">
-    <h2 class="hero__title">${item.title}</h2>
+    <h2 class="hero__title">${titleName}</h2>
 </div>
 <div class="rating rating-box">
     <p class="info-item">
@@ -60,9 +62,8 @@ function createMarkup(data) {
 <button class="more-details btn" type="button" data-movie-id="${item.id}">
       <span class="btn-in">More details</span>
       </button>
-<button class="watch-trailer btn" type="button" data-movie-id="${
-        item.id
-      }">
+<button class="watch-trailer btn" type="button" data-movie-id="${item.id
+        }">
       <span class="btn-in">Watch trailer</span></button>
       </div>`;
     })
