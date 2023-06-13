@@ -46,7 +46,7 @@
     margin-bottom: 0;
   }
   .upcoming-list-details-subtitle {
-    width: 95px;
+    min-width: 95px;
   }
   .upcoming-realese-date {
     font-weight: 500;
