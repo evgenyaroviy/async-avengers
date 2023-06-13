@@ -72,7 +72,7 @@ function createMarkup(data) {
     https://image.tmdb.org/t/p/w300${item.backdropPath} 320w"
     src="https://image.tmdb.org/t/p/w300${item.backdropPath}"
     sizes="(min-width: 1280px) 1280px, (min-width: 768px) 768px, (min-width: 320px) 320px"
-    alt="${titleName}"
+    alt="${item.title}"
   >
   <div class="hero__title-box container">
     <h2 class="hero__title">${item.title}</h2>
