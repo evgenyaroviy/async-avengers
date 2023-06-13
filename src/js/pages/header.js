@@ -70,7 +70,7 @@ window.addEventListener('load', () => {
 
   if (activePage.length === 0) {
     return allNavLinks.forEach(el => {
-      if (el.getAttribute('href') === '/index.html') {
+      if (el.getAttribute('href').includes('index.html')) {
         el.classList.add('active-page');
       }
     });
