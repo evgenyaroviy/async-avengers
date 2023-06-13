@@ -2,12 +2,10 @@ import sprite from '../../images/sprite.svg';
 import axios from 'axios';
 import {libraryRender} from '../pages/library/library'
 import { optionsDetails } from '../request';
-
+import {removeFromLocalStorage , addToLocalStorage,moviesIdList,MOVIES_LIST_KEY} from './localStorageBtn'
 const modalEl = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
 //localadd
-const MOVIES_LIST_KEY = 'MOVIE-ID-LIST';
-const moviesIdList = JSON.parse(localStorage.getItem(MOVIES_LIST_KEY)) || [];
 
 //localadd
 // беремо списки з розмітки
@@ -157,31 +155,5 @@ window.addEventListener('keyDown', e => {
 
 //localadd
 //localadd
-function addToLocalStorage(e,data) {
-  e.preventDefault();
-  const addToLibraryBtn = e.target.parentNode;
-  addToLibraryBtn.style.display = 'none';
-  const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
-  removeFromLibraryBtn.style.display = 'block';
-  //localAdd
-  if (!moviesIdList.find(e => e.id === data.id)) {
-    moviesIdList.push(data);
-    localStorage.setItem(MOVIES_LIST_KEY, JSON.stringify(moviesIdList));
 
-    //localAdd
-  }
-}
-function removeFromLocalStorage(e,data) {
-  e.preventDefault();
-  const removeFromLibraryBtn = e.target.parentNode;
-  removeFromLibraryBtn.style.display = 'none';
-  const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
-  addToLibraryBtn.style.display = 'block';
-  //localAdd
-  const indexId = moviesIdList.findIndex(e => e.id === data.id);
-  if (indexId !== -1) {
-    moviesIdList.splice(indexId, 1);
-    localStorage.setItem(MOVIES_LIST_KEY, JSON.stringify(moviesIdList));
-  }
-  //localAdd
-}
+
