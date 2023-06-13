@@ -1,6 +1,6 @@
 import sprite from '../../images/sprite.svg';
 import axios from 'axios';
-
+import {libraryRender} from '../pages/library/library'
 import { optionsDetails } from '../request';
 
 const modalEl = document.querySelector('.modal');
@@ -48,13 +48,13 @@ async function onMovieClick(e) {
         modalCloseBtn.addEventListener('click', closeModal);
 
         const addToLibraryBtn = document.querySelector('.modal-btn-add');
-        addToLibraryBtn.addEventListener('click', addToLocalStorage);
+        addToLibraryBtn.addEventListener('click',(e) => addToLocalStorage(e,movieData));
 
         const removeFromLibraryBtn =
           document.querySelector('.modal-btn-remove');
-        removeFromLibraryBtn.addEventListener('click', removeFromLocalStorage);
+        removeFromLibraryBtn.addEventListener('click',(e) => removeFromLocalStorage(e,movieData));
         //local
-        const idFind = moviesIdList.includes(`${movieData.id}`);
+        const idFind  = moviesIdList.find(e => e.id === movieData.id)
         if (idFind) {
           addToLibraryBtn.style.display = 'none';
           removeFromLibraryBtn.style.display = 'block';
@@ -62,7 +62,7 @@ async function onMovieClick(e) {
           removeFromLibraryBtn.style.display = 'none';
           addToLibraryBtn.style.display = 'block';
         }
-
+        
         //local
       })
       .catch(function (error) {
@@ -142,6 +142,8 @@ function closeModal() {
   modalEl.classList.remove('modal-show');
   backdrop.classList.remove('modal-show');
   document.body.style.overflow = 'auto';
+  libraryRender()
+
 }
 
 backdrop.addEventListener('click', closeModal);
@@ -150,38 +152,36 @@ window.addEventListener('keyDown', e => {
   if (e.key === 'Escape') {
     closeModal();
   }
+  
 });
 
 //localadd
 //localadd
-function addToLocalStorage(e) {
+function addToLocalStorage(e,data) {
   e.preventDefault();
   const addToLibraryBtn = e.target.parentNode;
   addToLibraryBtn.style.display = 'none';
   const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
   removeFromLibraryBtn.style.display = 'block';
   //localAdd
-  const dataId = document.querySelector('.modal-container').attributes[1].value;
-  if (!moviesIdList.includes(dataId)) {
-    moviesIdList.push(dataId);
+  if (!moviesIdList.find(e => e.id === data.id)) {
+    moviesIdList.push(data);
     localStorage.setItem(MOVIES_LIST_KEY, JSON.stringify(moviesIdList));
 
     //localAdd
   }
 }
-function removeFromLocalStorage(e) {
+function removeFromLocalStorage(e,data) {
   e.preventDefault();
   const removeFromLibraryBtn = e.target.parentNode;
   removeFromLibraryBtn.style.display = 'none';
   const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
   addToLibraryBtn.style.display = 'block';
   //localAdd
-  const dataId = document.querySelector('.modal-container').attributes[1].value;
-  const indexId = moviesIdList.indexOf(dataId);
+  const indexId = moviesIdList.findIndex(e => e.id === data.id);
   if (indexId !== -1) {
     moviesIdList.splice(indexId, 1);
     localStorage.setItem(MOVIES_LIST_KEY, JSON.stringify(moviesIdList));
   }
-
   //localAdd
 }
