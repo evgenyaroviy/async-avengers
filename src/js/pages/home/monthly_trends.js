@@ -66,10 +66,13 @@ function createMarkupUpcoming(movieInfo, genres) {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const thisMonth = `${year}-${month}-01`;
+  const startOfMonth = `${year}-${month}-01`;
+  const endOfMonth = `${year}-${month}-31`;
 
   const filteredMovies = movieInfo.filter(
-    movie => movie.release_date >= thisMonth
+    movie => {
+    return  movie.release_date >= startOfMonth && movie.release_date <= endOfMonth;
+    }
   );
   const randomIndex = Math.floor(Math.random() * filteredMovies.length);
   const randomMovie = filteredMovies[randomIndex];

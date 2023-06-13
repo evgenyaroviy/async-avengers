@@ -1,3 +1,5 @@
+/* DARK THEME LOADER */
+
 .loader {
   width: 48px;
   height: 48px;
@@ -14,5 +16,18 @@
   }
   100% {
     box-shadow: 48px 0 #FFF inset;
+  }
+}
+/* LIGHT THEME LOADER */
+
+.light .loader {
+animation: animloaderdark 1s linear infinite;
+}
+@keyframes animloaderdark {
+    0% {
+    box-shadow: -72px 0 #000 inset;
+  }
+  100% {
+    box-shadow: 48px 0 #000 inset;
   }
 }
