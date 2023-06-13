@@ -26,6 +26,7 @@
     padding: 52px 16px;
     border-radius: 16px;
 
+    max-height: calc(100vh - 40px);
 }
 
 .modal-show {
@@ -62,12 +63,11 @@
     stroke: currentColor;
 }
 
-
-
 .modal-container {
     padding: 0;
     box-sizing: border-box;
     width: 248px;
+    overflow-y: auto;
 }
 
 .modal-img {
@@ -76,7 +76,9 @@
     object-fit: cover;
     width: 248px;
     height: 315px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
 .modal-title {
     font-weight: 500;
     font-size: 20px;
@@ -164,15 +166,16 @@
     display: none;
 }
 
-
 @media screen and (min-width: 768px) {
     .modal {
         width: 704px;
         padding: 44px 49px 44px 44px;
     }
+
     .modal-container {
         display: flex;
     }
+
     .modal-img {
         margin-bottom: 0;
 
@@ -189,15 +192,19 @@
         font-size: 24px;
         line-height: 1.16;
     }
+
     .modal-details-list {
         margin-bottom: 20px;
     }
+
     .modal-about {
         margin-bottom: 16px;
     }
+
     .modal-about-text {
         margin-bottom: 24px;
     }
+    
     .modal-about-text {
         font-weight: 400;
         font-size: 12px;

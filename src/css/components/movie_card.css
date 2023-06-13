@@ -9,11 +9,18 @@
 .movie-card {
   width: 280px;
   height: 406px;
-  
   border-radius: 5px;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
+  transition: scale var(--transition-dur-and-fun);
 }
+
+.movie-card:is(:hover, :focus) {
+  transform: scale(1.005);
+  box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
+}
+
 .movie-card__backdrop {
   position: absolute;
   bottom: 0;
@@ -31,7 +38,7 @@
 }
 .movie-card__info {
   position: absolute;
-  bottom: 0; 
+  bottom: 0;
   width: 100%;
   font-weight: 500;
   font-size: 12px;
@@ -39,7 +46,7 @@
   padding: 0 12px 12px 12px;
 }
 
-.movie-card__info__items{
+.movie-card__info__items {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -59,10 +66,6 @@
   line-height: 1.67;
 }
 
-.catalog-failure {
-  display: none;
-}
-
 @media screen and (min-width: 768px) {
   .gallery-section {
     padding-top: 36px;
@@ -79,7 +82,7 @@
   .movie-card__info {
     line-height: 1.58;
   }
-  .info-item__name{
+  .info-item__name {
     padding-bottom: 4px;
   }
 }
@@ -96,7 +99,7 @@
     width: 395px;
     height: 574px;
   }
-  .movie-card__info{
+  .movie-card__info {
     font-size: 20px;
     line-height: 1.15;
     padding: 0 20px 20px 20px;
