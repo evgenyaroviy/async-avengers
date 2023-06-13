@@ -24,31 +24,51 @@ window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
 });
 
 //switchTheme
-const bodyEl = document.body;
+const LOCALE_THEME = 'locale-theme';
+const refs = {
+  bodyEl: document.body,
+  themeSwitchEl: document.querySelector('.theme__switch'),
+  mobMenuBackdropEl: document.querySelector('.mobile-backdrop'),
+  mobMenuNavEl: document.querySelector('.mobile-nav'),
+};
 const themeBtnEl = document.querySelector('.theme');
-const themeSwitchEl = document.querySelector('.theme__switch');
+const currentTheme = !localStorage.getItem(LOCALE_THEME)
+  ? 'dark'
+  : localStorage.getItem(LOCALE_THEME);
 
-bodyEl.classList.add('dark');
+renderTheme(refs, currentTheme);
 
 themeBtnEl.addEventListener('click', () => {
-  if (bodyEl.classList.contains('dark')) {
-    bodyEl.classList.remove('dark');
-    bodyEl.classList.add('light');
-    themeSwitchEl.classList.add('switchLight');
-    themeSwitchEl.classList.remove('switchDark');
-    return;
-  }
-  bodyEl.classList.remove('light');
-  bodyEl.classList.add('dark');
-  themeSwitchEl.classList.add('switchDark');
-  themeSwitchEl.classList.remove('switchLight');
+  changeTheme(refs, currentTheme);
 });
 
-//pageActive
-if (window.location.pathname === '/') {
-  window.location.pathname = 'index.html';
+function renderTheme(refs, currentTheme) {
+  const refsKeys = Object.keys(refs);
+
+  for (const ref of refsKeys) {
+    refs[ref].classList.add(currentTheme);
+  }
 }
-const siteNavLinks = document.querySelectorAll('.js-nav-link');
+function changeTheme(refs, currentTheme) {
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  const refsKeys = Object.keys(refs);
+
+  for (const ref of refsKeys) {
+    refs[ref].classList.toggle(currentTheme);
+    refs[ref].classList.toggle(newTheme);
+  }
+
+  localStorage.setItem(LOCALE_THEME, newTheme);
+}
+
+const siteNavLinks = document.querySelectorAll('.site-nav__link');
+const mobMenuLinks = document.querySelectorAll('.mobile-menu__link');
+const allNavLinks = document.querySelectorAll('.js-nav-link');
+
+if (window.location.pathname === '/') {
+  siteNavLinks[0].classList.add('active-page');
+  mobMenuLinks[0].classList.add('active-page');
+}
 
 window.addEventListener('load', () => {
   const titleEl = window.location.pathname;
