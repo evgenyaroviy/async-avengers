@@ -16,7 +16,7 @@ console.log(getResponce());
 function createMarkup(data) {
   let card = data
     .map(item => {
-      return `<div class="card">
+      return `<div class="movie-card" data-id=${item.id}>
     <img class="test_img" src="https://image.tmdb.org/t/p/w500${
       item.poster_path
     }" alt="${item.title}">

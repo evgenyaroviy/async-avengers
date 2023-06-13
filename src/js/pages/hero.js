@@ -37,7 +37,7 @@ function createObject(data) {
 function createMarkup(data) {
   let card = data
     .map(item => {
-      const titleName = (item.title || item.name);
+      const titleName = item.title || item.name;
       return `<div class="hero__img-gradient"></div>
   <img class="hero__img" loading="lazy" width="1280" height="720"
     srcset="https://image.tmdb.org/t/p/w1280${item.backdropPath} 1280w,
@@ -62,12 +62,11 @@ function createMarkup(data) {
 <button class="more-details btn" type="button" data-movie-id="${item.id}">
       <span class="btn-in">More details</span>
       </button>
-<button class="watch-trailer btn" type="button" data-movie-id="${item.id
-        }">
+<button class="watch-trailer btn" type="button" data-movie-id="${item.id}">
       <span class="btn-in">Watch trailer</span></button>
       </div>`;
     })
-    .join("");
+    .join('');
   CARD_HERO.insertAdjacentHTML('beforeend', card);
 }
 
