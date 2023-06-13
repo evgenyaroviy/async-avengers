@@ -1,8 +1,13 @@
 import sprite from '../../images/sprite.svg';
 import axios from 'axios';
-import {libraryRender} from '../pages/library/library'
+import { libraryRender } from '../pages/library/library';
 import { optionsDetails } from '../request';
-import {removeFromLocalStorage , addToLocalStorage,moviesIdList,MOVIES_LIST_KEY} from './localStorageBtn'
+import {
+  removeFromLocalStorage,
+  addToLocalStorage,
+  moviesIdList,
+  MOVIES_LIST_KEY,
+} from './localStorageBtn';
 const modalEl = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
 //localadd
@@ -49,13 +54,17 @@ async function onMovieClick(e) {
         modalCloseBtn.addEventListener('click', closeModal);
 
         const addToLibraryBtn = document.querySelector('.modal-btn-add');
-        addToLibraryBtn.addEventListener('click',(e) => addToLocalStorage(e,movieData));
+        addToLibraryBtn.addEventListener('click', e =>
+          addToLocalStorage(e, movieData)
+        );
 
         const removeFromLibraryBtn =
           document.querySelector('.modal-btn-remove');
-        removeFromLibraryBtn.addEventListener('click',(e) => removeFromLocalStorage(e,movieData));
+        removeFromLibraryBtn.addEventListener('click', e =>
+          removeFromLocalStorage(e, movieData)
+        );
         //local
-        const idFind  = moviesIdList.find(e => e.id === movieData.id)
+        const idFind = moviesIdList.find(e => e.id === movieData.id);
         if (idFind) {
           addToLibraryBtn.style.display = 'none';
           removeFromLibraryBtn.style.display = 'block';
@@ -63,7 +72,7 @@ async function onMovieClick(e) {
           removeFromLibraryBtn.style.display = 'none';
           addToLibraryBtn.style.display = 'block';
         }
-        
+
         //local
       })
       .catch(function (error) {
@@ -137,7 +146,7 @@ function createModalMarkup({
                 <use href="${sprite}#icon-close-outline"></use>       
               </svg>
             </button>
-            <img src="https://image.tmdb.org/t/p/original/${poster_path}" loading="lazy" alt="${title}" class="img modal-img" width="248" height="315"/>
+            <img src="https://image.tmdb.org/t/p/original/${poster_path}" loading="lazy" alt="${title}" class="img modal-img" width="248"/>
             <div class="modal-card">
               <div class="modal-info">
                 <h3 class="modal-title">${title}</h3>
@@ -180,8 +189,7 @@ function closeModal() {
   modalEl.classList.remove('modal-show');
   backdrop.classList.remove('modal-show');
   document.body.style.overflow = 'auto';
-  libraryRender()
-
+  libraryRender();
 }
 
 backdrop.addEventListener('click', closeModal);
@@ -190,10 +198,7 @@ window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal();
   }
-  
 });
 
 //localadd
 //localadd
-
-
