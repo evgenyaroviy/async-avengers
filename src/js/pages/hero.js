@@ -1,6 +1,6 @@
 import { ratingToStars } from '../components/ratingAPI';
 import { showLoader, hideLoader } from '../components/loader';
-
+import { getTrailer } from '../components/trailer';
 import axios from 'axios';
 
 const API_KEY = 'e80fd9fb75f14049ed52c4547080278b';
@@ -63,7 +63,7 @@ function createMarkup(data) {
         return;
       }
 
-      console.log('Current Card:', item);
+      // console.log('Current Card:', item);
       return `<div class="hero__img-gradient"></div>
   <img class="hero__img" loading="lazy" width="1280" height="720"
     srcset="https://image.tmdb.org/t/p/w1280${item.backdropPath} 1280w,
@@ -86,7 +86,7 @@ function createMarkup(data) {
 </div>
 
 <div class="buttons container">
-<button class="watch-trailer btn btn-accent" type="button" data-id="${
+<button class="watch-trailer btn btn-accent watch-trailer-js" type="button" data-id="${
         item.id
       }" data-trailer="${item.movie_id}">
       <span class="btn-in">Watch trailer</span></button>
