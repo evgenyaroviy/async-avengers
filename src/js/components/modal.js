@@ -111,7 +111,7 @@ function createModalMarkup({
   // отримання списку жанрів
   const genresList = getGenresList(genres);
   function getGenresList(genres) {
-    return genres.map(g => g.name).join(' ');
+    return genres.map(g => g.name).join(', ');
   }
 
   const roundedVoteAverage = vote_average.toFixed(1);
