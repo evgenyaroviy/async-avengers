@@ -7,12 +7,15 @@ const modalEl = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
 
 // беремо списки з розмітки
-//const weeklyTrends = document.getElementById('weekly_content'); // список фільмів з головної сторінки
+const weeklyTrends = document.querySelector('.weekly_content'); // список фільмів з головної сторінки
 const catalog = document.querySelector('.movies-container'); // список фільмів з каталогу
 //const library = document.querySelector(''); // список фільмів з бібліотеки
+const hero = document.querySelector('.film-of-day');
+
+hero.addEventListener('click', onMoreDetailsClick);
 
 // додаємо слухачів на списки
-//addModalListener(weeklyTrends);
+addModalListener(weeklyTrends);
 addModalListener(catalog);
 //addModalListener(library);
 
@@ -30,6 +33,43 @@ async function onMovieClick(e) {
   }
   try {
     const movieId = e.target.closest('.movie-card').getAttribute('data-id');
+
+    optionsDetails.url = `https://api.themoviedb.org/3/movie/${movieId}`;
+
+    axios
+      .request(optionsDetails)
+      .then(function (response) {
+        const movieData = response.data;
+        const markup = createModalMarkup(movieData);
+        openModal(markup);
+
+        const modalCloseBtn = document.querySelector('.modal-close-btn');
+        modalCloseBtn.addEventListener('click', closeModal);
+
+        const addToLibraryBtn = document.querySelector('.modal-btn-add');
+        addToLibraryBtn.addEventListener('click', addToLocalStorage);
+
+        const removeFromLibraryBtn =
+          document.querySelector('.modal-btn-remove');
+        removeFromLibraryBtn.addEventListener('click', removeFromLocalStorage);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// хендлер при кліку на кнопку
+async function onMoreDetailsClick(e) {
+  if (!e.target.closest('.more-details')) {
+    return;
+  }
+  try {
+    const movieId = e.target
+      .closest('.more-details')
+      .getAttribute('data-movie-id');
 
     optionsDetails.url = `https://api.themoviedb.org/3/movie/${movieId}`;
 
@@ -131,7 +171,7 @@ function closeModal() {
 
 backdrop.addEventListener('click', closeModal);
 
-window.addEventListener('keyDown', e => {
+window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal();
   }
