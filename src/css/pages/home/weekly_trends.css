@@ -24,9 +24,6 @@
 .weekly_section {
   padding-bottom: 32px;
 }
-.movies-container {
+.weekly-content {
   margin-top: 28px;
-  display: flex;
-  gap: 16px;
-  list-style: none;
 }
