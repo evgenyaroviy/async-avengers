@@ -22,6 +22,11 @@ body {
     font-size: 14px;
 }
 
+ul,
+li {
+    list-style: none;
+}
+
 .no-scroll {
     overflow: hidden;
 }

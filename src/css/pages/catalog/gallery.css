@@ -16,7 +16,6 @@
 
 .movie-card {
   cursor: pointer;
-  list-style: none;
   transition: scale var(--transition-dur-and-fun);
 }
 

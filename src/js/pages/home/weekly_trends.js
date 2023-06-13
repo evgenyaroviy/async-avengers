@@ -2,7 +2,6 @@ import axios from 'axios';
 import { galleryMarkup } from '../../galleryMarkup';
 import { optionsWeek } from '../../request';
 
-const API_KEY = 'e80fd9fb75f14049ed52c4547080278b';
 const CARD_BLOCK = document.querySelector('.movies-container');
 const getResponce = async () => {
   try {
