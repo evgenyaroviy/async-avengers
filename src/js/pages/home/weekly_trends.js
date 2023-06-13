@@ -12,7 +12,6 @@ const getResponce = () => {
     console.log('error' + error);
   }
 };
-console.log(getResponce());
 function createMarkup(data) {
   let card = data
     .map(item => {
