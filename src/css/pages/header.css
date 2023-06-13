@@ -84,7 +84,7 @@
 .logo__wrapper {
   display: flex;
   align-items: center;
-  color: var(--lightest-color);
+  color: inherit;
 }
 .logo__name {
   display: none;
