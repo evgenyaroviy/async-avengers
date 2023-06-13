@@ -12,6 +12,7 @@ const localMoviesList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST'))
     const oopsMessage = document.querySelector('.oops-message')
     let localMoviesListGanresSort = []
     moviesContainerEl.innerHTML = ``
+    if(localMoviesList){
     localMoviesList.forEach(e => {
         e.genre_name = e.genres[0].name
     })
@@ -26,8 +27,9 @@ const localMoviesList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST'))
         }else{
             localMoviesListGanresSort.push(e)
         }
-    })
-    if(localMoviesList.length===0){
+    })}
+    console.log(localMoviesList)
+    if(!localMoviesList ||localMoviesList.length===0){
         oopsMessage.style.display = 'block'
     }else{
         moviesContainerEl.insertAdjacentHTML('beforeend',galleryMarkup(localMoviesListGanresSort))
