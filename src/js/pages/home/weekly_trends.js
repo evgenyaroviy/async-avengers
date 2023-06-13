@@ -18,7 +18,11 @@ const getResponce = async () => {
     console.log(error);
   }
 };
-console.log(getResponce());
+getResponce();
 function createMarkup(data) {
   CARD_BLOCK.insertAdjacentHTML('beforeend', galleryMarkup(data));
 }
+function getCardData(e) {
+  console.log(e.currentTarget.dataset);
+}
+CARD_BLOCK.addEventListener('click', getCardData);

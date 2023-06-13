@@ -7,17 +7,17 @@
   justify-content: space-between;
 }
 .weekly_trends_title {
-  color: white;
-  height: 19px;
-  font-weight: 500;
   font-size: 16px;
+  color: white;
+  font-weight: 500;
+  height: 19px;
   line-height: 19px;
   text-transform: uppercase;
 }
 .weekly_trends_btn {
-  height: 19px;
-  font-weight: 500;
   font-size: 16px;
+  font-weight: 500;
+  height: 19px;
   line-height: 19px;
   color: #f87719;
 }
@@ -25,6 +25,8 @@
   padding-bottom: 32px;
 }
 .weekly_content {
+  margin-top: 28px;
   display: flex;
   gap: 16px;
+  list-style: none;
 }
