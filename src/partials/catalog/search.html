@@ -1,25 +1,27 @@
 <section class="catalog-search-section">
+  <h2 class="visually-hidden">Catalog</h2>
   <div class="container">
     <form class="search-form" id="search-form">
-      <!-- <div class="search-wrapper">
+      <!-- Tablet | Desctop -->
+      <div class="search-film-wrapper">
         <div class="search-container">
           <input
             type="text"
             name="searchQuery"
             autocomplete="off"
             placeholder="Film"
-            class="search search-film"
+            class="search search2 search-film"
             autofocus
           />
-          <div class="reset-container-film">
+          <div class="reset-container2">
             <svg class="reset-icon">
               <use href="./images/sprite.svg#icon-close-outline"></use>
             </svg>
-            <input
+            <button
               type="reset"
               value=""
-              class="reset-search reset-search-film"
-            />
+              class="reset-search reset-search2"
+            ></button>
           </div>
         </div>
         <div class="search-container">
@@ -29,25 +31,29 @@
             class="search select-drop-down"
           ></select>
         </div>
-      </div> -->
-
-      <!-- <div class="search-wrapper"> -->
-      <div class="search-container">
-        <input
-          type="text"
-          name="searchQuery"
-          autocomplete="off"
-          placeholder="Search"
-          class="search search-field"
-        />
-        <div class="reset-container">
-          <svg class="reset-icon">
-            <use href="./images/sprite.svg#icon-close-outline"></use>
-          </svg>
-          <input type="reset" value="" class="reset-search" />
+      </div>
+      <!--MOBILE -->
+      <div class="search-wrapper">
+        <div class="search-container">
+          <input
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search"
+            class="search search1 search-field"
+          />
+          <div class="reset-container1">
+            <svg class="reset-icon">
+              <use href="./images/sprite.svg#icon-close-outline"></use>
+            </svg>
+            <button
+              type="reset"
+              value=""
+              class="reset-search reset-search1"
+            ></button>
+          </div>
         </div>
       </div>
-
       <button type="submit" class="btn btn-accent btn-round">
         <div class="submit-btn btn-in">
           <svg class="search-icon">
@@ -55,7 +61,6 @@
           </svg>
         </div>
       </button>
-      <!-- </div> -->
     </form>
   </div>
 </section>

@@ -64,7 +64,6 @@ function createMarkup(data) {
       }
 
       console.log('Current Card:', item);
-
       return `<div class="hero__img-gradient"></div>
   <img class="hero__img" loading="lazy" width="1280" height="720"
     srcset="https://image.tmdb.org/t/p/w1280${item.backdropPath} 1280w,
@@ -85,6 +84,7 @@ function createMarkup(data) {
 <div class="hero__text-box container">
     <p class="hero__text">${item.overview}</p>
 </div>
+
 <div class="buttons container">
 <button class="watch-trailer btn btn-accent" type="button" data-id="${
         item.id
