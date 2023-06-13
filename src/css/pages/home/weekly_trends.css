@@ -23,7 +23,9 @@
 }
 .weekly_section {
   padding-bottom: 32px;
+  padding-top: 80px;
 }
 .weekly-content {
+  list-style: none;
   margin-top: 28px;
 }
