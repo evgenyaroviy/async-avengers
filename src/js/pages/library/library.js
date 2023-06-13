@@ -1,13 +1,13 @@
 import {galleryMarkup} from '../../galleryMarkup'
 
-const localMoviesList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST'))
 const genresSelect = document.querySelector('.genres-select')
 
-genresSelect 
 if(genresSelect){
 genresSelect.addEventListener('change',libraryRender) }
 export function libraryRender(){
     try{
+const localMoviesList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST'))
+
     const moviesContainerEl = document.querySelector('.movies-libary')
     const oopsMessage = document.querySelector('.oops-message')
     let localMoviesListGanresSort = []
