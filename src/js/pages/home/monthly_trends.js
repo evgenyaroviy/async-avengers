@@ -113,7 +113,7 @@ function createMarkupUpcoming(movieInfo, genres) {
   });
 
   return `
-    <img width="280" height="402" class="upcoming-image"  src="${poster}" alt="${original_title}">
+    <img width="280" height="402" class="upcoming-image" loading="lazy" src="${poster}" alt="${original_title}">
     <div class="info-container" >
     <h3 class="upcoming-movie-title">${original_title}</h3>
     <ul class="upcoming-list-details list">
