@@ -1,11 +1,13 @@
 import sprite from '../../images/sprite.svg';
 import axios from 'axios';
-
+import {libraryRender} from '../pages/library/library'
 import { optionsDetails } from '../request';
-
+import {removeFromLocalStorage , addToLocalStorage,moviesIdList,MOVIES_LIST_KEY} from './localStorageBtn'
 const modalEl = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
+//localadd
 
+//localadd
 // беремо списки з розмітки
 const weeklyTrends = document.querySelector('.weekly_content'); // список фільмів з головної сторінки
 const catalog = document.querySelector('.movies-container'); // список фільмів з каталогу
@@ -47,11 +49,22 @@ async function onMovieClick(e) {
         modalCloseBtn.addEventListener('click', closeModal);
 
         const addToLibraryBtn = document.querySelector('.modal-btn-add');
-        addToLibraryBtn.addEventListener('click', addToLocalStorage);
+        addToLibraryBtn.addEventListener('click',(e) => addToLocalStorage(e,movieData));
 
         const removeFromLibraryBtn =
           document.querySelector('.modal-btn-remove');
-        removeFromLibraryBtn.addEventListener('click', removeFromLocalStorage);
+        removeFromLibraryBtn.addEventListener('click',(e) => removeFromLocalStorage(e,movieData));
+        //local
+        const idFind  = moviesIdList.find(e => e.id === movieData.id)
+        if (idFind) {
+          addToLibraryBtn.style.display = 'none';
+          removeFromLibraryBtn.style.display = 'block';
+        } else {
+          removeFromLibraryBtn.style.display = 'none';
+          addToLibraryBtn.style.display = 'block';
+        }
+        
+        //local
       })
       .catch(function (error) {
         console.error(error);
@@ -167,6 +180,8 @@ function closeModal() {
   modalEl.classList.remove('modal-show');
   backdrop.classList.remove('modal-show');
   document.body.style.overflow = 'auto';
+  libraryRender()
+
 }
 
 backdrop.addEventListener('click', closeModal);
@@ -175,19 +190,10 @@ window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal();
   }
+  
 });
 
-function addToLocalStorage(e) {
-  e.preventDefault();
-  const addToLibraryBtn = e.target.parentNode;
-  addToLibraryBtn.style.display = 'none';
-  const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
-  removeFromLibraryBtn.style.display = 'block';
-}
-function removeFromLocalStorage(e) {
-  e.preventDefault();
-  const removeFromLibraryBtn = e.target.parentNode;
-  removeFromLibraryBtn.style.display = 'none';
-  const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
-  addToLibraryBtn.style.display = 'block';
-}
+//localadd
+//localadd
+
+
