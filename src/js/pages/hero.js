@@ -1,14 +1,19 @@
 import { ratingToStars } from '../components/ratingAPI';
-
+import { getTrailer, watchTrailer, openNoTrailerModal } from "./catalog/trailer";
+import { onOpenModal } from './catalog/hero-modal';
 import axios from 'axios';
 
 const API_KEY = 'e80fd9fb75f14049ed52c4547080278b';
 const CARD_HERO = document.querySelector('.film-of-day');
 
+let movieTheDay = 0;
+
 function getRandomObject(data) {
   const randomIndex = Math.floor(Math.random() * data.length);
-  return data[randomIndex];
+  movieTheDay = data[randomIndex]
+  return movieTheDay;
 }
+
 
 const getResponse = async () => {
   try {
@@ -23,6 +28,7 @@ const getResponse = async () => {
   }
 };
 
+
 function createObject(data) {
   return data.map(item => ({
     backdropPath: item.backdrop_path,
@@ -34,7 +40,8 @@ function createObject(data) {
   }));
 }
 
-function createMarkup(data) {
+
+export function createMarkup(data) {
   let card = data
     .map(item => {
       const titleName = (item.title || item.name);
@@ -62,13 +69,29 @@ function createMarkup(data) {
 <button class="more-details btn" type="button" data-movie-id="${item.id}">
       <span class="btn-in">More details</span>
       </button>
-<button class="watch-trailer btn" type="button" data-movie-id="${item.id
+<button class="watch-trailer btn modal-btn" type="button" data-movie-id="${item.id
         }">
       <span class="btn-in">Watch trailer</span></button>
       </div>`;
     })
     .join("");
   CARD_HERO.insertAdjacentHTML('beforeend', card);
+
+
+    const detailsButton = document.querySelector(".modal-btn")
+    detailsButton.addEventListener("click", onOpenModal)
+    
+  getTrailer(movieTheDay.id).then(res => {
+      console.log(movieTheDay.id)
+        if(res === undefined || res.data.results.length === 0 ||  res.data === undefined){
+         openNoTrailerModal()
+        }else{
+          watchTrailer(res)
+        }
+    }).catch(error => console.log(error))
+ 
 }
 
-getResponse();
+
+
+getResponse()

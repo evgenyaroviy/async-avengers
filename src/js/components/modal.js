@@ -1,6 +1,5 @@
 import sprite from '../../images/sprite.svg';
 import axios from 'axios';
-
 import { optionsDetails } from '../request';
 
 const modalEl = document.querySelector('.modal');
