@@ -21,7 +21,6 @@ async function responseWeeklytrends() {
   });
 
   galleryContainer.innerHTML = galleryMarkup(moviesArr);
-//   getTargetMovieContainer();
 }
 
 async function fetchWeeklytrends(currentPage) {
@@ -43,6 +42,7 @@ async function fetchWeeklytrends(currentPage) {
   } catch (error) {
     console.error(error);
     catalogFailure.style.display = 'block';
+    gallerySection.classList.add('failure-event');
   }
 }
 
@@ -54,13 +54,3 @@ async function fetchGenresMovie() {
     console.log(error);
   }
 }
-
-// function getTargetMovieContainer() {
-//   const targetMovieContainer = document.querySelector('.movies-container');
-//   targetMovieContainer.addEventListener('click', handleMovieContainer);
-// }
-
-// function handleMovieContainer(event) {
-//   const targetMovieCardID = event.target.closest('.movie-card').dataset.id;
-//   alert(`Open Modal window by ID ${targetMovieCardID}`);
-// }
