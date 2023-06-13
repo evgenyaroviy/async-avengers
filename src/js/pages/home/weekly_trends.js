@@ -9,7 +9,7 @@ const getResponce = () => {
       `https://api.themoviedb.org/3/trending/movie/week?language=en-US&api_key=${API_KEY}`
     );
     return res.then(res => {
-      if (window.screen.width > 380 && window.screen.width < 450) {
+      if (window.screen.width < 450) {
         createMarkup(res.data.results.slice(0, 1));
       } else {
         createMarkup(res.data.results.slice(0, 3));
