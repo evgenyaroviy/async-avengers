@@ -20,9 +20,9 @@ const getResponce = async () => {
     console.log(error);
   }
 };
-getResponce(); 
+getResponce();
 async function createMarkup(data) {
-  const genres =await  fetchGenresMovie();
+  const genres = await fetchGenresMovie();
   data.forEach(e => {
     const genre = genres.find(genre => genre.id == e.genre_ids[0]);
     e.genre_name = genre ? genre.name : '';
