@@ -1,5 +1,5 @@
 import { ratingToStars } from '../components/ratingAPI';
-import { showLoader, hideLoader } from '../components/loader';
+import { toggleLoader } from '../components/loader';
 import { getTrailer } from '../components/trailer';
 import axios from 'axios';
 
@@ -15,7 +15,7 @@ function getRandomObject(data) {
 
 const getResponse = async () => {
   try {
-    showLoader();
+toggleLoader(true);
 
     // Выполняем GET-запрос к API, чтобы получить популярные фильмы за день
 
@@ -37,7 +37,7 @@ const getResponse = async () => {
   } catch (error) {
     console.log('error' + error);
   } finally {
-    hideLoader();
+toggleLoader(false);
   }
 };
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { galleryMarkup } from '../../galleryMarkup';
 import { optionsGenre } from '../../request';
-import { showLoader, hideLoader } from '../../components/loader';
+import { toggleLoader } from '../../components/loader';
 
 let currentPage = 1;
 
@@ -44,7 +44,7 @@ async function fetchWeeklytrends(currentPage) {
   };
 
   try {
-    showLoader()
+toggleLoader(true)
     const response = await axios.request(optionsWeek);
     return response.data;
   } catch (error) {
@@ -52,7 +52,7 @@ async function fetchWeeklytrends(currentPage) {
     catalogFailure.style.display = 'block';
     gallerySection.classList.add('failure-event');
   } finally {
-    hideLoader()
+toggleLoader(false);
   }
 }
 
