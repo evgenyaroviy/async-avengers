@@ -8,11 +8,11 @@ if (genresSelect) {
 let colbMovies = 9;
 
 const btnLoadMore = document.querySelector('.btn-load-more');
-btnLoadMore.style.display = 'none';
-btnLoadMore.addEventListener('click', () => {
-  colbMovies += 9
-  libraryRender()
-})
+// btnLoadMore.style.display = 'none';
+// btnLoadMore.addEventListener('click', () => {
+//   colbMovies += 9
+//   libraryRender()
+// })
 export function libraryRender() {
   try {
     const localMoviesList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST'));
