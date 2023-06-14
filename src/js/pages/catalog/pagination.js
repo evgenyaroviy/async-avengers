@@ -5,6 +5,7 @@ import { galleryMarkup } from '../../galleryMarkup';
 import { optionsGenre } from '../../request';
 import { galleryContainer } from './gallery';
 
+
 const paginationContainer = document.getElementById('tui-pagination-container');
 const paginationOptions = {
   totalItems: 100,

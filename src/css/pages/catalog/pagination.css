@@ -52,6 +52,7 @@
   border: none;
   cursor: default;
 }
+
 .tui-pagination .tui-first,
 .tui-pagination .tui-prev,
 .tui-pagination .tui-next,
@@ -91,12 +92,15 @@
 .tui-pagination .tui-next {
   margin-left: 4px;
 }
+
 /* change into svg */
 .tui-pagination .tui-ico-first {
   width: 11px;
   height: 10px;
   background-position: 0px 0px;
-} /* odd */
+}
+
+/* odd */
 
 .tui-pagination .tui-ico-prev {
   width: 6px;
@@ -114,7 +118,9 @@
   width: 11px;
   height: 10px;
   background-position: 0px -12px;
-} /* odd */
+}
+
+/* odd */
 
 .tui-pagination .tui-ico-ellip {
   width: 10px;
@@ -123,10 +129,12 @@
   vertical-align: top;
   background-position: 0px -24px;
 }
+
 /* ______________ */
 .tui-pagination .tui-is-disabled:hover {
   cursor: default;
 }
+
 /* change into svg */
 /* ________________ */
 .tui-pagination .tui-first,
