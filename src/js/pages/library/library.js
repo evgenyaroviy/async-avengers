@@ -8,11 +8,11 @@ if (genresSelect) {
 let colbMovies = 9;
 
 const btnLoadMore = document.querySelector('.btn-load-more');
-btnLoadMore.style.display = 'none';
-btnLoadMore.addEventListener('click',() => {
-    colbMovies += 9
-    libraryRender()
-})
+// btnLoadMore.style.display = 'none';
+// btnLoadMore.addEventListener('click', () => {
+//   colbMovies += 9
+//   libraryRender()
+// })
 export function libraryRender() {
   try {
     const localMoviesList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST'));
@@ -41,14 +41,14 @@ export function libraryRender() {
     if (!localMoviesList || localMoviesList.length === 0) {
       oopsMessage.style.display = 'block';
     } else {
-          if(localMoviesList.length > 9){
-            btnLoadMore.style.display = 'block'
-        }
+      if (localMoviesList.length > 9) {
+        btnLoadMore.style.display = 'block'
+      }
       moviesContainerEl.insertAdjacentHTML(
         'beforeend',
-        galleryMarkup(localMoviesListGanresSort.slice(0,colbMovies))
+        galleryMarkup(localMoviesListGanresSort.slice(0, colbMovies))
       );
-      if(libraryMoviesList.childNodes.length === localMoviesListGanresSort.length){
+      if (libraryMoviesList.childNodes.length === localMoviesListGanresSort.length) {
         btnLoadMore.style.display = 'none'
       }
     }
