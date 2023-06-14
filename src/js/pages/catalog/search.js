@@ -3,7 +3,7 @@ import axios from 'axios';
 import { optionsSearch, optionsGenre } from '../../request';
 import { galleryMarkup } from '../../galleryMarkup';
 import { galleryContainer, catalogFailure, gallerySection } from './gallery';
-import { hideLoader, showLoader } from '../../components/loader';
+import { toggleLoader } from '../../components/loader';
 
 
 const formEl = document.querySelector('#search-form');
@@ -49,7 +49,6 @@ function handleSubmitForm(event) {
 
 async function responseOptionsSearch() {
   try {
-    showLoader();
     const data = await fetchOptionsSearch();
     const genres = await fetchGenresMovie();
     const moviesArr = data.results;
@@ -73,7 +72,6 @@ async function responseOptionsSearch() {
   } catch (error) {
     console.log(error);
   } finally {
-    hideLoader();
   }
 }
 
