@@ -88,38 +88,32 @@ function createMarkup(data) {
 
       // Создаем разметку для текущего объекта фильма
 
-      return `<div class="hero__img-gradient"></div>
-  <img class="hero__img" loading="lazy" width="1280" height="720"
+      return `
+      <img class="hero__img" loading="lazy" width="1280" height="720"
     srcset="https://image.tmdb.org/t/p/w1280${item.backdropPath} 1280w,
     https://image.tmdb.org/t/p/w780${item.backdropPath} 768w,
     https://image.tmdb.org/t/p/w300${item.backdropPath} 320w"
     src="https://image.tmdb.org/t/p/w300${item.backdropPath}"
     sizes="(min-width: 1280px) 1280px, (min-width: 768px) 768px, (min-width: 320px) 320px"
-    alt="${item.title}"
-  >
-  <div class="hero__title-box container">
-    <h2 class="hero__title">${item.title}</h2>
-</div>
-<div class="rating rating-box container">
-    <p class="info-item">
-        <b class="info-item__name">${ratingToStars(item.voteAverage)}</b>
-    </p>
-</div>
-<div class="hero__text-box container">
-    <p class="hero__text">${item.overview}</p>
-</div>
+    alt="${item.title}">
+    <div class="hero__img-gradient"></div>
+    
+    <div class="hero__info">
+      <h2 class="hero__title">${item.title}</h2>
+      <div class="hero__stars">${ratingToStars(item.voteAverage)}</div> 
+      <p class="hero__text">${item.overview}</p>
 
-<div class="buttons container">
-<button class="watch-trailer btn btn-accent" type="button" data-id="${
+      <div class="buttons">
+      <button class="watch-trailer btn btn-accent watch-trailer-js" type="button" data-id="${
         item.id
       }" data-trailer="${item.movie_id}">
-      <span class="btn-in">Watch trailer</span></button>
-<button class="more-details btn btn-light more-details-js" type="button" data-id="${
+            <span class="btn-in">Watch trailer</span></button>
+      <button class="more-details btn btn-dark more-details-js" type="button" data-id="${
         item.id
       }">
-      <span class="btn-in">More details</span>
-</button>
-</div>`;
+            <span class="btn-in">More details</span></button>
+      </div>
+    </div>`;
     })
     .join('');
   CARD_HERO.insertAdjacentHTML('beforeend', card);
