@@ -58,6 +58,7 @@ async function responseUpcoming() {
     const id = randomMovie.id;
     const genres = await fetchGenresMovie(id);
     const randomMovieFilm = createRandomMovies(movieInfo);
+    
     //local
     // BUTTON//
     containerMovie.addEventListener('click', onClickAddToLocalStorage);
@@ -67,6 +68,11 @@ async function responseUpcoming() {
 
       const target = event.target;
       if (target.classList.contains('upcoming-btn-add-span')) {
+
+        randomMovieFilm.forEach(e => {
+          const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+          e.genre_name = genre ? genre.name : '';
+        });
         addToLocalStorage(event, randomMovieFilm);
       } else if (target.classList.contains('upcoming-btn-remove-span')) {
         removeFromLocalStorage(event, randomMovieFilm);
