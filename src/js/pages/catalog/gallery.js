@@ -7,27 +7,27 @@ let currentPage = 1;
 
 export const galleryContainer = document.querySelector('.movies-container');
 export const catalogFailure = document.querySelector('.catalog-failure');
+export const gallerySection = document.querySelector('.gallery-section');
 
 responseWeeklytrends();
 
 async function responseWeeklytrends() {
   try {
+    const data = await fetchWeeklytrends(currentPage);
+    const moviesArr = data.results;
 
-   const data = await fetchWeeklytrends(currentPage);
-   const moviesArr = data.results;
+    const genres = await fetchGenresMovie();
 
-   const genres = await fetchGenresMovie();
+    moviesArr.forEach(e => {
+      const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+      e.genre_name = genre ? genre.name : '';
+    });
 
-   moviesArr.forEach(e => {
-     const genre = genres.find(genre => genre.id == e.genre_ids[0]);
-     e.genre_name = genre ? genre.name : '';
-   });
-
-   galleryContainer.innerHTML = galleryMarkup(moviesArr);
-} catch (error) {
-  console.log(error)
+    galleryContainer.innerHTML = galleryMarkup(moviesArr);
+  } catch (error) {
+    console.log(error);
   } finally {
-}
+  }
 }
 
 async function fetchWeeklytrends(currentPage) {
@@ -44,7 +44,7 @@ async function fetchWeeklytrends(currentPage) {
   };
 
   try {
-    showLoader()
+    showLoader();
     const response = await axios.request(optionsWeek);
     return response.data;
   } catch (error) {
@@ -52,7 +52,7 @@ async function fetchWeeklytrends(currentPage) {
     catalogFailure.style.display = 'block';
     gallerySection.classList.add('failure-event');
   } finally {
-    hideLoader()
+    hideLoader();
   }
 }
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { optionsSearch, optionsGenre } from '../../request';
 import { galleryMarkup } from '../../galleryMarkup';
-import { galleryContainer, catalogFailure } from './gallery';
+import { galleryContainer, catalogFailure, gallerySection } from './gallery';
 import { hideLoader, showLoader } from '../../components/loader';
 
 const formEl = document.querySelector('#search-form');
@@ -13,6 +13,9 @@ const resetContainer2 = document.querySelector('.reset-container2');
 const resetSearch1 = document.querySelector('.reset-search1');
 const resetSearch2 = document.querySelector('.reset-search2');
 
+const inputs = [inputEl1, inputEl2];
+const resetContainers = [resetContainer1, resetContainer2];
+
 formEl.addEventListener('submit', handleSubmitForm);
 
 resetSearch1.addEventListener('click', handleResetSearch1);
@@ -20,16 +23,17 @@ resetSearch2.addEventListener('click', handleResetSearch2);
 
 function handleSubmitForm(event) {
   event.preventDefault();
-  clearMarkup();
+
   catalogFailure.style.display = 'none';
+  clearMarkup();
 
   const query1 = inputEl1.value.trim();
   const query2 = inputEl2.value.trim();
 
   if (query1 === '' && query2 === '') {
     catalogFailure.style.display = 'block';
-    inputEl1.focus();
-    inputEl2.focus();
+    gallerySection.classList.add('failure-event');
+    inputs.forEach(el => el.focus());
     return;
   } else {
     optionsSearch.params.query = query1;
@@ -44,43 +48,45 @@ function handleSubmitForm(event) {
 
 async function responseOptionsSearch() {
   try {
-  showLoader()
-  const data = await fetchOptionsSearch();
-  const genres = await fetchGenresMovie();
-  const moviesArr = data.results;
+    showLoader();
+    const data = await fetchOptionsSearch();
+    const genres = await fetchGenresMovie();
+    const moviesArr = data.results;
 
-  if (moviesArr.length === 0) {
-    catalogFailure.style.display = 'block';
-    resetContainer1.style.display = 'block';
-    resetContainer2.style.display = 'block';
-    return;
-  } else {
-    moviesArr.forEach(e => {
-      const genre = genres.find(genre => genre.id == e.genre_ids[0]);
-      e.genre_name = genre ? genre.name : '';
-    });
+    if (moviesArr.length === 0) {
+      catalogFailure.style.display = 'block';
+      gallerySection.classList.add('failure-event');
+      resetContainers.forEach(el => (el.style.display = 'block'));
 
-    resetContainer1.style.display = 'block';
-    resetContainer2.style.display = 'block';
-    galleryContainer.innerHTML = galleryMarkup(moviesArr);
-  }
-} catch (error) {
-  console.log(error)
+      return;
+    } else {
+      moviesArr.forEach(e => {
+        const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+        e.genre_name = genre ? genre.name : '';
+      });
+
+      resetContainers.forEach(el => (el.style.display = 'block'));
+      catalogFailure.style.display = 'none';
+      galleryContainer.innerHTML = galleryMarkup(moviesArr);
+    }
+  } catch (error) {
+    console.log(error);
   } finally {
-    hideLoader()
-}
+    hideLoader();
+  }
 }
 
 async function fetchOptionsSearch() {
   try {
-    showLoader()
+    showLoader();
     const response = await axios.request(optionsSearch);
     return response.data;
   } catch (error) {
     console.error(error);
     catalogFailure.style.display = 'block';
+    gallerySection.classList.add('failure-event');
   } finally {
-    hideLoader()
+    hideLoader();
   }
 }
 
