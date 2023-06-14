@@ -47,7 +47,7 @@
 
 @media screen and (min-width: 768px) {
   .hero__img-gradient {
-    left: 200px;
+    left: 199px;
     height: 432px;
     width: 768px;
 
@@ -355,7 +355,7 @@
   .hero__title-box-gs {
     width: 300px;
     padding-top: 40px;
-    margin-left: 0;
+    margin-left: 20px;
     margin-right: auto;
   }
 }
@@ -364,6 +364,7 @@
   .hero__title-box-gs {
     width: 700px;
     padding-top: 62px;
+    margin-left: 32px;
   }
 }
 
@@ -381,7 +382,7 @@
     width: 166px;
     height: 80px;
     margin-top: 8px;
-    margin-left: 0;
+    margin-left: 20px;
     margin-right: auto;
     overflow: hidden;
   }
@@ -391,6 +392,7 @@
       width: 357px;
       height: 64px;
       margin-top: 8px;
+      margin-left: 32px;
     }
   }
 
@@ -420,6 +422,7 @@
   .get-started-btn {
     margin-top: 32px;
     margin-bottom: 62px;
+    margin-left: 32px;
   }
 }
 
