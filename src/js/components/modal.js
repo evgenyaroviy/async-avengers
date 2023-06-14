@@ -1,8 +1,13 @@
 import sprite from '../../images/sprite.svg';
 import axios from 'axios';
-import {libraryRender} from '../pages/library/library'
+import { libraryRender } from '../pages/library/library';
 import { optionsDetails } from '../request';
-import {removeFromLocalStorage , addToLocalStorage,moviesIdList,MOVIES_LIST_KEY} from './localStorageBtn'
+import {
+  removeFromLocalStorage,
+  addToLocalStorage,
+  moviesIdList,
+  MOVIES_LIST_KEY,
+} from './localStorageBtn';
 const modalEl = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
 //localadd
@@ -14,11 +19,10 @@ const catalog = document.querySelector('.movies-container'); // список ф�
 //const library = document.querySelector(''); // список фільмів з бібліотеки
 const hero = document.querySelector('.film-of-day');
 
-hero.addEventListener('click', onMoreDetailsClick);
-
 // додаємо слухачів на списки
 addModalListener(weeklyTrends);
 addModalListener(catalog);
+addModalListener(hero);
 //addModalListener(library);
 
 function addModalListener(movieList) {
@@ -30,11 +34,19 @@ function addModalListener(movieList) {
 
 // хендлер при кліку на фільм
 async function onMovieClick(e) {
-  if (!e.target.closest('.movie-card')) {
+  if (
+    !e.target.closest('.movie-card') &&
+    !e.target.closest('.more-details-js')
+  ) {
     return;
   }
   try {
-    const movieId = e.target.closest('.movie-card').getAttribute('data-id');
+    let movieId;
+    if (e.target.closest('.movie-card')) {
+      movieId = e.target.closest('.movie-card').getAttribute('data-id');
+    } else {
+      movieId = e.target.closest('.more-details-js').getAttribute('data-id');
+    }
 
     optionsDetails.url = `https://api.themoviedb.org/3/movie/${movieId}`;
 
@@ -49,13 +61,17 @@ async function onMovieClick(e) {
         modalCloseBtn.addEventListener('click', closeModal);
 
         const addToLibraryBtn = document.querySelector('.modal-btn-add');
-        addToLibraryBtn.addEventListener('click',(e) => addToLocalStorage(e,movieData));
+        addToLibraryBtn.addEventListener('click', e =>
+          addToLocalStorage(e, movieData)
+        );
 
         const removeFromLibraryBtn =
           document.querySelector('.modal-btn-remove');
-        removeFromLibraryBtn.addEventListener('click',(e) => removeFromLocalStorage(e,movieData));
+        removeFromLibraryBtn.addEventListener('click', e =>
+          removeFromLocalStorage(e, movieData)
+        );
         //local
-        const idFind  = moviesIdList.find(e => e.id === movieData.id)
+        const idFind = moviesIdList.find(e => e.id === movieData.id);
         if (idFind) {
           addToLibraryBtn.style.display = 'none';
           removeFromLibraryBtn.style.display = 'block';
@@ -63,45 +79,8 @@ async function onMovieClick(e) {
           removeFromLibraryBtn.style.display = 'none';
           addToLibraryBtn.style.display = 'block';
         }
-        
+
         //local
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-// хендлер при кліку на кнопку
-async function onMoreDetailsClick(e) {
-  if (!e.target.closest('.more-details-js')) {
-    return;
-  }
-  try {
-    const movieId = e.target
-      .closest('.more-details-js')
-      .getAttribute('data-id');
-
-    optionsDetails.url = `https://api.themoviedb.org/3/movie/${movieId}`;
-
-    axios
-      .request(optionsDetails)
-      .then(function (response) {
-        const movieData = response.data;
-        const markup = createModalMarkup(movieData);
-        openModal(markup);
-
-        const modalCloseBtn = document.querySelector('.modal-close-btn');
-        modalCloseBtn.addEventListener('click', closeModal);
-
-        const addToLibraryBtn = document.querySelector('.modal-btn-add');
-        addToLibraryBtn.addEventListener('click', addToLocalStorage);
-
-        const removeFromLibraryBtn =
-          document.querySelector('.modal-btn-remove');
-        removeFromLibraryBtn.addEventListener('click', removeFromLocalStorage);
       })
       .catch(function (error) {
         console.error(error);
@@ -137,7 +116,7 @@ function createModalMarkup({
                 <use href="${sprite}#icon-close-outline"></use>       
               </svg>
             </button>
-            <img src="https://image.tmdb.org/t/p/original/${poster_path}" loading="lazy" alt="${title}" class="img modal-img" width="248" height="315"/>
+            <img src="https://image.tmdb.org/t/p/original/${poster_path}" loading="lazy" alt="${title}" class="img modal-img" width="248"/>
             <div class="modal-card">
               <div class="modal-info">
                 <h3 class="modal-title">${title}</h3>
@@ -180,8 +159,7 @@ function closeModal() {
   modalEl.classList.remove('modal-show');
   backdrop.classList.remove('modal-show');
   document.body.style.overflow = 'auto';
-  libraryRender()
-
+  libraryRender();
 }
 
 backdrop.addEventListener('click', closeModal);
@@ -190,10 +168,7 @@ window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal();
   }
-  
 });
 
 //localadd
 //localadd
-
-

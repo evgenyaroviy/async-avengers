@@ -39,36 +39,31 @@
     z-index: -1;
     margin-left: auto;
     margin-right: auto;
-    background: linear-gradient(
-      87.41deg,
-      #111111 33.93%,
-      rgba(17, 17, 17, 0) 78.91%
-    );
+    background: linear-gradient(87.41deg,
+        #111111 33.93%,
+        rgba(17, 17, 17, 0) 78.91%);
   }
 }
 
 @media screen and (min-width: 768px) {
   .hero__img-gradient {
     left: 200px;
-    /* height: 432px; */
-    /* width: 768px; */
-    background: linear-gradient(
-      81.57deg,
-      #111111 12.76%,
-      rgba(17, 17, 17, 0) 72.65%
-    );
+    height: 432px;
+    width: 768px;
+
+    background: linear-gradient(81.57deg,
+        #111111 12.76%,
+        rgba(17, 17, 17, 0) 72.65%);
   }
 }
 
 @media screen and (min-width: 1280px) {
   .hero__img-gradient {
-    /* left: 339px; */
-    /* height: 720px; */
-    background: linear-gradient(
-      83.06deg,
-      #111111 11.91%,
-      rgba(17, 17, 17, 0) 73.11%
-    );
+    left: 339px;
+    height: 720px;
+    background: linear-gradient(83.06deg,
+        #111111 11.91%,
+        rgba(17, 17, 17, 0) 73.11%);
   }
 }
 
@@ -297,11 +292,9 @@
     z-index: -1;
     margin-left: auto;
     margin-right: auto;
-    background: linear-gradient(
-      87.41deg,
-      #111111 33.93%,
-      rgba(17, 17, 17, 0) 78.91%
-    );
+    background: linear-gradient(87.41deg,
+        #111111 33.93%,
+        rgba(17, 17, 17, 0) 78.91%);
   }
 }
 
@@ -310,11 +303,9 @@
     left: 200px;
     width: 768px;
     height: 432px;
-    background: linear-gradient(
-      81.57deg,
-      #111111 12.76%,
-      rgba(17, 17, 17, 0) 72.65%
-    );
+    background: linear-gradient(81.57deg,
+        #111111 12.76%,
+        rgba(17, 17, 17, 0) 72.65%);
   }
 }
 
@@ -322,11 +313,9 @@
   .hero__img-gradient-gs {
     left: 340px;
     height: 720px;
-    background: linear-gradient(
-      83.06deg,
-      #111111 11.91%,
-      rgba(17, 17, 17, 0) 73.11%
-    );
+    background: linear-gradient(83.06deg,
+        #111111 11.91%,
+        rgba(17, 17, 17, 0) 73.11%);
   }
 }
 
@@ -440,6 +429,7 @@
     margin-bottom: 169px;
   }
 }
+
 /* Экран заглушка */
 
 @media screen and (min-width: 320px) {
@@ -453,5 +443,61 @@
     background-color: var(--dark-color);
     z-index: 1;
     display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .get-started-section {
+    height: 432px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .get-started-section {
+    height: 720px;
+  }
+}
+
+.watch-modal__iframe {
+  margin: 0;
+  padding: 0;
+}
+
+.watch-modal__content {
+  border-radius: 20px;
+}
+
+@media screen and (min-width: 320px) {
+  .watch-modal__error-message {
+    color: #fff;
+    font-size: 16px;
+    line-height: 19px;
+    display: block;
+  }
+}
+
+@media screen and (min-width: 762px) {
+  .watch-modal__error-message {
+    display: block;
+    font-size: 24px;
+    line-height: 28px;
+    color: #fff;
+  }
+}
+
+.watch-modal__error-image {
+  background-image: url(/src/images/watch-trailer-modal_desk_1x.png);
+  text-align: left;
+  margin-bottom: 20px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .watch-modal__error-image {
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: auto;
   }
 }

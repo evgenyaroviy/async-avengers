@@ -4,6 +4,7 @@ import { optionsSearch, optionsGenre } from '../../request';
 import { galleryMarkup } from '../../galleryMarkup';
 import { galleryContainer, catalogFailure } from './gallery';
 
+
 const formEl = document.querySelector('#search-form');
 const inputEl1 = document.querySelector('.search1');
 const inputEl2 = document.querySelector('.search2');
@@ -42,6 +43,8 @@ function handleSubmitForm(event) {
 }
 
 async function responseOptionsSearch() {
+  try {
+
   const data = await fetchOptionsSearch();
   const genres = await fetchGenresMovie();
   const moviesArr = data.results;
@@ -61,15 +64,23 @@ async function responseOptionsSearch() {
     resetContainer2.style.display = 'block';
     galleryContainer.innerHTML = galleryMarkup(moviesArr);
   }
+} catch (error) {
+  console.log(error)
+  } finally {
+
+}
 }
 
 async function fetchOptionsSearch() {
   try {
+
     const response = await axios.request(optionsSearch);
     return response.data;
   } catch (error) {
     console.error(error);
     catalogFailure.style.display = 'block';
+  } finally {
+
   }
 }
 

@@ -60,17 +60,23 @@
 .site-nav {
   display: flex;
 }
+.site-nav.dark {
+  color: var(--light-grey-color);
+}
+.site-nav.light {
+  color: var(--middle-grey-color);
+}
 .site-nav__item:not(:last-child) {
   margin-right: 32px;
 }
 .site-nav__link {
   display: flex;
   text-transform: uppercase;
-  color: var(--light-grey-color);
 
   transition: color var(--transition-dur-and-fun),
     transform var(--transition-dur-and-fun);
 }
+
 .site-nav__link:hover,
 .site-nav__link:focus {
   color: var(--accent-color);

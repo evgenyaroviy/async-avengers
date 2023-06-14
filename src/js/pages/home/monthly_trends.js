@@ -1,21 +1,26 @@
 import axios from 'axios';
 import { optionsUpcoming } from '../../request';
 import { optionsGenre } from '../../request';
-import { showLoader, hideLoader } from '../../components/loader';
-import {removeFromLocalStorage , addToLocalStorage,moviesIdList,MOVIES_LIST_KEY} from '../../components/localStorageBtn'
+import { toggleLoader } from '../../components/loader';
+import {
+  removeFromLocalStorage,
+  addToLocalStorage,
+  moviesIdList,
+  MOVIES_LIST_KEY,
+} from '../../components/localStorageBtn';
 
 const containerMovie = document.querySelector('.container-upcoming-movie');
 
 async function fetchUpcomingMovie() {
   try {
-    showLoader();
+    toggleLoader(true);
     const response = await axios.request(optionsUpcoming);
     return response.data;
   } catch (error) {
     console.error(error);
     containerMovie.innerHTML = markupError();
   } finally {
-    hideLoader();
+    toggleLoader(false);
   }
 }
 async function fetchGenresMovie(id) {
@@ -27,57 +32,57 @@ async function fetchGenresMovie(id) {
     return [];
   }
 }
-try{
 
-}catch{
-  
-}
-function createRandomMovies(movieInfo){
+
+function createRandomMovies(movieInfo) {
+
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const thisMonth = `${year}-${month}-01`;
+  const startOfMonth = `${year}-${month}-01`;
+  const endOfMonth = `${year}-${month}-31`;
+
   const filteredMovies = movieInfo.filter(
-    movie => movie.release_date >= thisMonth
+    movie =>
+      movie.release_date >= startOfMonth && movie.release_date <= endOfMonth
   );
   const randomIndexFilm = Math.floor(Math.random() * filteredMovies.length);
-  const randomMovieFilm = filteredMovies[randomIndexFilm];
-  return randomMovieFilm
+  const randomMovieFilm = [filteredMovies[randomIndexFilm]];
+  return randomMovieFilm;
 }
 async function responseUpcoming() {
   try {
-    showLoader();
+toggleLoader(true)
     const data = await fetchUpcomingMovie();
     const movieInfo = data.results;
     const randomIndex = Math.floor(Math.random() * movieInfo.length);
     const randomMovie = movieInfo[randomIndex];
     const id = randomMovie.id;
     const genres = await fetchGenresMovie(id);
-    const randomMovieFilm = createRandomMovies(movieInfo)
+    const randomMovieFilm = createRandomMovies(movieInfo);
     //local
     // BUTTON//
-containerMovie.addEventListener('click', onClickAddToLocalStorage);
-
+    containerMovie.addEventListener('click', onClickAddToLocalStorage);
 
     function onClickAddToLocalStorage(event) {
       event.preventDefault();
-    
+
       const target = event.target;
       if (target.classList.contains('upcoming-btn-add-span')) {
-        addToLocalStorage(event,randomMovieFilm);
+        addToLocalStorage(event, randomMovieFilm);
       } else if (target.classList.contains('upcoming-btn-remove-span')) {
-        removeFromLocalStorage(event,randomMovieFilm);
+        removeFromLocalStorage(event, randomMovieFilm);
       }
     }
-  //local
+    //local
     if (genres.length === 0) {
-      containerMovie.innerHTML = createMarkupUpcoming( [],randomMovieFilm);
+      containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, []);
     } else {
       generateGenres(movieInfo, genres);
-      containerMovie.innerHTML = createMarkupUpcoming( genres,randomMovieFilm);
+      containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, genres);
     }
   } finally {
-    hideLoader();
+toggleLoader(false);
   }
 }
 
@@ -95,17 +100,8 @@ function generateGenres(movieInfo, genres) {
   });
 }
 
-function createMarkupUpcoming( genres,randomMovie) {
-  // const currentDate = new Date();
-  // const year = currentDate.getFullYear();
-  // const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  // const thisMonth = `${year}-${month}-01`;
+function createMarkupUpcoming(movieInfo, genres) {
 
-  // const filteredMovies = movieInfo.filter(
-  //   movie => movie.release_date >= thisMonth
-  // );
-  // const randomIndex = Math.floor(Math.random() * filteredMovies.length);
-  // const randomMovie = filteredMovies[randomIndex];
   const {
     id: idMovie,
     backdrop_path,
@@ -117,7 +113,7 @@ function createMarkupUpcoming( genres,randomMovie) {
     popularity,
     genre_ids,
     overview,
-  } = randomMovie;
+  } = movieInfo[0];
 
   const releaseDay = addLeadingZero(new Date(release_date).getDate());
   const releaseMonth = addLeadingZero(new Date(release_date).getMonth() + 1);
@@ -143,7 +139,7 @@ function createMarkupUpcoming( genres,randomMovie) {
   });
 
   return `
-    <img width="280" height="402" class="upcoming-image"  src="${poster}" alt="${original_title}">
+    <img width="280" height="402" class="upcoming-image" loading="lazy" src="${poster}" alt="${original_title}">
     <div class="info-container" >
     <h3 class="upcoming-movie-title">${original_title}</h3>
     <ul class="upcoming-list-details list">
@@ -189,19 +185,4 @@ function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 
-
-
-
-// function addToLocalStorage(e) {
-//   const addToLibraryBtn = e.target.parentNode;
-//   addToLibraryBtn.style.display = 'none';
-//   const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
-//   removeFromLibraryBtn.style.display = 'block';
-// }
-// function removeFromLocalStorage(e) {
-//   const removeFromLibraryBtn = e.target.parentNode;
-//   removeFromLibraryBtn.style.display = 'none';
-//   const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
-//   addToLibraryBtn.style.display = 'block';
-// }
 responseUpcoming();

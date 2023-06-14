@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { galleryMarkup } from '../../galleryMarkup';
 import { optionsGenre } from '../../request';
+import { toggleLoader } from '../../components/loader';
 
 let currentPage = 1;
 
@@ -10,17 +11,24 @@ export const catalogFailure = document.querySelector('.catalog-failure');
 responseWeeklytrends();
 
 async function responseWeeklytrends() {
-  const data = await fetchWeeklytrends(currentPage);
-  const moviesArr = data.results;
+  try {
+    toggleLoader(true);
+    const data = await fetchWeeklytrends(currentPage);
+    const moviesArr = data.results;
 
-  const genres = await fetchGenresMovie();
+    const genres = await fetchGenresMovie();
 
-  moviesArr.forEach(e => {
-    const genre = genres.find(genre => genre.id == e.genre_ids[0]);
-    e.genre_name = genre ? genre.name : '';
-  });
+    moviesArr.forEach(e => {
+      const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+      e.genre_name = genre ? genre.name : '';
+    });
 
-  galleryContainer.innerHTML = galleryMarkup(moviesArr);
+    galleryContainer.innerHTML = galleryMarkup(moviesArr);
+  } catch (error) {
+    console.log(error)
+  } finally {
+    toggleLoader(false);
+  }
 }
 
 async function fetchWeeklytrends(currentPage) {
@@ -37,12 +45,15 @@ async function fetchWeeklytrends(currentPage) {
   };
 
   try {
+    toggleLoader(true);
     const response = await axios.request(optionsWeek);
     return response.data;
   } catch (error) {
     console.error(error);
     catalogFailure.style.display = 'block';
     gallerySection.classList.add('failure-event');
+  } finally {
+    toggleLoader(false);
   }
 }
 

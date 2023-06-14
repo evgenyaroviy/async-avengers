@@ -28,6 +28,7 @@ const LOCALE_THEME = 'locale-theme';
 const refs = {
   bodyEl: document.body,
   themeSwitchEl: document.querySelector('.theme__switch'),
+  siteNavLinksEl: document.querySelector('.site-nav'),
   mobMenuBackdropEl: document.querySelector('.mobile-backdrop'),
   mobMenuNavEl: document.querySelector('.mobile-nav'),
 };
@@ -70,7 +71,7 @@ window.addEventListener('load', () => {
 
   if (activePage.length === 0) {
     return allNavLinks.forEach(el => {
-      if (el.getAttribute('href') === '/index.html') {
+      if (el.getAttribute('href').includes('index.html')) {
         el.classList.add('active-page');
       }
     });
