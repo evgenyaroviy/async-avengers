@@ -28,6 +28,7 @@ const LOCALE_THEME = 'locale-theme';
 const refs = {
   bodyEl: document.body,
   themeSwitchEl: document.querySelector('.theme__switch'),
+  siteNavLinksEl: document.querySelector('.site-nav'),
   mobMenuBackdropEl: document.querySelector('.mobile-backdrop'),
   mobMenuNavEl: document.querySelector('.mobile-nav'),
 };
