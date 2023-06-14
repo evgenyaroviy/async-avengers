@@ -4,17 +4,27 @@
 
 /* Герой */
 
+.hero {
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 320px) {
   .hero {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    max-width: 100%;
-    width: 100%;
-    object-fit: cover;
+    max-width: 320px;
   }
 }
 
+@media screen and (min-width: 768px) {
+  .hero {
+    max-width: 768px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero {
+    max-width: 1280px;
+  }
+}
 @media screen and (min-width: 320px) {
   .film-of-day {
     width: 100%;
@@ -537,7 +547,6 @@
       background-image: url('../../images/watch-trailer-modal_mob_2x.png');
     }
   }
-
   @media (min-width: 321px) and (max-width: 768px) {
     .watch-modal.modal-error {
       background-image: url('../../images/watch-trailer-modal_tab_2x.png');

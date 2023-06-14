@@ -83,14 +83,14 @@ function createMarkup(data) {
 
       // Создаем разметку для текущего объекта фильма
       return `<div class="hero__img-gradient"></div>
-  <img class="hero__img" loading="lazy" width="1280" height="720"
-    srcset="https://image.tmdb.org/t/p/original${item.backdropPath} 1280w,
-    https://image.tmdb.org/t/p/original${item.backdropPath} 768w,
-    https://image.tmdb.org/t/p/original${item.backdropPath} 320w"
-    src="https://image.tmdb.org/t/p/original${item.backdropPath}"
-    sizes="(min-width: 1280px) 1280px, (min-width: 768px) 768px, (min-width: 320px) 320px"
-    alt="${item.title}"
-  >
+<img class="hero__img" loading="lazy" width="100%" height="720"
+  srcset="https://image.tmdb.org/t/p/original${item.backdropPath} 1280w,
+  https://image.tmdb.org/t/p/original${item.backdropPath} 768w,
+  https://image.tmdb.org/t/p/original${item.backdropPath} 320w"
+  src="https://image.tmdb.org/t/p/original${item.backdropPath}"
+  sizes="(min-width: 1280px) 1280px, (min-width: 768px) 768px, (min-width: 320px) 320px"
+  alt="${item.title}"
+>
   <div class="hero__title-box">
     <h2 class="hero__title">${item.title}</h2>
 </div>
