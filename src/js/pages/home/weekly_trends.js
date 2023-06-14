@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { galleryMarkup } from '../../galleryMarkup';
-import { optionsWeek } from '../../request';
+import { optionsGenre, optionsWeek } from '../../request';
 
 const CARD_BLOCK = document.querySelector('.movies-container');
 const getResponce = async () => {
@@ -9,8 +9,10 @@ const getResponce = async () => {
     return res.then(res => {
       if (window.screen.width <= 768) {
         createMarkup(res.data.results.slice(0, 1));
+        getGenres(res.data.results.slice(0, 1));
       } else {
         createMarkup(res.data.results.slice(0, 3));
+        // generateGenres(res.data.results.slice(0, 1), getGenres);
       }
     });
   } catch (error) {
@@ -18,6 +20,20 @@ const getResponce = async () => {
   }
 };
 getResponce();
-function createMarkup(data) {
+async function createMarkup(data) {
+  const genres = await fetchGenresMovie();
+  data.forEach(e => {
+    const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+    e.genre_name = genre ? genre.name : '';
+  });
   CARD_BLOCK.innerHTML = galleryMarkup(data);
+}
+
+async function fetchGenresMovie() {
+  try {
+    const response = await axios.request(optionsGenre);
+    return response.data.genres;
+  } catch (error) {
+    console.log(error);
+  }
 }
