@@ -27,15 +27,15 @@
   width: 100%;
   height: 100%;
 
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 63.48%,
-    rgba(0, 0, 0, 0.9) 92.16%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0) 63.48%,
+      rgba(0, 0, 0, 0.9) 92.16%);
 }
+
 .movie-card__img {
   width: 100%;
 }
+
 .movie-card__info {
   position: absolute;
   bottom: 0;
@@ -51,6 +51,7 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+
 .info-item__name {
   text-transform: uppercase;
   color: var(--lightest-color);
@@ -59,6 +60,7 @@
 .info-item__genreYear {
   color: var(--light-grey-color);
 }
+
 .info-item__stars {
   flex-shrink: 0;
   padding-left: 12px;
@@ -70,18 +72,22 @@
   .gallery-section {
     padding-top: 36px;
   }
+
   .movies-container {
     flex-direction: row;
     row-gap: 28px;
     column-gap: 16px;
   }
+
   .movie-card {
     width: 224px;
     height: 325px;
   }
+
   .movie-card__info {
     line-height: 1.58;
   }
+
   .info-item__name {
     padding-bottom: 4px;
   }
@@ -91,14 +97,17 @@
   .gallery-section {
     padding-top: 48px;
   }
+
   .movies-container {
     row-gap: 32px;
     column-gap: 15px;
   }
+
   .movie-card {
     width: 395px;
     height: 574px;
   }
+
   .movie-card__info {
     font-size: 20px;
     line-height: 1.15;

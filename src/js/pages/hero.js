@@ -6,6 +6,8 @@ import axios from 'axios';
 const API_KEY = 'e80fd9fb75f14049ed52c4547080278b';
 const CARD_HERO = document.querySelector('.film-of-day');
 
+// Функция для получения случайного объекта из массива
+
 function getRandomObject(data) {
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
@@ -15,11 +17,22 @@ const getResponse = async () => {
   try {
     showLoader();
 
+    // Выполняем GET-запрос к API, чтобы получить популярные фильмы за день
+
     const res = await axios.get(
       `https://api.themoviedb.org/3/trending/all/day?language=en-US&api_key=${API_KEY}`
     );
+
+    // Создаем объекты фильмов из полученных данных
+
     const data = createObject(res.data.results);
+
+    // Получаем случайный объект из массива данных
+
     const randomObject = getRandomObject(data);
+
+    // Создаем разметку с данными случайного объекта
+
     createMarkup([randomObject]);
   } catch (error) {
     console.log('error' + error);
@@ -28,6 +41,8 @@ const getResponse = async () => {
   }
 };
 
+// Функция для создания объектов фильмов из полученных данных
+
 function createObject(data) {
   return data.map(item => ({
     backdropPath: item.backdrop_path,
@@ -35,16 +50,20 @@ function createObject(data) {
     voteAverage: item.vote_average,
     overview: item.overview,
     id: item.id,
-    movie_id: item.movie_id,
   }));
 }
 
 const getStartedBox = document.querySelector('.get-started-section');
 
+
+// Функция для создания разметки с данными объекта фильма
+
 function createMarkup(data) {
   let card = data
     .map(item => {
       const title = item.title !== undefined ? item.title : item.name;
+
+      // Проверяем наличие необходимых данных в объекте
 
       if (
         item.backdropPath === null ||
@@ -62,9 +81,10 @@ function createMarkup(data) {
         getStartedBox.style.display = 'block'; // Показываем get-started-box
         return;
       }
-
-      // console.log('Current Card:', item);
-      return `<div class="hero__img-gradient"></div>
+      console.log('Current Card:', item);
+  
+      // Создаем разметку для текущего объекта фильма
+     return `<div class="hero__img-gradient"></div>
   <img class="hero__img" loading="lazy" width="1280" height="720"
     srcset="https://image.tmdb.org/t/p/w1280${item.backdropPath} 1280w,
     https://image.tmdb.org/t/p/w780${item.backdropPath} 768w,
@@ -101,26 +121,9 @@ function createMarkup(data) {
   CARD_HERO.insertAdjacentHTML('beforeend', card);
 }
 
+// Вызываем функцию для получения данных и создания разметки
+
 getResponse();
-
-// Создаем новую разметку "заглушку"
-
-// function createNewMarkup() {
-//   const newMarkup = `<div class="hero__img-gradient"></div>
-//   <img class="hero__img" loading="lazy" width="1280" height="720"
-//    src="images/hero_desk_1x.jpg"
-//     sizes="(min-width: 1280px) 1280px, (min-width: 768px) 768px, (min-width: 320px) 320px"
-//     alt="7 people go to the fire pit"
-//   >
-//   <div class="hero__title-box-gs">
-//     <h2 class="hero__title">Let’s Make Your Own Cinema</h2>
-// </div>
-// <div class="hero__text-box-gs">
-//     <p class="hero__text">Is a guide to creating a personalized movie theater experience. You'll need a projector, screen, and speakers. Decorate your space, choose your films, and stock up on snacks for the full experience.</p>
-// </div>
-// <button class="get-started btn btn-accent" type="button" data-id="">
-//       <span class="btn-in">Get Started</span></button>`;
-//   CARD_HERO.insertAdjacentHTML('afterbegin', newMarkup);
 
 
 const getStartedButton = document.querySelector('.get-started-btn');
