@@ -7,17 +7,23 @@
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   width: calc(100vw - 30px);
-  height: calc(100vh - 30px);
+
+  max-height: calc(100vh - 40px);
+
   margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 10px;
   border-radius: 5px;
+  overflow-y: auto;
 }
 
 .team-modal.is-visible {
   display: block;
 }
 
+.team-container {
+  position: relative;
+}
 .backdrop-team {
   display: none;
   position: fixed;
@@ -27,7 +33,7 @@
   height: 100%;
   background-color: var(--lightest-color);
   opacity: 0.2;
-  overflow: auto;
+  overflow-y: hidden;
   z-index: 10;
 }
 .backdrop-team.is-visible {
@@ -72,6 +78,9 @@
   font-size: 18px;
 }
 
+.team-close-btn {
+  top: 0;
+}
 .team-card-info-name {
   margin-bottom: 5px;
   color: var(--light-color);
@@ -122,6 +131,7 @@
   .team-modal {
     padding-top: 50px;
     padding-bottom: 50px;
+    width: 1240px;
   }
   .team-title {
     width: 500px;
