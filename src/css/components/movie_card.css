@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   row-gap: 16px;
   align-content: center;
-  padding-top: 96px;
 }
 
 .movie-card {
@@ -78,7 +77,6 @@
     flex-direction: row;
     row-gap: 28px;
     column-gap: 16px;
-    padding-top: 140px;
   }
 
   .movie-card {
@@ -103,7 +101,6 @@
   .movies-container {
     row-gap: 32px;
     column-gap: 15px;
-    padding-top: 176px;
   }
 
   .movie-card {

@@ -1,3 +1,13 @@
-.oops-message{
+.oops-message {
     display: none;
+}
+
+.library-section{
+    padding-top: 80px;
+}
+
+.genres-select{
+    width: 260px;
+    height: 48px;
+    margin-bottom: 48px;
 }
