@@ -32,18 +32,20 @@ async function fetchGenresMovie(id) {
     return [];
   }
 }
-try {
-} catch {}
+
 function createRandomMovies(movieInfo) {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const thisMonth = `${year}-${month}-01`;
+  const startOfMonth = `${year}-${month}-01`;
+  const endOfMonth = `${year}-${month}-31`;
+
   const filteredMovies = movieInfo.filter(
-    movie => movie.release_date >= thisMonth
+    movie =>
+      movie.release_date >= startOfMonth && movie.release_date <= endOfMonth
   );
   const randomIndexFilm = Math.floor(Math.random() * filteredMovies.length);
-  const randomMovieFilm = filteredMovies[randomIndexFilm];
+  const randomMovieFilm = [filteredMovies[randomIndexFilm]];
   return randomMovieFilm;
 }
 async function responseUpcoming() {
@@ -72,10 +74,10 @@ async function responseUpcoming() {
     }
     //local
     if (genres.length === 0) {
-      containerMovie.innerHTML = createMarkupUpcoming([], randomMovieFilm);
+      containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, []);
     } else {
       generateGenres(movieInfo, genres);
-      containerMovie.innerHTML = createMarkupUpcoming(genres, randomMovieFilm);
+      containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, genres);
     }
   } finally {
     hideLoader();
@@ -97,20 +99,6 @@ function generateGenres(movieInfo, genres) {
 }
 
 function createMarkupUpcoming(movieInfo, genres) {
-  const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const startOfMonth = `${year}-${month}-01`;
-  const endOfMonth = `${year}-${month}-31`;
-
-  const filteredMovies = movieInfo.filter(movie => {
-    return (
-      movie.release_date >= startOfMonth && movie.release_date <= endOfMonth
-    );
-  });
-  const randomIndex = Math.floor(Math.random() * filteredMovies.length);
-  const randomMovie = filteredMovies[randomIndex];
-
   const {
     id: idMovie,
     backdrop_path,
@@ -122,7 +110,7 @@ function createMarkupUpcoming(movieInfo, genres) {
     popularity,
     genre_ids,
     overview,
-  } = randomMovie;
+  } = movieInfo[0];
 
   const releaseDay = addLeadingZero(new Date(release_date).getDate());
   const releaseMonth = addLeadingZero(new Date(release_date).getMonth() + 1);
@@ -194,16 +182,4 @@ function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 
-// function addToLocalStorage(e) {
-//   const addToLibraryBtn = e.target.parentNode;
-//   addToLibraryBtn.style.display = 'none';
-//   const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
-//   removeFromLibraryBtn.style.display = 'block';
-// }
-// function removeFromLocalStorage(e) {
-//   const removeFromLibraryBtn = e.target.parentNode;
-//   removeFromLibraryBtn.style.display = 'none';
-//   const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
-//   addToLibraryBtn.style.display = 'block';
-// }
 responseUpcoming();
