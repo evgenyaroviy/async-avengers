@@ -7,12 +7,14 @@ let currentPage = 1;
 
 export const galleryContainer = document.querySelector('.movies-container');
 export const catalogFailure = document.querySelector('.catalog-failure');
+export const gallerySection = document.querySelector('.gallery-section');
 
 responseWeeklytrends();
 
 async function responseWeeklytrends() {
   try {
     toggleLoader(true);
+
     const data = await fetchWeeklytrends(currentPage);
     const moviesArr = data.results;
 
@@ -46,6 +48,7 @@ async function fetchWeeklytrends(currentPage) {
 
   try {
     toggleLoader(true);
+
     const response = await axios.request(optionsWeek);
     return response.data;
   } catch (error) {
