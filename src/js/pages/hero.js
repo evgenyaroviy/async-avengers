@@ -35,6 +35,7 @@ const getResponse = async () => {
 
     createMarkup([randomObject]);
   } catch (error) {
+    getStartedBox.style.display = 'block';
     console.log('error' + error);
   } finally {
     hideLoader();
