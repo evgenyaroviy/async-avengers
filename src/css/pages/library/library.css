@@ -5,7 +5,9 @@
 .library-section {
     padding-top: 80px;
 }
-
+.genres-select option{
+    border: 1px solid red;
+}
 .genres-select {
     width: 260px;
     height: 48px;

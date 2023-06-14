@@ -1,6 +1,6 @@
 export function errorImg() {
   return `<li class="movie-card"> 
-      <img src="../../images/poster-not-available.jpg"
+      <img src="/images/poster-not-available.jpg"
         alt="OOPS...
         We are very sorry!
         Something went wrong" 
