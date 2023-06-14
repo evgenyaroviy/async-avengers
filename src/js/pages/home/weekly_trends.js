@@ -20,5 +20,5 @@ const getResponce = async () => {
 };
 getResponce();
 function createMarkup(data) {
-  CARD_BLOCK.insertAdjacentHTML('beforeend', galleryMarkup(data));
+  CARD_BLOCK.innerHTML = galleryMarkup(data);
 }
