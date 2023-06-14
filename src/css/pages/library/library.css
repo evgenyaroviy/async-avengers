@@ -2,19 +2,12 @@
     display: none;
 }
 
-.my-libary {
-    padding-top: 96px;
+.library-section{
+    padding-top: 80px;
 }
 
-
-@media screen and (min-width: 768px) {
-    .my-libary {
-        padding-top: 140px;
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    .my-libary {
-        padding-top: 176px;
-    }
+.genres-select{
+    width: 260px;
+    height: 48px;
+    margin-bottom: 48px;
 }
