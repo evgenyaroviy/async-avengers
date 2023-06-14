@@ -41,6 +41,7 @@ async function onMovieClick(e) {
     return;
   }
   try {
+    let movieId;
     if (e.target.closest('.movie-card')) {
       movieId = e.target.closest('.movie-card').getAttribute('data-id');
     } else {
