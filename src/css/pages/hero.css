@@ -23,7 +23,7 @@
     overflow: hidden;
     position: relative;
     background-color: var(--dark-color);
-    z-index: -3;
+    z-index: 1;
   }
 }
 
@@ -39,11 +39,9 @@
     z-index: -1;
     margin-left: auto;
     margin-right: auto;
-    background: linear-gradient(
-      87.41deg,
-      #111111 33.93%,
-      rgba(17, 17, 17, 0) 78.91%
-    );
+    background: linear-gradient(87.41deg,
+        #111111 33.93%,
+        rgba(17, 17, 17, 0) 78.91%);
   }
 }
 
@@ -53,11 +51,9 @@
     height: 432px;
     width: 768px;
 
-    background: linear-gradient(
-      81.57deg,
-      #111111 12.76%,
-      rgba(17, 17, 17, 0) 72.65%
-    );
+    background: linear-gradient(81.57deg,
+        #111111 12.76%,
+        rgba(17, 17, 17, 0) 72.65%);
   }
 }
 
@@ -65,11 +61,9 @@
   .hero__img-gradient {
     left: 339px;
     height: 720px;
-    background: linear-gradient(
-      83.06deg,
-      #111111 11.91%,
-      rgba(17, 17, 17, 0) 73.11%
-    );
+    background: linear-gradient(83.06deg,
+        #111111 11.91%,
+        rgba(17, 17, 17, 0) 73.11%);
   }
 }
 
@@ -289,11 +283,9 @@
     z-index: -1;
     margin-left: auto;
     margin-right: auto;
-    background: linear-gradient(
-      87.41deg,
-      #111111 33.93%,
-      rgba(17, 17, 17, 0) 78.91%
-    );
+    background: linear-gradient(87.41deg,
+        #111111 33.93%,
+        rgba(17, 17, 17, 0) 78.91%);
   }
 }
 
@@ -302,11 +294,9 @@
     left: 200px;
     width: 768px;
     height: 432px;
-    background: linear-gradient(
-      81.57deg,
-      #111111 12.76%,
-      rgba(17, 17, 17, 0) 72.65%
-    );
+    background: linear-gradient(81.57deg,
+        #111111 12.76%,
+        rgba(17, 17, 17, 0) 72.65%);
   }
 }
 
@@ -314,11 +304,9 @@
   .hero__img-gradient-gs {
     left: 340px;
     height: 720px;
-    background: linear-gradient(
-      83.06deg,
-      #111111 11.91%,
-      rgba(17, 17, 17, 0) 73.11%
-    );
+    background: linear-gradient(83.06deg,
+        #111111 11.91%,
+        rgba(17, 17, 17, 0) 73.11%);
   }
 }
 
@@ -432,6 +420,7 @@
     margin-bottom: 169px;
   }
 }
+
 /* Экран заглушка */
 
 @media screen and (min-width: 320px) {
@@ -442,7 +431,7 @@
     overflow: hidden;
     position: relative;
     background-color: var(--dark-color);
-    z-index: -3;
+    z-index: 1;
     display: none;
   }
 }
