@@ -12,6 +12,7 @@
 @import url('./components/scrollUp.css');
 @import url('./components/movie_card.css');
 @import url('./components/loader.css');
+@import url('./components/team.css');
 
 /* PAGES */
 @import url('./pages/footer.css');
