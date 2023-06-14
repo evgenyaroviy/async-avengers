@@ -1,4 +1,5 @@
 import Pagination from 'tui-pagination';
+// import 'tui-pagination/dist/tui-pagination.css';
 import axios from 'axios';
 import { optionsWeek, ACCESS_KEY } from '../../request';
 import { galleryMarkup } from '../../galleryMarkup';
@@ -6,7 +7,7 @@ import { optionsGenre } from '../../request';
 import { galleryContainer } from './gallery';
 
 
-const paginationContainer = document.getElementById('tui-pagination-container');
+const paginationContainer = document.getElementById('pagination');
 const paginationOptions = {
   totalItems: 100,
   itemsPerPage: 20,

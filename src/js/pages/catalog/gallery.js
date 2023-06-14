@@ -45,7 +45,7 @@ async function fetchWeeklytrends(currentPage) {
   };
 
   try {
-    // toggleLoader(true);
+    toggleLoader(true);
     const response = await axios.request(optionsWeek);
     return response.data;
   } catch (error) {
@@ -53,7 +53,7 @@ async function fetchWeeklytrends(currentPage) {
     catalogFailure.style.display = 'block';
     gallerySection.classList.add('failure-event');
   } finally {
-    // toggleLoader(false);
+    toggleLoader(false);
   }
 }
 
