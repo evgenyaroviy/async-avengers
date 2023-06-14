@@ -12,7 +12,6 @@
   padding-bottom: 16px;
 
   border-style: none;
-  font-family: 'Roboto';
   text-transform: uppercase;
   background-color: transparent;
   color: var(--light-grey-color);
@@ -61,22 +60,28 @@
 .site-nav {
   display: flex;
 }
+.site-nav.dark {
+  color: var(--light-grey-color);
+}
+.site-nav.light {
+  color: var(--middle-grey-color);
+}
 .site-nav__item:not(:last-child) {
   margin-right: 32px;
 }
 .site-nav__link {
   display: flex;
   text-transform: uppercase;
-  color: var(--light-grey-color);
 
   transition: color var(--transition-dur-and-fun),
     transform var(--transition-dur-and-fun);
 }
+
 .site-nav__link:hover,
 .site-nav__link:focus {
   color: var(--accent-color);
 
-  transform: scaleX(1.5);
+  transform: scale(1.02);
 }
 .js-nav-link.active-page {
   color: var(--accent-color);
@@ -84,7 +89,7 @@
 .logo__wrapper {
   display: flex;
   align-items: center;
-  color: var(--lightest-color);
+  color: inherit;
 }
 .logo__name {
   display: none;

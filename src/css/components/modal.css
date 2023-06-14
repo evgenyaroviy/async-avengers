@@ -11,6 +11,10 @@
     z-index: 10;
 }
 
+.light .backdrop {
+    background-color: var(--dark-color);
+}
+
 .modal {
     display: none;
     z-index: 20;
@@ -26,7 +30,12 @@
     padding: 52px 16px;
     border-radius: 16px;
 
-    max-height: 100vh;
+    max-height: calc(100vh - 40px);
+}
+
+.light .modal {
+    background-color: var(--lightest-color);
+    box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
 }
 
 .modal-show {
@@ -54,6 +63,10 @@
     transition: color var(--transition-dur-and-fun);
 }
 
+.light .modal-close-btn {
+    color: var(--dark-grey-color);
+}
+
 .modal-close-btn:hover,
 .modal-close-btn:focus {
     color: var(--accent-color);
@@ -76,6 +89,7 @@
     object-fit: cover;
     width: 248px;
     height: 315px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .modal-title {
@@ -112,8 +126,8 @@
 .modal-votes {
     color: var(--light-grey-color);
     font-weight: 500;
-    font-size: 14px;
-    line-height: 1.14;
+    font-size: 16px;
+    line-height: 1;
 }
 
 .modal-votes span {
@@ -146,13 +160,26 @@
     margin-bottom: 12px;
 }
 
+.light .modal-title,
+.light .modal-details-subtitle,
+.light .modal-about {
+    color: var(--dark-color);
+}
+
 .modal-about-text {
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 12px;
+    line-height: 1.67;
     color: var(--light-color);
     margin-bottom: 16px;
     max-height: 180px;
     overflow-y: auto;
+}
+
+.modal.light .modal-votes span,
+.light .modal-popularity,
+.light .modal-genre,
+.light .modal-about-text {
+    color: var(--dark-grey-color);
 }
 
 .modal-btn-add {
@@ -165,6 +192,12 @@
     display: none;
 }
 
+.light .modal-btn-add-span,
+.light .modal-btn-remove-span {
+    color: var(--dark-color);
+    background-color: var(--lightest-color);
+}
+
 @media screen and (min-width: 768px) {
     .modal {
         width: 704px;
@@ -175,40 +208,47 @@
         display: flex;
     }
 
+    .modal-close-btn {
+        top: 24px;
+        right: 24px;
+    }
+
     .modal-img {
         margin-bottom: 0;
 
-        width: 294px;
+        min-width: 294px;
         height: 400px;
     }
 
     .modal-container {
-
         width: 100%;
         gap: 16px;
     }
+
     .modal-title {
         font-size: 24px;
         line-height: 1.16;
+        margin-bottom: 26px;
     }
 
     .modal-details-list {
         margin-bottom: 20px;
     }
 
+    .modal-votes {
+        line-height: 1.18;
+    }
+
     .modal-about {
         margin-bottom: 16px;
     }
-
-    .modal-about-text {
-        margin-bottom: 24px;
-    }
     
     .modal-about-text {
+        margin-bottom: 24px;
         font-weight: 400;
         font-size: 12px;
         line-height: 1.67;
-        max-width: 301px;
+        max-height: 140px;
     }
 }
 
@@ -224,7 +264,7 @@
     }
 
     .modal-img {
-        width: 375px;
+        min-width: 375px;
         height: 478px;
     }
 
@@ -235,12 +275,34 @@
     .modal-title {
         font-size: 24px;
         line-height: 1.33;
+        margin-bottom: 28px;
+    }
+
+    .modal-details-subtitle {
+        line-height: 1.18;
+        font-size: 16px;
+    }
+
+    .modal-votes span {
+        font-size: 14px;
+        line-height: 1.14;
+    }
+
+    .modal-popularity,
+    .modal-genre {
+        font-size: 16px;
+        line-height: 1.18;
+    }
+
+    .modal-about {
+        font-size: 16px;
+        line-height: 1;
     }
 
     .modal-about-text {
         font-size: 14px;
         line-height: 1.43;
-        max-width: 331px;
+        max-height: 160px;
     }
     
 }

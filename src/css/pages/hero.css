@@ -2,24 +2,6 @@
 @import url('../base/fonts.css');
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
-/* Герой светлая тема*/
-
-body.light .hero {
-  position: relative;
-  z-index: 0;
-}
-
-body.light .hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--dark-color);
-  z-index: -3;
-}
-
 /* Герой */
 
 @media screen and (min-width: 320px) {
@@ -33,43 +15,17 @@ body.light .hero::after {
   }
 }
 
-/* @media screen and (min-width: 768px) {
-  .hero {
-    width: 768px;
-    height: 432px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .hero {
-    width: 1280px;
-    }
-} */
-
 @media screen and (min-width: 320px) {
   .film-of-day {
     width: 100%;
-    /* height: 720px; */
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
     position: relative;
+    background-color: var(--dark-color);
+    z-index: -3;
   }
 }
-
-/* @media screen and (min-width: 768px) {
-  .film-of-day {
-    width: 768px;
-    height: 432px;
-  }
-} */
-
-/* @media screen and (min-width: 1280px) {
-  .film-of-day {
-    width: 1280px;
-    height: 720px;
-  }
-} */
 
 /* Градиент */
 
@@ -152,7 +108,7 @@ body.light .hero::after {
 @media screen and (min-width: 320px) {
   .hero__title-box {
     width: 280px;
-    margin-top: 40px;
+    padding-top: 40px;
     margin-right: auto;
     margin-left: 0;
   }
@@ -161,14 +117,14 @@ body.light .hero::after {
 @media screen and (min-width: 768px) {
   .hero__title-box {
     width: 400px;
-    margin-top: 36px;
+    padding-top: 36px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .hero__title-box {
     width: 500px;
-    margin-top: 118px;
+    padding-top: 118px;
   }
 }
 
@@ -203,13 +159,7 @@ body.light .hero::after {
 @media screen and (min-width: 320px) {
   .rating-box {
     margin-left: 0;
-
     margin-top: 12px;
-  }
-}
-
-/* @media screen and (min-width: 768px) {
-  .rating-box {
   }
 }
 
@@ -217,7 +167,7 @@ body.light .hero::after {
   .rating-box {
     margin-top: 16px;
   }
-} */
+}
 
 /* Описание контейнер */
 
@@ -289,18 +239,21 @@ body.light .hero::after {
     display: flex;
     margin-top: 20px;
     margin-left: 0;
+    padding-bottom: 80px;
   }
 }
 
-@media screen and (min-width: 762px) {
+@media screen and (min-width: 768px) {
   .buttons {
     margin-top: 28px;
+    padding-bottom: 62px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .buttons {
     margin-top: 36px;
+    padding-bottom: 169px;
   }
 }
 
@@ -310,7 +263,7 @@ body.light .hero::after {
   }
 }
 
-@media screen and (min-width: 762px) {
+@media screen and (min-width: 768px) {
   .watch-trailer {
     margin-right: 8px;
   }
@@ -388,7 +341,6 @@ body.light .hero::after {
     width: 100%;
     height: 432px;
     left: 200px;
-    background-image: url('../../images/hero_tab_1x.jpg');
   }
 }
 
@@ -397,7 +349,6 @@ body.light .hero::after {
     width: 100%;
     height: 720px;
     left: 340px;
-    background-image: url('../../images/hero_desk_1x.jpg');
   }
 }
 
@@ -406,7 +357,7 @@ body.light .hero::after {
 @media screen and (min-width: 320px) {
   .hero__title-box-gs {
     width: 200px;
-    margin-top: 40px;
+    padding-top: 40px;
     margin-left: 0;
     margin-right: auto;
   }
@@ -415,14 +366,14 @@ body.light .hero::after {
 @media screen and (min-width: 768px) {
   .hero__title-box-gs {
     width: 332px;
-    margin-top: 62px;
+    padding-top: 62px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .hero__title-box-gs {
     width: 500px;
-    margin-top: 169px;
+    padding-top: 169px;
   }
 }
 
@@ -464,35 +415,39 @@ body.light .hero::after {
   .get-started-btn {
     margin-left: 20px;
     margin-top: 20px;
+    margin-bottom: 80px;
   }
 }
 
-@media screen and (min-width: 762px) {
+@media screen and (min-width: 768px) {
   .get-started-btn {
     margin-top: 32px;
+    margin-bottom: 62px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .get-started-btn {
     margin-top: 32px;
+    margin-bottom: 169px;
   }
 }
 /* Экран заглушка */
 
 @media screen and (min-width: 320px) {
   .get-started-section {
-    display: none;
     width: 100%;
-    height: 100%;
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
     position: relative;
+    background-color: var(--dark-color);
+    z-index: -3;
+    display: none;
   }
 }
 
-@media screen and (min-width: 762px) {
+@media screen and (min-width: 768px) {
   .get-started-section {
     height: 432px;
   }
@@ -501,5 +456,49 @@ body.light .hero::after {
 @media screen and (min-width: 1280px) {
   .get-started-section {
     height: 720px;
+  }
+}
+
+.watch-modal__iframe {
+  margin: 0;
+  padding: 0;
+}
+
+.watch-modal__content {
+  border-radius: 20px;
+}
+
+@media screen and (min-width: 320px) {
+  .watch-modal__error-message {
+    color: #fff;
+    font-size: 16px;
+    line-height: 19px;
+    display: block;
+  }
+}
+
+@media screen and (min-width: 762px) {
+  .watch-modal__error-message {
+    display: block;
+    font-size: 24px;
+    line-height: 28px;
+    color: #fff;
+  }
+}
+
+.watch-modal__error-image {
+  background-image: url(/src/images/watch-trailer-modal_desk_1x.png);
+  text-align: left;
+  margin-bottom: 20px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .watch-modal__error-image {
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: auto;
   }
 }

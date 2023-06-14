@@ -28,6 +28,7 @@ const LOCALE_THEME = 'locale-theme';
 const refs = {
   bodyEl: document.body,
   themeSwitchEl: document.querySelector('.theme__switch'),
+  siteNavLinksEl: document.querySelector('.site-nav'),
   mobMenuBackdropEl: document.querySelector('.mobile-backdrop'),
   mobMenuNavEl: document.querySelector('.mobile-nav'),
 };
@@ -60,22 +61,20 @@ function changeTheme(refs, currentTheme) {
 
   localStorage.setItem(LOCALE_THEME, newTheme);
 }
-
-const siteNavLinks = document.querySelectorAll('.site-nav__link');
-const mobMenuLinks = document.querySelectorAll('.mobile-menu__link');
 const allNavLinks = document.querySelectorAll('.js-nav-link');
-
-if (window.location.pathname === '/') {
-  siteNavLinks[0].classList.add('active-page');
-  mobMenuLinks[0].classList.add('active-page');
-}
 
 window.addEventListener('load', () => {
   const titleEl = window.location.pathname;
+  const activePage = [...allNavLinks].filter(
+    el => titleEl === el.getAttribute('href')
+  );
 
-  return siteNavLinks.forEach(el => {
-    if (el.getAttribute('href') === titleEl) {
-      el.classList.add('active-page');
-    }
-  });
+  if (activePage.length === 0) {
+    return allNavLinks.forEach(el => {
+      if (el.getAttribute('href').includes('index.html')) {
+        el.classList.add('active-page');
+      }
+    });
+  }
+  return activePage.forEach(el => el.classList.add('active-page'));
 });
