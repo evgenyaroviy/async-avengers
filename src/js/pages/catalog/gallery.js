@@ -12,22 +12,23 @@ responseWeeklytrends();
 
 async function responseWeeklytrends() {
   try {
+    toggleLoader(true);
+    const data = await fetchWeeklytrends(currentPage);
+    const moviesArr = data.results;
 
-   const data = await fetchWeeklytrends(currentPage);
-   const moviesArr = data.results;
+    const genres = await fetchGenresMovie();
 
-   const genres = await fetchGenresMovie();
+    moviesArr.forEach(e => {
+      const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+      e.genre_name = genre ? genre.name : '';
+    });
 
-   moviesArr.forEach(e => {
-     const genre = genres.find(genre => genre.id == e.genre_ids[0]);
-     e.genre_name = genre ? genre.name : '';
-   });
-
-   galleryContainer.innerHTML = galleryMarkup(moviesArr);
-} catch (error) {
-  console.log(error)
+    galleryContainer.innerHTML = galleryMarkup(moviesArr);
+  } catch (error) {
+    console.log(error)
   } finally {
-}
+    toggleLoader(false);
+  }
 }
 
 async function fetchWeeklytrends(currentPage) {
@@ -44,7 +45,7 @@ async function fetchWeeklytrends(currentPage) {
   };
 
   try {
-toggleLoader(true)
+    // toggleLoader(true);
     const response = await axios.request(optionsWeek);
     return response.data;
   } catch (error) {
@@ -52,7 +53,7 @@ toggleLoader(true)
     catalogFailure.style.display = 'block';
     gallerySection.classList.add('failure-event');
   } finally {
-toggleLoader(false);
+    // toggleLoader(false);
   }
 }
 
