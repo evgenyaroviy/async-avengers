@@ -1,32 +1,30 @@
 import axios from 'axios';
 
-
 const backdrop = document.querySelector('.backdrop');
 const modalEl = document.querySelector('.modal');
 const heroTrailer = document.querySelector('.film-of-day');
 
 heroTrailer.addEventListener('click', onClickWatchTrailer);
 
-
 const optionsDetails = {
   method: 'GET',
   url: 'https://api.themoviedb.org/3/movie/movieId/videos',
-  params: {language: 'en-US'},
+  params: { language: 'en-US' },
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOTZiN2ExNTYwNGYwMmExYWNkMTVhNWJlY2JmMjQ4MCIsInN1YiI6IjY0ODNhYTBhOTkyNTljMDBlMmY0NWE4ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Sdbi-2PalUFAI7K7hzIv-hc4p92EU6q_yg6_IJJHjA'
-  }
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOTZiN2ExNTYwNGYwMmExYWNkMTVhNWJlY2JmMjQ4MCIsInN1YiI6IjY0ODNhYTBhOTkyNTljMDBlMmY0NWE4ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Sdbi-2PalUFAI7K7hzIv-hc4p92EU6q_yg6_IJJHjA',
+  },
 };
 
-
 async function onClickWatchTrailer(e) {
-    try {
+  try {
     const movieId = e.target
       .closest('.watch-trailer-js')
       .getAttribute('data-id');
-        
+
     optionsDetails.url = `https://api.themoviedb.org/3/movie/${movieId}/videos`;
-    
+
     axios
       .request(optionsDetails)
       .then(function (response) {
@@ -37,14 +35,12 @@ async function onClickWatchTrailer(e) {
         openModal(iframeMarkup);
       })
       .catch(function (error) {
-          console.error(error);
-          openModal(errorModalTemplate)
+        console.error(error);
+        openModal(errorModalTemplate);
       });
-  }   catch (error) {
-          console.log(error);
-         
+  } catch (error) {
+    console.log(error);
   }
-
 }
 
 function closeModal() {
@@ -61,8 +57,7 @@ function openModal(markup) {
   document.body.style.overflow = 'hidden';
 }
 
-window.addEventListener('click', closeModal);
-
+backdrop.addEventListener('click', closeModal);
 
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
@@ -70,10 +65,8 @@ window.addEventListener('keydown', e => {
   }
 });
 
-
-
 function successModalTemplate(videoUrl) {
-    return `<div class='watch-modal'>
+  return `<div class='watch-modal'>
   <div class='watch-modal__content'>
     <iframe
       id='trailer-video'
@@ -84,11 +77,10 @@ function successModalTemplate(videoUrl) {
     ></iframe>
   </div>
 </div>`;
-  }
-
+}
 
 function errorModalTemplate() {
-    return `<div class='watch-modal modal-error'>
+  return `<div class='watch-modal modal-error'>
   <div class='watch-modal__content'>
     <p class='watch-modal__error-message'>OOPS... </p>
     <p class='watch-modal__error-message'>We are very sorry! </p>
