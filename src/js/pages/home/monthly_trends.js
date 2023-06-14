@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { optionsUpcoming } from '../../request';
 import { optionsGenre } from '../../request';
-import { showLoader, hideLoader } from '../../components/loader';
+import { toggleLoader } from '../../components/loader';
 import {
   removeFromLocalStorage,
   addToLocalStorage,
@@ -13,14 +13,14 @@ const containerMovie = document.querySelector('.container-upcoming-movie');
 
 async function fetchUpcomingMovie() {
   try {
-    showLoader();
+    toggleLoader(true);
     const response = await axios.request(optionsUpcoming);
     return response.data;
   } catch (error) {
     console.error(error);
     containerMovie.innerHTML = markupError();
   } finally {
-    hideLoader();
+    toggleLoader(false);
   }
 }
 async function fetchGenresMovie(id) {
@@ -52,7 +52,7 @@ function createRandomMovies(movieInfo) {
 }
 async function responseUpcoming() {
   try {
-    showLoader();
+toggleLoader(true)
     const data = await fetchUpcomingMovie();
     const movieInfo = data.results;
     const randomIndex = Math.floor(Math.random() * movieInfo.length);
@@ -82,7 +82,7 @@ async function responseUpcoming() {
       containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, genres);
     }
   } finally {
-    hideLoader();
+toggleLoader(false);
   }
 }
 

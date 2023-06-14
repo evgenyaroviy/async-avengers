@@ -7,11 +7,7 @@
 
 const loader = document.querySelector('.loader');
 
-function showLoader() {
-  loader.style.display = 'block';
+function toggleLoader(show) {
+  loader.style.display = show ? 'block' : 'none';
 }
-
-function hideLoader() {
-  loader.style.display = 'none';
-}
-export { showLoader, hideLoader}
+export { toggleLoader };
