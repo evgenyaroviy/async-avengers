@@ -15,7 +15,7 @@ async function fetchUpcomingMovie() {
     console.error(error);
     containerMovie.innerHTML = markupError();
   } finally {
-    hideLoader(); 
+    hideLoader();
   }
 }
 async function fetchGenresMovie(id) {
@@ -79,7 +79,6 @@ containerMovie.addEventListener('click', onClickAddToLocalStorage);
   } finally {
     hideLoader();
   }
-  
 }
 
 function generateGenres(movieInfo, genres) {

@@ -1,12 +1,11 @@
-    
 @media screen and (min-width: 320px) {
   .upcoming-movie {
     padding-top: 32px;
     padding-bottom: 40px;
   }
+
   .section-title-upcoming {
     line-height: 1.2;
-    color: var(--lightest-color);
     margin-bottom: 24px;
   }
 
@@ -17,14 +16,19 @@
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 24px;
+    background: linear-gradient(
+      307.47deg,
+      rgba(0, 0, 0, 0.2) 23.85%,
+      rgba(0, 0, 0, 0) 47.27%
+    );
   }
   .upcoming-movie-title {
     font-weight: 500;
     font-size: 20px;
     line-height: 1.15;
-    color: var(--lightest-color);
     margin-bottom: 20px;
   }
+
   .upcoming-list-details-item {
     display: flex;
     align-items: baseline;
@@ -37,11 +41,12 @@
     line-height: 1.2;
     color: var(--light-grey-color);
   }
+
   .upcoming-list-details-item:last-child {
     margin-bottom: 0;
   }
   .upcoming-list-details-subtitle {
-    width: 95px;
+    min-width: 95px;
   }
   .upcoming-realese-date {
     font-weight: 500;
@@ -71,6 +76,7 @@
     display: flex;
     color: var(--lightest-color);
   }
+
   .upcoming-about {
     font-weight: 500;
     font-size: 16px;
@@ -103,6 +109,34 @@
     text-align: center;
   }
 }
+/* STYLES FOR LIGHT THEME */
+
+.light .section-title-upcoming {
+  color: var(--dark-color);
+}
+.light .upcoming-movie-title {
+  color: var(--dark-color);
+}
+.light .upcoming-list-details-subtitle {
+  color: var(--dark-color);
+}
+.light .upcoming-popularity,
+.light .genre,
+.light .upcoming-about,
+.light .upcoming-votes span,
+.light .upcoming-about-text {
+  color: var(--dark-grey-color);
+}
+.light .upcoming-votes {
+  color: var(--light-color);
+}
+.light .upcoming-votes span {
+  background-color: var(--light-color);
+}
+.light .upcoming-btn-remove-span {
+  background-color: var(--lightest-color);
+  color: var(--dark-color);
+}
 
 @media screen and (min-width: 768px) {
   .upcoming-movie {
@@ -130,7 +164,7 @@
   .upcoming-list-details-item:nth-child(3) {
     order: -1;
   }
-    /* ERROR */
+  /* ERROR */
   .upcoming-error {
     width: 440px;
     margin: 0 auto;
@@ -171,8 +205,8 @@
     margin-top: auto;
     margin-bottom: 0;
   }
-      /* ERROR */
-    .upcoming-error {
+  /* ERROR */
+  .upcoming-error {
     width: 590px;
     font-size: 32px;
     line-height: 1.12;
