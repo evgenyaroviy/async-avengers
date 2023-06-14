@@ -27,11 +27,7 @@ async function fetchGenresMovie(id) {
     return [];
   }
 }
-try{
 
-}catch{
-  
-}
 function createRandomMovies(movieInfo){
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -96,16 +92,7 @@ function generateGenres(movieInfo, genres) {
 }
 
 function createMarkupUpcoming( genres,randomMovie) {
-  // const currentDate = new Date();
-  // const year = currentDate.getFullYear();
-  // const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  // const thisMonth = `${year}-${month}-01`;
 
-  // const filteredMovies = movieInfo.filter(
-  //   movie => movie.release_date >= thisMonth
-  // );
-  // const randomIndex = Math.floor(Math.random() * filteredMovies.length);
-  // const randomMovie = filteredMovies[randomIndex];
   const {
     id: idMovie,
     backdrop_path,
@@ -189,19 +176,4 @@ function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 
-
-
-
-// function addToLocalStorage(e) {
-//   const addToLibraryBtn = e.target.parentNode;
-//   addToLibraryBtn.style.display = 'none';
-//   const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
-//   removeFromLibraryBtn.style.display = 'block';
-// }
-// function removeFromLocalStorage(e) {
-//   const removeFromLibraryBtn = e.target.parentNode;
-//   removeFromLibraryBtn.style.display = 'none';
-//   const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
-//   addToLibraryBtn.style.display = 'block';
-// }
 responseUpcoming();
