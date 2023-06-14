@@ -20,31 +20,21 @@ const getResponce = async () => {
     console.log(error);
   }
 };
-getResponce();
-function createMarkup(data) {
+getResponce(); 
+async function createMarkup(data) {
+  const genres =await  fetchGenresMovie();
+  data.forEach(e => {
+    const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+    e.genre_name = genre ? genre.name : '';
+  });
   CARD_BLOCK.innerHTML = galleryMarkup(data);
 }
-async function getGenres() {
-  try {
-    const res = await axios.request(optionsGenre);
-    return res.then(res => {
-      return res.data;
-    });
-  } catch (error) {}
-}
 
-console.log(getGenres());
-// function generateGenres(movieInfo, genres) {
-//   const genresName = [];
-//   movieInfo.forEach(movie => {
-//     const genreNames = [];
-//     movie.genre_ids.forEach(genreId => {
-//       const genre = genres.find(genre => genre.id === genreId);
-//       if (genre) {
-//         genreNames.push(genre.name);
-//       }
-//     });
-//     genresName.push(genreNames.join(', '));
-//   });
-//   return genresName;
-// }
+async function fetchGenresMovie() {
+  try {
+    const response = await axios.request(optionsGenre);
+    return response.data.genres;
+  } catch (error) {
+    console.log(error);
+  }
+}
