@@ -2,12 +2,16 @@
     display: none;
 }
 
-.library-section{
+.library-section {
     padding-top: 80px;
 }
 
-.genres-select{
+.genres-select {
     width: 260px;
     height: 48px;
     margin-bottom: 48px;
 }
+
+/* .btn-load-more {
+    display: none;
+} */

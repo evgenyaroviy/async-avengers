@@ -1,3 +1,26 @@
+/* SRYLES FOR LIGTH THEME */
+.light .search {
+  border-color: var(--middle-grey-color);
+}
+.light .search-icon {
+  stroke: var(--dark-color);
+}
+.light .movie-card__backdrop {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 63.48%, rgba(0, 0, 0, 0.9) 92.16%);
+}
+.light .reset-icon {
+  stroke: var(--middle-grey-color);
+}
+.light .search {
+  color: var(--middle-grey-color);
+}
+.light .movie-card:is(:hover, :focus) {
+    transform: scale(1.005);
+    box-shadow: 1px 1px 14px 4px var(--middle-grey-color);
+}
+
+/* STYLES FOR DARK THEME */
+
 .catalog-search-section {
   padding-top: 40px;
 }
@@ -31,6 +54,7 @@
   font-size: 14px;
   line-height: 1.1;
   color: var(--light-grey-color);
+  outline: none;
 }
 
 .search-field {
@@ -63,7 +87,9 @@
   fill: transparent;
   stroke: var(--lightest-color);
 }
-
+.reset-search:is(:hover, :focus) .reset-icon {
+  stroke: var(--accent-color);
+}
 .btn-round {
   width: 40px;
   height: 40px;

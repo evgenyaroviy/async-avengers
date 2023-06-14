@@ -1,3 +1,4 @@
+
 .gallery-section {
   padding-top: 16px;
 }
@@ -8,6 +9,10 @@
   font-size: 20px;
   line-height: 2;
   text-align: center;
+}
+
+.light .catalog-failure {
+  color: var(--dark-color);
 }
 
 .failure-event {
