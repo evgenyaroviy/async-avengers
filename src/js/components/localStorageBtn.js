@@ -23,6 +23,7 @@ function addToLocalStorage(e, data) {
   const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
   removeFromLibraryBtn.style.display = 'block';
   //localAdd
+  Array.isArray(data)?data = data[0]:data
   if (!moviesIdList.find(e => e.id === data.id)) {
     moviesIdList.push(data);
     localStorage.setItem('MOVIE-ID-LIST', JSON.stringify(moviesIdList));

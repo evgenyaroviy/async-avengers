@@ -34,8 +34,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 320px;
-    height: 380px;
+    width: 100%;
+    height: 100%;
     z-index: -1;
     margin-left: auto;
     margin-right: auto;
@@ -72,7 +72,7 @@
 @media screen and (min-width: 320px) {
   .hero__img {
     width: 100%;
-    height: 380px;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     object-fit: cover;
@@ -83,16 +83,12 @@
 
 @media screen and (min-width: 768px) {
   .hero__img {
-    width: 100%;
-    height: 432px;
     left: 200px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .hero__img {
-    width: 100%;
-    height: 720px;
     left: 340px;
   }
 }
@@ -101,24 +97,26 @@
 
 @media screen and (min-width: 320px) {
   .hero__title-box {
-    width: 280px;
+    width: 300px;
     padding-top: 40px;
     margin-right: auto;
-    margin-left: 0;
+    margin-left: 20;
   }
 }
 
 @media screen and (min-width: 768px) {
   .hero__title-box {
-    width: 400px;
+    width: 700px;
     padding-top: 36px;
+    margin-left: 32px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .hero__title-box {
-    width: 500px;
+    width: 800px;
     padding-top: 118px;
+    margin-left: 135px;
   }
 }
 
@@ -152,14 +150,21 @@
 
 @media screen and (min-width: 320px) {
   .rating-box {
-    margin-left: 0;
     margin-top: 12px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .rating-box {
+    margin-left: 32px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .rating-box {
     margin-top: 16px;
+    margin-left: 135px;
   }
 }
 
@@ -170,7 +175,7 @@
     width: 177px;
     height: 69px;
     margin-top: 16px;
-    margin-left: 0;
+    margin-left: 20;
     margin-right: auto;
     overflow: hidden;
   }
@@ -180,6 +185,7 @@
       width: 295px;
       height: 64px;
       margin-top: 20px;
+      margin-left: 32px;
     }
   }
 
@@ -187,6 +193,7 @@
     .hero__text-box {
       width: 367px;
       margin-top: 28px;
+      margin-left: 135px;
     }
   }
 
@@ -232,8 +239,8 @@
   .buttons {
     display: flex;
     margin-top: 20px;
-    margin-left: 0;
-    padding-bottom: 80px;
+    margin-left: 20;
+    padding-bottom: 54px;
   }
 }
 
@@ -241,6 +248,7 @@
   .buttons {
     margin-top: 28px;
     padding-bottom: 62px;
+    margin-left: 32px;
   }
 }
 
@@ -248,6 +256,7 @@
   .buttons {
     margin-top: 36px;
     padding-bottom: 169px;
+    margin-left: 135px;
   }
 }
 
@@ -344,7 +353,7 @@
 
 @media screen and (min-width: 320px) {
   .hero__title-box-gs {
-    width: 200px;
+    width: 300px;
     padding-top: 40px;
     margin-left: 0;
     margin-right: auto;
@@ -353,14 +362,14 @@
 
 @media screen and (min-width: 768px) {
   .hero__title-box-gs {
-    width: 332px;
+    width: 700px;
     padding-top: 62px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .hero__title-box-gs {
-    width: 500px;
+    width: 800px;
     padding-top: 169px;
   }
 }
@@ -426,6 +435,7 @@
 @media screen and (min-width: 320px) {
   .get-started-section {
     width: 100%;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;

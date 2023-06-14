@@ -5,6 +5,7 @@ import { galleryMarkup } from '../../galleryMarkup';
 import { galleryContainer, catalogFailure, gallerySection } from './gallery';
 import { hideLoader, showLoader } from '../../components/loader';
 
+
 const formEl = document.querySelector('#search-form');
 const inputEl1 = document.querySelector('.search1');
 const inputEl2 = document.querySelector('.search2');
@@ -78,7 +79,6 @@ async function responseOptionsSearch() {
 
 async function fetchOptionsSearch() {
   try {
-    showLoader();
     const response = await axios.request(optionsSearch);
     return response.data;
   } catch (error) {
@@ -86,7 +86,6 @@ async function fetchOptionsSearch() {
     catalogFailure.style.display = 'block';
     gallerySection.classList.add('failure-event');
   } finally {
-    hideLoader();
   }
 }
 

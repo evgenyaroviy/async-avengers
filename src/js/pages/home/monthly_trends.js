@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { optionsUpcoming } from '../../request';
 import { optionsGenre } from '../../request';
-import { showLoader, hideLoader } from '../../components/loader';
+import { toggleLoader } from '../../components/loader';
 import {
   removeFromLocalStorage,
   addToLocalStorage,
@@ -13,14 +13,14 @@ const containerMovie = document.querySelector('.container-upcoming-movie');
 
 async function fetchUpcomingMovie() {
   try {
-    showLoader();
+    toggleLoader(true);
     const response = await axios.request(optionsUpcoming);
     return response.data;
   } catch (error) {
     console.error(error);
     containerMovie.innerHTML = markupError();
   } finally {
-    hideLoader();
+    toggleLoader(false);
   }
 }
 async function fetchGenresMovie(id) {
@@ -33,7 +33,9 @@ async function fetchGenresMovie(id) {
   }
 }
 
+
 function createRandomMovies(movieInfo) {
+
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
@@ -50,7 +52,7 @@ function createRandomMovies(movieInfo) {
 }
 async function responseUpcoming() {
   try {
-    showLoader();
+toggleLoader(true)
     const data = await fetchUpcomingMovie();
     const movieInfo = data.results;
     const randomIndex = Math.floor(Math.random() * movieInfo.length);
@@ -58,6 +60,7 @@ async function responseUpcoming() {
     const id = randomMovie.id;
     const genres = await fetchGenresMovie(id);
     const randomMovieFilm = createRandomMovies(movieInfo);
+    
     //local
     // BUTTON//
     containerMovie.addEventListener('click', onClickAddToLocalStorage);
@@ -67,6 +70,11 @@ async function responseUpcoming() {
 
       const target = event.target;
       if (target.classList.contains('upcoming-btn-add-span')) {
+
+        randomMovieFilm.forEach(e => {
+          const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+          e.genre_name = genre ? genre.name : '';
+        });
         addToLocalStorage(event, randomMovieFilm);
       } else if (target.classList.contains('upcoming-btn-remove-span')) {
         removeFromLocalStorage(event, randomMovieFilm);
@@ -80,7 +88,7 @@ async function responseUpcoming() {
       containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, genres);
     }
   } finally {
-    hideLoader();
+toggleLoader(false);
   }
 }
 
@@ -99,6 +107,7 @@ function generateGenres(movieInfo, genres) {
 }
 
 function createMarkupUpcoming(movieInfo, genres) {
+
   const {
     id: idMovie,
     backdrop_path,
