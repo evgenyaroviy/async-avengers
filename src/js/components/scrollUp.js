@@ -14,3 +14,4 @@ scrollBtn.addEventListener("click", function () {
         behavior: "smooth"
     });
 });
+export {scrollBtn}
