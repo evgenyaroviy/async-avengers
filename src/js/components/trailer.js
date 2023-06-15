@@ -6,7 +6,7 @@ const modalEl = document.querySelector('.modal');
 const heroTrailer = document.querySelector('.film-of-day');
 heroTrailer.addEventListener('click', onClickWatchTrailer);
 
-let player = '';
+
 
 
 
@@ -45,12 +45,9 @@ async function onClickWatchTrailer(e) {
     </button>
         <iframe class="iframe" id="myVideo" width="560" height="315" src="${youtubeLink}" frameborder="0" allowfullscreen></iframe>`;
         openModal(iframeMarkup);
-        player = document.getElementsByTagName('iframe');
-        console.dir(player[0])
-        console.dir()
-
-      const modalCloseBtn = document.querySelector('.modal-close-btn');
-      modalCloseBtn.addEventListener('click', closeModal);
+        
+        const modalCloseBtn = document.querySelector('.modal-close-btn');
+       modalCloseBtn.addEventListener('click', closeModal);
 
       })
       .catch(function (error) {
@@ -60,7 +57,7 @@ async function onClickWatchTrailer(e) {
         modalCloseBtn.addEventListener('click', closeModal);
       });
   }   catch (error) {
-          console.log(error);
+      console.log(error);
   }
 }
 
