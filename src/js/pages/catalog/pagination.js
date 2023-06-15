@@ -7,6 +7,8 @@ import { optionsGenre } from '../../request';
 import { galleryContainer } from './gallery';
 
 
+{/* <svg class="tui-ico-style" width="28" height="28"><use href="../../../images/chevron-forward-l.svg"></use></svg> */ }
+
 const paginationContainer = document.getElementById('pagination');
 const paginationOptions = {
   totalItems: 100,
@@ -22,11 +24,11 @@ const paginationOptions = {
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</span>',
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
