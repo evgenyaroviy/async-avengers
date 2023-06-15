@@ -11,11 +11,57 @@ import {
 
 const containerMovie = document.querySelector('.container-upcoming-movie');
 
+async function responseUpcoming() {
+  try {
+    toggleLoader(true);
+
+    const movieInfo = (await fetchUpcomingMovie()).results;
+    const randomFilm = createRandomMovies(movieInfo);
+    const genres = await fetchGenresMovie(randomFilm.id);
+
+    if (genres.length === 0) {
+      containerMovie.innerHTML = createMarkupUpcoming(randomFilm, []);
+    } else {
+      generateGenres(movieInfo, genres);
+      containerMovie.innerHTML = createMarkupUpcoming(randomFilm, genres);
+    }
+    const idFind = moviesIdList.find(e => e.id === randomFilm.id);
+    const addToLibraryBtn = document.querySelector('.upcoming-btn-add');
+    const removeFromLibraryBtn = document.querySelector('.upcoming-btn-remove');
+
+    if (idFind) {
+      addToLibraryBtn.style.display = 'none';
+      removeFromLibraryBtn.style.display = 'block';
+    } else {
+      removeFromLibraryBtn.style.display = 'none';
+      addToLibraryBtn.style.display = 'block';
+    }
+
+    containerMovie.addEventListener('click', onClickAddToLocalStorage);
+
+    function onClickAddToLocalStorage(event) {
+      event.preventDefault();
+
+      const target = event.target;
+      if (target.classList.contains('upcoming-btn-add-span')) {
+        addToLocalStorage(event, randomFilm);
+      } else if (target.classList.contains('upcoming-btn-remove-span')) {
+        removeFromLocalStorage(event, randomFilm);
+      }
+    }
+    //local
+  } catch (error) {
+    console.log(error);
+    markupError();
+  } finally {
+    toggleLoader(false);
+  }
+}
+
 async function fetchUpcomingMovie() {
   try {
     toggleLoader(true);
-    const response = await axios.request(optionsUpcoming);
-    return response.data;
+    return (await axios.request(optionsUpcoming)).data;
   } catch (error) {
     console.error(error);
     containerMovie.innerHTML = markupError();
@@ -44,64 +90,29 @@ function createRandomMovies(movieInfo) {
     movie =>
       movie.release_date >= startOfMonth && movie.release_date <= endOfMonth
   );
-  const randomIndexFilm = Math.floor(Math.random() * filteredMovies.length);
-  const randomMovieFilm = [filteredMovies[randomIndexFilm]];
+  const randomMovieFilm =
+    filteredMovies[Math.floor(Math.random() * filteredMovies.length)];
+
   return randomMovieFilm;
-}
-async function responseUpcoming() {
-  try {
-    toggleLoader(true);
-    const data = await fetchUpcomingMovie();
-    const movieInfo = data.results;
-    const randomIndex = Math.floor(Math.random() * movieInfo.length);
-    const randomMovie = movieInfo[randomIndex];
-    const id = randomMovie.id;
-    const genres = await fetchGenresMovie(id);
-    const randomMovieFilm = createRandomMovies(movieInfo);
-    
-    //local
-    // BUTTON//
-    containerMovie.addEventListener('click', onClickAddToLocalStorage);
-
-    function onClickAddToLocalStorage(event) {
-      event.preventDefault();
-
-      const target = event.target;
-      if (target.classList.contains('upcoming-btn-add-span')) {
-
-        randomMovieFilm.forEach(e => {
-          const genre = genres.find(genre => genre.id == e.genre_ids[0]);
-          e.genre_name = genre ? genre.name : '';
-        });
-        addToLocalStorage(event, randomMovieFilm);
-      } else if (target.classList.contains('upcoming-btn-remove-span')) {
-        removeFromLocalStorage(event, randomMovieFilm);
-      }
-    }
-    //local
-    if (genres.length === 0) {
-      containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, []);
-    } else {
-      generateGenres(movieInfo, genres);
-      containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, genres);
-    }
-  } finally {
-    toggleLoader(false);
-  }
 }
 
 function generateGenres(movieInfo, genres) {
-  const genresName = [];
-  movieInfo.forEach(movie => {
-    const genreNames = [];
-    movie.genre_ids.forEach(genreId => {
+  return movieInfo.map(movie => {
+    const genreNames = movie.genre_ids.map(genreId => {
       const genre = genres.find(genre => genre.id === genreId);
-      if (genre) {
-        genreNames.push(genre.name);
-      }
+      return genre ? genre.name : '';
     });
-    genresName.push(genreNames.join(', '));
+    return genreNames.join(', ');
   });
+}
+
+
+
+function generateReleaseDate(date) {
+  const releaseDay = addLeadingZero(new Date(date).getDate());
+  const releaseMonth = addLeadingZero(new Date(date).getMonth() + 1);
+  const releaseYear = new Date(date).getFullYear();
+  return `${releaseDay}.${releaseMonth}.${releaseYear}`;
 }
 
 function createMarkupUpcoming(movieInfo, genres) {
@@ -116,16 +127,12 @@ function createMarkupUpcoming(movieInfo, genres) {
     popularity,
     genre_ids,
     overview,
-  } = movieInfo[0];
+  } = movieInfo;
 
-  const releaseDay = addLeadingZero(new Date(release_date).getDate());
-  const releaseMonth = addLeadingZero(new Date(release_date).getMonth() + 1);
-  const releaseYear = new Date(release_date).getFullYear();
+  const releaseDate = generateReleaseDate(release_date);
 
   let poster = null;
-
   const screenWidth = window.innerWidth;
-
   if (screenWidth <= 767 && poster_path) {
     poster = `https://image.tmdb.org/t/p/original/${poster_path}`;
   } else if (backdrop_path) {
@@ -148,7 +155,7 @@ function createMarkupUpcoming(movieInfo, genres) {
     <ul class="upcoming-list-details list">
       <li class="upcoming-list-details-item">
         <p class="upcoming-list-details-subtitle">Release date</p>
-        <p class="upcoming-realese-date">${releaseDay}.${releaseMonth}.${releaseYear}</p>
+        <p class="upcoming-realese-date">${releaseDate}</p>
       </li>
       <li class="upcoming-list-details-item">
         <p class="upcoming-list-details-subtitle">Vote / Votes</p>
@@ -172,8 +179,6 @@ function createMarkupUpcoming(movieInfo, genres) {
     </div>
   `;
 }
-
-// ERROR//
 
 function markupError() {
   console.log('hello');
