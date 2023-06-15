@@ -69,12 +69,12 @@
   border: none;
 }
 
-.tui-pagination .tui-first,
+/* .tui-pagination .tui-first,
 .tui-pagination .tui-prev,
 .tui-pagination .tui-next,
 .tui-pagination .tui-last {
-  /* font-size: 0; */
-}
+ font-size: 0; 
+} */
 
 
 
