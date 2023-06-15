@@ -11,9 +11,9 @@ const paginationContainer = document.getElementById('pagination');
 const paginationOptions = {
   totalItems: 100,
   itemsPerPage: 20,
-  visiblePages: 4,
+  visiblePages: 5,
   page: 1, //add leading zero
-  centerAlign: false,
+  centerAlign: true,
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
   template: {
