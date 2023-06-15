@@ -45,14 +45,16 @@ async function onClickWatchTrailer(e) {
     </button>
         <iframe class="iframe" id="myVideo" width="560" height="315" src="${youtubeLink}" frameborder="0" allowfullscreen></iframe>`;
         openModal(iframeMarkup);
-        player = document.getElementsByTagName('iframe')
+        player = document.getElementsByTagName('iframe');
+        console.dir(player[0])
+        console.dir()
 
       const modalCloseBtn = document.querySelector('.modal-close-btn');
       modalCloseBtn.addEventListener('click', closeModal);
 
       })
       .catch(function (error) {
-          console.error(error);
+        console.error(error);
         openModal(errorModalTemplate())
         const modalCloseBtn = document.querySelector('.modal-close-btn');
         modalCloseBtn.addEventListener('click', closeModal);
@@ -62,12 +64,19 @@ async function onClickWatchTrailer(e) {
   }
 }
 
+
+
 function closeModal() {
   modalEl.classList.remove('modal-show');
   backdrop.classList.remove('modal-show');
   document.body.style.overflow = 'auto';
-  
+
 }
+
+// function stopWatchTrailer() {
+//  player[0].contentWindow.close()
+// }
+
 
 function openModal(markup) {
   modalEl.innerHTML = markup;
@@ -80,26 +89,26 @@ backdrop.addEventListener('click', closeModal)
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal();
-    
-  }
+   }
 });
 
 function errorModalTemplate() {
     return `<div class='watch-modal modal-error'>
-  <div class='watch-modal__content'>
-     <button class="modal-close-btn">
-              <svg width="24" height="24" class="modal-close-icon">
+                <button class="modal-close-btn">
+                <svg width="24" height="24" class="modal-close-icon">
                 <use href="${sprite}#icon-close-outline"></use>       
-              </svg>
-    </button>
+                </svg>
+                </button>
+            <div class='watch-modal__content'>
     <p class='watch-modal__error-message'>OOPS... </p>
     <p class='watch-modal__error-message'>We are very sorry! </p>
     <p class='watch-modal__error-message'>But we couldn’t find the trailer.</p>
- <div class='watch-modal__error-image'>
-   </div>
-    </div>
-</div>`;
-  
+            </div>
+    <div class='watch-modal__error-image'>
+     
+      </div>`;
   
 }
+
+
 
