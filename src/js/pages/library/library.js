@@ -19,7 +19,8 @@ export function libraryRender(colbMovies) {
   }
   const localMoviesList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST'));
   const moviesContainerEl = document.querySelector('.movies-libary');
-  const oopsMessage = document.querySelector('.oops-message');
+      const oopsMessage = document.querySelector('.oops-message');
+      const btnSearchMore = document.querySelector('.btn-search');
   const libraryMoviesList = document.querySelector('.library-movies--list');
   let localMoviesListGanresSort = [];
   moviesContainerEl.innerHTML = ``;
@@ -45,6 +46,7 @@ export function libraryRender(colbMovies) {
   }
   if (!localMoviesList || localMoviesList.length === 0) {
     oopsMessage.style.display = 'block';
+    btnSearchMore.style.display = 'block';
   } else {
     moviesContainerEl.insertAdjacentHTML(
       'beforeend',
