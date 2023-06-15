@@ -1,14 +1,11 @@
 import {libraryRender} from '../pages/library/library'
+import { switchBtn } from './switchBtnAddRemove';
 const MOVIES_LIST_KEY = 'MOVIE-ID-LIST';
 
 const moviesIdList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST')) || [];
 
 function removeFromLocalStorage(e, data) {
-  e.preventDefault();
-  const removeFromLibraryBtn = e.target.parentNode;
-  removeFromLibraryBtn.style.display = 'none';
-  const addToLibraryBtn = removeFromLibraryBtn.previousElementSibling;
-  addToLibraryBtn.style.display = 'block';
+  switchBtn(e)
   //localAdd
   const indexId = moviesIdList.findIndex(e => e.id === data.id);
   if (indexId !== -1) {
@@ -19,11 +16,7 @@ function removeFromLocalStorage(e, data) {
   //localAdd
 }
 function addToLocalStorage(e, data) {
-  e.preventDefault();
-  const addToLibraryBtn = e.target.parentNode;
-  addToLibraryBtn.style.display = 'none';
-  const removeFromLibraryBtn = addToLibraryBtn.nextElementSibling;
-  removeFromLibraryBtn.style.display = 'block';
+  switchBtn(e)
   //localAdd
   Array.isArray(data)?data = data[0]:data
   if (!moviesIdList.find(e => e.id === data.id)) {
