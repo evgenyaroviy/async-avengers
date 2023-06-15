@@ -79,9 +79,9 @@ function createMarkup(data) {
         getStartedBox.style.display = 'block'; // Показываем get-started-box
         return;
       }
-      console.log('Current Card:', item);
 
       // Создаем разметку для текущего объекта фильма
+
       return `<div class="hero__img-gradient"></div>
 <img class="hero__img" loading="lazy" width="100%" height="720"
   srcset="https://image.tmdb.org/t/p/original${item.backdropPath} 1280w,
