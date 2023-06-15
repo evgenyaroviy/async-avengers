@@ -8,7 +8,7 @@ export function galleryMarkup(movies) {
       ({ title, poster_path, genre_name, vote_average, release_date, id }) => {
         const stars = ratingToStars(vote_average);
         const releaseYear = release_date.slice(0, 4);
-        
+        let srcAlt;
         if (poster_path == null) {
           srcAlt = `src='${posterPlaceholder}' alt='${title}'`;
         } else {
@@ -23,8 +23,8 @@ export function galleryMarkup(movies) {
         if (genre_name === '') {
           genre_name = `No information yet`;
         }
-           
-           return `<li data-id=${id} class="movie-card"> 
+
+        return `<li data-id=${id} class="movie-card"> 
       <img ${srcAlt}
         loading="lazy" 
         width='395' height='574'
