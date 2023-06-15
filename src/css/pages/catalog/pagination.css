@@ -67,6 +67,7 @@
   white-space: nowrap;
   font-weight: normal;
   border: none;
+}
 
 .tui-pagination .tui-next {
   background-image: url('../../../images/chevron-forward-r.svg');
