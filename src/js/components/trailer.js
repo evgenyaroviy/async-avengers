@@ -14,7 +14,7 @@ let player = '';
 const optionsDetails = {
   method: 'GET',
   url: 'https://api.themoviedb.org/3/movie/movieId/videos',
-  params: {language: 'en-US'},
+  params: { language: 'en-US' },
   headers: {
     accept: 'application/json',
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOTZiN2ExNTYwNGYwMmExYWNkMTVhNWJlY2JmMjQ4MCIsInN1YiI6IjY0ODNhYTBhOTkyNTljMDBlMmY0NWE4ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Sdbi-2PalUFAI7K7hzIv-hc4p92EU6q_yg6_IJJHjA'
@@ -23,13 +23,13 @@ const optionsDetails = {
 
 
 async function onClickWatchTrailer(e) {
-    try {
+  try {
     const movieId = e.target
       .closest('.watch-trailer-js')
       .getAttribute('data-id');
-       
+
     optionsDetails.url = `https://api.themoviedb.org/3/movie/${movieId}/videos`;
-    
+
     axios
       .request(optionsDetails)
       .then(function (response) {
@@ -47,26 +47,26 @@ async function onClickWatchTrailer(e) {
         openModal(iframeMarkup);
         player = document.getElementsByTagName('iframe')
 
-      const modalCloseBtn = document.querySelector('.modal-close-btn');
-      modalCloseBtn.addEventListener('click', closeModal);
+        const modalCloseBtn = document.querySelector('.modal-close-btn');
+        modalCloseBtn.addEventListener('click', closeModal);
 
       })
       .catch(function (error) {
-          console.error(error);
+        console.error(error);
         openModal(errorModalTemplate())
         const modalCloseBtn = document.querySelector('.modal-close-btn');
         modalCloseBtn.addEventListener('click', closeModal);
       });
-  }   catch (error) {
-          console.log(error);
+  } catch (error) {
+    console.log(error);
   }
 }
 
 function closeModal() {
+  modalEl.innerHTML = '';
   modalEl.classList.remove('modal-show');
   backdrop.classList.remove('modal-show');
   document.body.style.overflow = 'auto';
-  
 }
 
 function openModal(markup) {
@@ -76,30 +76,29 @@ function openModal(markup) {
   document.body.style.overflow = 'hidden';
 }
 
-backdrop.addEventListener('click', closeModal) 
+backdrop.addEventListener('click', closeModal)
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal();
-    
+
   }
 });
 
 function errorModalTemplate() {
-    return `<div class='watch-modal modal-error'>
-  <div class='watch-modal__content'>
+  return `<div class='watch-modal modal-error'>
      <button class="modal-close-btn">
               <svg width="24" height="24" class="modal-close-icon">
                 <use href="${sprite}#icon-close-outline"></use>       
               </svg>
     </button>
-    <p class='watch-modal__error-message'>OOPS... </p>
-    <p class='watch-modal__error-message'>We are very sorry! </p>
-    <p class='watch-modal__error-message'>But we couldn’t find the trailer.</p>
- <div class='watch-modal__error-image'>
-   </div>
+    <div class='watch-modal__content'>
+      <p class='watch-modal__error-message'>OOPS... <br>
+      We are very sorry! <br>
+      But we couldn’t find the trailer.</p>
+      <div class='watch-modal__error-image'></div>
     </div>
 </div>`;
-  
-  
+
+
 }
 

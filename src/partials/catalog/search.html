@@ -2,51 +2,23 @@
   <h2 class="visually-hidden">Catalog</h2>
   <div class="container">
     <form class="search-form" id="search-form">
-      <!-- Tablet | Desctop -->
-      <div class="search-film-wrapper">
-        <div class="search-container">
-          <input
-            type="text"
-            name="searchQuery"
-            autocomplete="off"
-            placeholder="Film"
-            class="search search2 search-film"
-            autofocus
-          />
-          <div class="reset-container2">
-            <button type="reset" class="reset-search reset-search2">
-              <svg class="reset-icon">
-                <use href="./images/sprite.svg#icon-close-outline"></use>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="search-container">
-          <select
-            id="year"
-            name="year"
-            class="search select-drop-down"
-          ></select>
+      <div class="search-container">
+        <input
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search"
+          class="search search-field"
+          autofocus
+        />
+        <div class="reset-container">
+          <svg class="reset-icon">
+            <use href="./images/sprite.svg#icon-close-outline"></use>
+          </svg>
+          <button type="reset" class="reset-search"></button>
         </div>
       </div>
-      <!--MOBILE -->
-      <div class="search-wrapper">
-        <div class="search-container">
-          <input
-            type="text"
-            name="searchQuery"
-            autocomplete="off"
-            placeholder="Search"
-            class="search search1 search-field"
-          />
-          <div class="reset-container1">
-            <svg class="reset-icon">
-              <use href="./images/sprite.svg#icon-close-outline"></use>
-            </svg>
-            <button type="reset" class="reset-search reset-search1"></button>
-          </div>
-        </div>
-      </div>
+      <select id="year" name="year" class="search select-drop-down"></select>
       <button type="submit" class="btn btn-accent btn-round">
         <span class="submit-btn btn-in">
           <svg class="search-icon">

@@ -33,3 +33,7 @@
 .weekly-content {
   margin-top: 28px;
 }
+
+.light .weekly_trends_title {
+  color: var(--dark-color);
+}
