@@ -1,3 +1,4 @@
+import {libraryRender} from '../pages/library/library'
 const MOVIES_LIST_KEY = 'MOVIE-ID-LIST';
 
 const moviesIdList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST')) || [];
@@ -14,6 +15,7 @@ function removeFromLocalStorage(e, data) {
     moviesIdList.splice(indexId, 1);
     localStorage.setItem('MOVIE-ID-LIST', JSON.stringify(moviesIdList));
   }
+  libraryRender()
   //localAdd
 }
 function addToLocalStorage(e, data) {
@@ -27,7 +29,7 @@ function addToLocalStorage(e, data) {
   if (!moviesIdList.find(e => e.id === data.id)) {
     moviesIdList.push(data);
     localStorage.setItem('MOVIE-ID-LIST', JSON.stringify(moviesIdList));
-
+    libraryRender()
     //localAdd
   }
 }

@@ -20,7 +20,6 @@ export function libraryRender(colbMovies) {
   const localMoviesList = JSON.parse(localStorage.getItem('MOVIE-ID-LIST'));
   const moviesContainerEl = document.querySelector('.movies-libary');
   const oopsMessage = document.querySelector('.oops-message');
-  const libraryMoviesList = document.querySelector('.library-movies--list');
   let localMoviesListGanresSort = [];
   moviesContainerEl.innerHTML = ``;
   if (localMoviesList) {
@@ -46,6 +45,7 @@ export function libraryRender(colbMovies) {
   if (!localMoviesList || localMoviesList.length === 0) {
     oopsMessage.style.display = 'block';
   } else {
+    oopsMessage.style.display = 'none';
     moviesContainerEl.insertAdjacentHTML(
       'beforeend',
       galleryMarkup(localMoviesListGanresSort.slice(0, colbMovies || 9))
@@ -54,6 +54,8 @@ export function libraryRender(colbMovies) {
       colbMovies += 9;
       btnLoadMore.style.display = 'block';
     }
+  const libraryMoviesList = document.querySelector('.library-movies--list');
+
     if (
       libraryMoviesList.childNodes.length === localMoviesListGanresSort.length
     ) {
