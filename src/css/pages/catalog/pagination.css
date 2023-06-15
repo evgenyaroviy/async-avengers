@@ -88,6 +88,12 @@
   background-color: inherit;
 }
 
+.tui-pagination .tui-prev-is-ellip:hover,
+.tui-pagination .tui-next-is-ellip:hover {
+  color: var(--accent-color);
+  background-color: inherit;
+}
+
 .tui-pagination .tui-prev {
   margin-right: 4px;
 }
