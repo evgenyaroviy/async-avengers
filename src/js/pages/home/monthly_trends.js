@@ -33,9 +33,7 @@ async function fetchGenresMovie(id) {
   }
 }
 
-
 function createRandomMovies(movieInfo) {
-
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
@@ -52,7 +50,7 @@ function createRandomMovies(movieInfo) {
 }
 async function responseUpcoming() {
   try {
-toggleLoader(true)
+    toggleLoader(true);
     const data = await fetchUpcomingMovie();
     const movieInfo = data.results;
     const randomIndex = Math.floor(Math.random() * movieInfo.length);
@@ -82,7 +80,7 @@ toggleLoader(true)
       containerMovie.innerHTML = createMarkupUpcoming(randomMovieFilm, genres);
     }
   } finally {
-toggleLoader(false);
+    toggleLoader(false);
   }
 }
 
@@ -101,7 +99,6 @@ function generateGenres(movieInfo, genres) {
 }
 
 function createMarkupUpcoming(movieInfo, genres) {
-
   const {
     id: idMovie,
     backdrop_path,

@@ -8,7 +8,6 @@ footerBtn.addEventListener('click', showTeamModal);
 btnCloseTeam.addEventListener('click', hideTeamModal);
 backdrop.addEventListener('click', hideTeamModal);
 
-
 function showTeamModal(e) {
   e.preventDefault();
   teamModal.classList.add('is-visible');
