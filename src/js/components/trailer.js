@@ -85,18 +85,17 @@ window.addEventListener('keydown', e => {
 });
 
 function errorModalTemplate() {
-    return `<div class='watch-modal modal-error'>
-  <div class='watch-modal__content'>
+  return `<div class='watch-modal modal-error'>
      <button class="modal-close-btn">
               <svg width="24" height="24" class="modal-close-icon">
                 <use href="${sprite}#icon-close-outline"></use>       
               </svg>
     </button>
-    <p class='watch-modal__error-message'>OOPS... </p>
-    <p class='watch-modal__error-message'>We are very sorry! </p>
-    <p class='watch-modal__error-message'>But we couldn’t find the trailer.</p>
- <div class='watch-modal__error-image'>
-   </div>
+    <div class='watch-modal__content'>
+      <p class='watch-modal__error-message'>OOPS... <br>
+      We are very sorry! <br>
+      But we couldn’t find the trailer.</p>
+      <div class='watch-modal__error-image'></div>
     </div>
 </div>`;
   
