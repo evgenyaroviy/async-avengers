@@ -1,4 +1,4 @@
-/* SRYLES FOR LIGTH THEME */
+/* STYLES FOR LIGTH THEME */
 .light .search {
   border-color: var(--middle-grey-color);
 }
@@ -6,7 +6,11 @@
   stroke: var(--dark-color);
 }
 .light .movie-card__backdrop {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 63.48%, rgba(0, 0, 0, 0.9) 92.16%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 63.48%,
+    rgba(0, 0, 0, 0.9) 92.16%
+  );
 }
 .light .reset-icon {
   stroke: var(--middle-grey-color);
@@ -15,21 +19,14 @@
   color: var(--middle-grey-color);
 }
 .light .movie-card:is(:hover, :focus) {
-    transform: scale(1.005);
-    box-shadow: 1px 1px 14px 4px var(--middle-grey-color);
+  transform: scale(1.005);
+  box-shadow: 1px 1px 14px 4px var(--middle-grey-color);
 }
 
 /* STYLES FOR DARK THEME */
 
 .catalog-search-section {
   padding-top: 40px;
-}
-
-.search-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
 }
 
 .search-form {
@@ -60,10 +57,10 @@
 .search-field {
   width: 224px;
   height: 40px;
+  padding: 14.5px 24px;
 }
 
-.reset-container1,
-.reset-container2 {
+.reset-container {
   display: none;
 }
 
@@ -87,9 +84,11 @@
   fill: transparent;
   stroke: var(--lightest-color);
 }
+
 .reset-search:is(:hover, :focus) .reset-icon {
   stroke: var(--accent-color);
 }
+
 .btn-round {
   width: 40px;
   height: 40px;
@@ -123,39 +122,17 @@
   stroke: var(--accent-color);
 }
 
-.search-film-wrapper {
+.select-drop-down {
   display: none;
 }
 
 @media screen and (min-width: 768px) {
-  .search-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .catalog-search-section {
     padding-top: 60px;
   }
 
-  .search-film-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-  }
-
   .select-drop-down option {
     background-color: var(--dark-color);
-  }
-
-  .search-wrapper {
-    display: none;
-  }
-  .search-field {
-    width: 204px;
-    height: 44px;
-    padding: 14px 20px;
   }
 
   .search-icon {
@@ -163,17 +140,15 @@
     height: 18px;
   }
 
-  .search-film {
+  .search-field {
     width: 188px;
     height: 44px;
   }
+
   .select-drop-down {
+    display: block;
     width: 95px;
     height: 44px;
-  }
-
-  .reset-container {
-    display: none;
   }
 }
 
@@ -182,43 +157,30 @@
     padding-top: 80px;
   }
 
-  .search-wrapper {
-    display: none;
-  }
-
   .submit-btn {
     width: 48px;
     height: 48px;
   }
+
   .search-icon {
     width: 20px;
     height: 20px;
     left: 55%;
   }
+
   .search-field {
-    width: 334px;
+    width: 315px;
     height: 48px;
-    padding: 14.5px 24px;
     font-size: 16px;
     line-height: 1.2;
   }
+
   .btn-round {
     width: 48px;
     height: 48px;
   }
 
-  .search-film {
-    width: 315px;
-    height: 48px;
-    padding: 14.5px 24px;
-    font-size: 16px;
-    line-height: 1.2;
-  }
   .select-drop-down {
     height: 48px;
-  }
-
-  .reset-container {
-    display: none;
   }
 }
