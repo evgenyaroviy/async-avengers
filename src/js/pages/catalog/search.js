@@ -1,48 +1,46 @@
 import axios from 'axios';
 
-import { optionsSearch, optionsGenre } from '../../request';
+import { optionsSearch, optionsGenre, optionsReleaseDate } from '../../request';
 import { galleryMarkup } from '../../galleryMarkup';
 import { galleryContainer, catalogFailure, gallerySection } from './gallery';
 import { toggleLoader } from '../../components/loader';
 
-
 const formEl = document.querySelector('#search-form');
-const inputEl1 = document.querySelector('.search1');
-const inputEl2 = document.querySelector('.search2');
-const resetContainer1 = document.querySelector('.reset-container1');
-const resetContainer2 = document.querySelector('.reset-container2');
-const resetSearch1 = document.querySelector('.reset-search1');
-const resetSearch2 = document.querySelector('.reset-search2');
-
-const inputs = [inputEl1, inputEl2];
-const resetContainers = [resetContainer1, resetContainer2];
+const inputEl = document.querySelector('.search');
+const resetContainer = document.querySelector('.reset-container');
+const resetSearch = document.querySelector('.reset-search');
+const selectElement = document.getElementById('year');
+const placeholderOption = document.createElement('option');
 
 formEl.addEventListener('submit', handleSubmitForm);
-
-resetSearch1.addEventListener('click', handleResetSearch1);
-resetSearch2.addEventListener('click', handleResetSearch2);
+resetSearch.addEventListener('click', handleResetSearch);
 
 function handleSubmitForm(event) {
   event.preventDefault();
-
   catalogFailure.style.display = 'none';
   clearMarkup();
 
-  const query1 = inputEl1.value.trim();
-  const query2 = inputEl2.value.trim();
+  const query = inputEl.value.trim();
+  const selectedYear = selectElement.value;
 
-  if (query1 === '' && query2 === '') {
+  if (query === '' && selectedYear === '') {
     catalogFailure.style.display = 'block';
     gallerySection.classList.add('failure-event');
-    inputs.forEach(el => el.focus());
+    inputEl.focus();
     return;
-  } else {
-    optionsSearch.params.query = query1;
+  }
+
+  if (selectedYear !== '' && query !== '') {
+    optionsSearch.params.year = selectedYear;
+    optionsSearch.params.query = query;
     responseOptionsSearch();
   }
 
-  if (query2 !== '') {
-    optionsSearch.params.query = query2;
+  if (selectedYear !== '' && query === '') {
+    optionsReleaseDate.params.primary_release_year = selectedYear;
+    responseOptionsSearch();
+  } else {
+    optionsSearch.params.query = query;
     responseOptionsSearch();
   }
 }
@@ -51,13 +49,23 @@ async function responseOptionsSearch() {
   try {
     const data = await fetchOptionsSearch();
     const genres = await fetchGenresMovie();
-    const moviesArr = data.results;
+    const release = await fetchReleaseDate();
 
-    if (moviesArr.length === 0) {
+    let moviesArr = [];
+
+    if (data && data.results.length !== 0) {
+      moviesArr = data.results;
+    } else {
       catalogFailure.style.display = 'block';
       gallerySection.classList.add('failure-event');
-      resetContainers.forEach(el => (el.style.display = 'block'));
+      resetContainer.style.display = 'block';
+    }
 
+    if (release) {
+      moviesArr = moviesArr.concat(release.results);
+    }
+
+    if (data.results.length === 0 && !release) {
       return;
     } else {
       moviesArr.forEach(e => {
@@ -65,13 +73,12 @@ async function responseOptionsSearch() {
         e.genre_name = genre ? genre.name : '';
       });
 
-      resetContainers.forEach(el => (el.style.display = 'block'));
+      resetContainer.style.display = 'block';
       catalogFailure.style.display = 'none';
       galleryContainer.innerHTML = galleryMarkup(moviesArr);
     }
   } catch (error) {
     console.log(error);
-  } finally {
   }
 }
 
@@ -84,6 +91,7 @@ async function fetchOptionsSearch() {
     catalogFailure.style.display = 'block';
     gallerySection.classList.add('failure-event');
   } finally {
+    toggleLoader();
   }
 }
 
@@ -96,17 +104,8 @@ async function fetchGenresMovie() {
   }
 }
 
-function handleResetSearch1() {
-  resetContainer1.style.display = 'none';
-  inputEl1.focus();
-  inputEl1.value = '';
-  document.location.reload();
-}
-
-function handleResetSearch2() {
-  resetContainer2.style.display = 'none';
-  inputEl2.focus();
-  inputEl2.value = '';
+function handleResetSearch() {
+  resetContainer.style.display = 'none';
   document.location.reload();
 }
 
@@ -115,9 +114,6 @@ function clearMarkup() {
 }
 
 // Additional functionality
-
-const selectElement = document.getElementById('year');
-const placeholderOption = document.createElement('option');
 
 placeholderOption.value = '';
 placeholderOption.textContent = 'Year';
@@ -131,14 +127,18 @@ for (let year = currentYear; year >= 2015; year -= 1) {
   const optionElement = document.createElement('option');
   optionElement.value = year;
   optionElement.textContent = year;
-
   selectElement.appendChild(optionElement);
 }
 
-selectElement.addEventListener('change', function () {
-  const selectedYear = selectElement.value;
-  if (selectedYear !== '') {
-    optionsSearch.params.year = selectedYear;
-    responseOptionsSearch();
+async function fetchReleaseDate() {
+  try {
+    const response = await axios.request(optionsReleaseDate);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    catalogFailure.style.display = 'block';
+  } finally {
+    selectElement.value = '';
+    toggleLoader();
   }
-});
+}
