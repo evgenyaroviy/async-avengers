@@ -106,6 +106,8 @@ function generateGenres(movieInfo, genres) {
   });
 }
 
+
+
 function generateReleaseDate(date) {
   const releaseDay = addLeadingZero(new Date(date).getDate());
   const releaseMonth = addLeadingZero(new Date(date).getMonth() + 1);
