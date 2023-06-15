@@ -41,9 +41,9 @@
   background-color: transparent;
 }
 
-/* .tui-pagination .tui-page-btn:hover {
+.tui-pagination .tui-page-btn:hover {
   background-color: #f4f4f4;
-} */
+}
 
 .tui-pagination .tui-is-selected,
 .tui-pagination strong {
@@ -63,25 +63,45 @@
   height: 28px;
   width: 28px;
   padding: 0;
-  font-size: 0;
   line-height: 26px;
   white-space: nowrap;
   font-weight: normal;
   border: none;
 }
 
+.tui-pagination .tui-first,
+.tui-pagination .tui-prev,
+.tui-pagination .tui-next,
+.tui-pagination .tui-last {
+  /* font-size: 0; */
+}
+
 
 
 .tui-pagination .tui-ico-first,
 .tui-pagination .tui-ico-prev,
-.tui-pagination .tui-ico-next,
-.tui-pagination .tui-ico-last,
-.tui-pagination .tui-ico-ellip {
-  /* background: url('./img/sp_btn.png') no-repeat 0 0; */
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 0px;
+.tui-pagination .tui-ico-last {
+  background: url('../../../images/sprite.svg#icon-chevron-forward-l') no-repeat center center fixed;
+  background-size: cover;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  /* font-size: 0px; */
   /* add svg */
+}
+
+.tui-pagination .tui-page-btn .tui-ico-prev {
+  background: url('../../../images/sprite.svg#icon-chevron-forward-l') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.tui-pagination .tui-page-btn .tui-ico-next {
+  background: url('../../../images/sprite.svg#icon-chevron-forward-r') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.tui-pagination .tui-page-btn .tui-ico-ellip {
+  background: url('../../../images/sprite.svg#icon-dots') no-repeat center center fixed;
+  background-size: cover;
 }
 
 

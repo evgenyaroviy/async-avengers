@@ -7,7 +7,7 @@
 
 const loader = document.querySelector('.loader');
 
-function toggleLoader(show) {
+export function toggleLoader(show) {
   loader.style.display = show ? 'block' : 'none';
 }
-export { toggleLoader };
+// export { toggleLoader };

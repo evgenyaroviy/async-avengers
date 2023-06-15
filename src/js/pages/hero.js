@@ -15,7 +15,7 @@ function getRandomObject(data) {
 
 const getResponse = async () => {
   try {
-toggleLoader(true);
+    toggleLoader(true);
 
     // Выполняем GET-запрос к API, чтобы получить популярные фильмы за день
 
@@ -35,9 +35,10 @@ toggleLoader(true);
 
     createMarkup([randomObject]);
   } catch (error) {
+    getStartedBox.style.display = 'block'; // Показываем get-started-box
     console.log('error' + error);
   } finally {
-toggleLoader(false);
+    toggleLoader(false);
   }
 };
 
@@ -55,14 +56,11 @@ function createObject(data) {
 
 const getStartedBox = document.querySelector('.get-started-section');
 
-
 // Функция для создания разметки с данными объекта фильма
 
 function createMarkup(data) {
   let card = data
     .map(item => {
-      const title = item.title !== undefined ? item.title : item.name;
-
       // Проверяем наличие необходимых данных в объекте
 
       if (
@@ -82,35 +80,36 @@ function createMarkup(data) {
         return;
       }
       console.log('Current Card:', item);
-  
+
       // Создаем разметку для текущего объекта фильма
-     return `<div class="hero__img-gradient"></div>
-  <img class="hero__img" loading="lazy" width="1280" height="720"
-    srcset="https://image.tmdb.org/t/p/w1280${item.backdropPath} 1280w,
-    https://image.tmdb.org/t/p/w780${item.backdropPath} 768w,
-    https://image.tmdb.org/t/p/w300${item.backdropPath} 320w"
-    src="https://image.tmdb.org/t/p/w300${item.backdropPath}"
-    sizes="(min-width: 1280px) 1280px, (min-width: 768px) 768px, (min-width: 320px) 320px"
-    alt="${item.title}"
-  >
-  <div class="hero__title-box container">
+      return `<div class="hero__img-gradient"></div>
+<img class="hero__img" loading="lazy" width="100%" height="720"
+  srcset="https://image.tmdb.org/t/p/original${item.backdropPath} 1280w,
+  https://image.tmdb.org/t/p/original${item.backdropPath} 768w,
+  https://image.tmdb.org/t/p/original${item.backdropPath} 320w"
+  src="https://image.tmdb.org/t/p/original${item.backdropPath}"
+  sizes="(min-width: 1280px) 1280px, (min-width: 768px) 768px, (min-width: 320px) 320px"
+  alt="${item.title}"
+>
+  <div class="hero__title-box">
     <h2 class="hero__title">${item.title}</h2>
 </div>
-<div class="rating rating-box container">
+<div class="rating rating-box">
     <p class="info-item">
         <b class="info-item__name">${ratingToStars(item.voteAverage)}</b>
     </p>
 </div>
-<div class="hero__text-box container">
+<div class="hero__text-box">
     <p class="hero__text">${item.overview}</p>
 </div>
 
-<div class="buttons container">
+
+<div class="buttons">
 <button class="watch-trailer btn btn-accent watch-trailer-js" type="button" data-id="${
         item.id
       }" data-trailer="${item.movie_id}">
       <span class="btn-in">Watch trailer</span></button>
-<button class="more-details btn btn-light more-details-js" type="button" data-id="${
+<button class="more-details btn btn-dark more-details-js" type="button" data-id="${
         item.id
       }">
       <span class="btn-in">More details</span>
@@ -125,9 +124,7 @@ function createMarkup(data) {
 
 getResponse();
 
-
 const getStartedButton = document.querySelector('.get-started-btn');
 getStartedButton.addEventListener('click', function () {
   window.location.href = '../../catalog.html'; // Переход на страницу "catalog"
 });
-
