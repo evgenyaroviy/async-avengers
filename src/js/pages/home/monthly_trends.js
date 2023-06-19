@@ -41,12 +41,19 @@ async function responseUpcoming() {
 
     function onClickAddToLocalStorage(event) {
       event.preventDefault();
+      let randomFilmToLibrary = [];
+      randomFilmToLibrary.push(randomFilm);
+
+      randomFilmToLibrary.forEach(e => {
+        const genre = genres.find(genre => genre.id == e.genre_ids[0]);
+        return (e.genre_name = genre ? genre.name : '');
+      });
 
       const target = event.target;
       if (target.classList.contains('upcoming-btn-add-span')) {
-        addToLocalStorage(event, randomFilm);
+        addToLocalStorage(event, randomFilmToLibrary);
       } else if (target.classList.contains('upcoming-btn-remove-span')) {
-        removeFromLocalStorage(event, randomFilm);
+        removeFromLocalStorage(event, randomFilmToLibrary);
       }
     }
     //local
@@ -105,8 +112,6 @@ function generateGenres(movieInfo, genres) {
     return genreNames.join(', ');
   });
 }
-
-
 
 function generateReleaseDate(date) {
   const releaseDay = addLeadingZero(new Date(date).getDate());

@@ -46,7 +46,6 @@ async function onMovieClick(e) {
     addToLibraryBtn.addEventListener('click', e =>
       addToLocalStorage(e, movieData)
     );
-    console.log(movieData);
     
     const removeFromLibraryBtn = document.querySelector('.modal-btn-remove');
     removeFromLibraryBtn.addEventListener('click', e =>
